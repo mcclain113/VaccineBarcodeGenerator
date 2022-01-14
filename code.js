@@ -8,11 +8,6 @@ $(document).ready(function () {
 
 function genBarcode(event) {
     event.preventDefault();
-    if ($('#theBarcode').length) {
-
-    } else {
-
-
 
 
     let ndc = $("input#ndc").val();
@@ -39,10 +34,10 @@ function genBarcode(event) {
         ${drug} <br>
         ${facility}</p></div>
         </div></div>`);
-    }
+
 }
 function printDiv() {
-    var divContents = document.getElementById("bcprint").innerHTML;
+    var divContents = document.getElementById("printSpace").innerHTML;
     var a = window.open('', '', 'height=300, width=300', );
     a.document.write('<html>');
     a.document.write('<body >');
