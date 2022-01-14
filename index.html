@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GS1-128 Barcode Generator for Rx Medications</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<h1>RX Barcode Generator </h1>
+<h2>This generator will format barcodes in the GS1-128 for prescription medications.</h2>
+<h2>This format embeds NDC, expiration date, and lot number.</h2>
+
+<form id="filter">
+    <p>Required:</p>
+    <label for="ndc">10 Digit NDC (no dashes)</label>
+    <input type="text" id="ndc" name="ndc" size="10" required="required" maxlength="10" minlength="10">
+    <br>
+    <br>
+    <label for="month">2 Digit Month</label>
+    <input type="number" id="month" name="month" size="2" required="required" max="12">
+    <br>
+    <br>
+    <label for="day">2 Digit Day</label>
+    <input type="number" id="day" name="day" size="2" required="required" max="31">
+    <br>
+    <br>
+    <label for="year">2 Digit Year</label>
+    <input type="number" id="year" name="year" size="2" required="required" max="99">
+    <br>
+    <br>
+    <label for="lot">Lot Number</label>
+    <input type="text" id="lot" name="lot" size="10" required="required">
+    <br>
+    <br>
+    <p>Optional:</p>
+    <label for="drug">Drug Name</label>
+    <input type="text" id="drug" name="drug">
+    <br>
+    <br>
+    <label for="facility">Facility Name</label>
+    <input type="text" id="facility" name="facility">
+    <br>
+    <br>
+    <input type="submit" value="Generate Barcode" >
+
+</form>
+<br>
+<br>
+<button type="button" id="print">Print Label</button>
+<br>
+<br>
+<br>
+<button type="button" id="start-over">Reset</button>
+
+<br>
+<br>
+<p id="barcodeDiv"></p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style='padding-top:8px; text-align:center; font-size:15px; float:bottom; font-family: Source Sans Pro, Arial, sans-serif;'>
+    <!-- back-linking to www.tec-it.com is required -->
+    <a href='https://www.tec-it.com' title='Barcode Software by TEC-IT' target='_blank'>
+        TEC-IT Barcode Generator<br/>
+        <!-- logos are optional -->
+        <img alt='TEC-IT Barcode Software' border='0'
+             src='http://www.tec-it.com/pics/banner/web/TEC-IT_Logo_75x75.gif'>
+    </a>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+
+</script>
+<script src="code.js"></script>
+</body>
+</html>
