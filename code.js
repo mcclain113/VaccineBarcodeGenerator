@@ -1,8 +1,10 @@
 
 $(document).ready(function () {
     $("#filter").submit(genBarcode);
+    $("#filter2").submit(genBarcodeBasic);
     $("#start-over").on("click", clearSite);
     $("#print").on("click", printDiv);
+    $("#print2").on("click", printDiv);
 
 })
 
@@ -73,3 +75,28 @@ function clearSite(){
     location.reload();
 }
 
+function genBarcodeBasic(event) {
+    event.preventDefault();
+
+
+    let ndc = $("input#ndc").val();
+    let month = $("input#month").val();
+    let day = $("input#day").val();
+    let year = $("input#year").val();
+    let lot = $("input#lot").val();
+    let drug = $("input#drug").val();
+    let facility = $("input#facility").val();
+
+
+    $("p#barcodeDiv").after(`<div id="bcprint"><div class ="label" style='float: left; padding: 5px;'>
+<!-- insert your custom barcode setting your data in the GET parameter "data" -->
+        <img alt='Barcode Generator TEC-IT'
+        id = 'theBarcode'
+        src='https://barcode.tec-it.com/barcode.ashx?data=${ndc}&code=DataMatrix&unit=Min&dmsize=Default'/>
+        <div class="label" style='float: left; padding: 15px;'>
+        <p class="contents" style='left: -15px;top: -25px;position: relative; font-size: 0.75em;'>NDC: ${ndc}, Exp: ${month}/${day}/${year}, Lot: ${lot} <br>
+        ${drug} <br>
+        ${facility}</p></div>
+        </div></div>`);
+
+}
