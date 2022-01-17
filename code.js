@@ -19,6 +19,9 @@ function genBarcode(event) {
     let lot = $("input#lot").val();
     let drug = $("input#drug").val();
     let facility = $("input#facility").val();
+    let strength = $("input#strength").val();
+    let route = $("input#route").val();
+    let bud = $("input#bud").val();
 
     let input = '103'+ ndc;
 
@@ -33,8 +36,8 @@ function genBarcode(event) {
         src='https://barcode.tec-it.com/barcode.ashx?data=01${input}${checkDigit}17${year}${month}${day}10${lot}&code=DataMatrix&unit=Min&dmsize=Default'/>
         <div class="label" style='float: left; padding: 15px;'>
         <p class="contents" style='left: -15px;top: -25px;position: relative; font-size: 0.75em;'>NDC: ${ndc}, Exp: ${month}/${day}/${year}, Lot: ${lot} <br>
-        ${drug} <br>
-        ${facility}</p></div>
+        ${drug} ${strength} ${route} <br>
+        ${facility} |Beyond Use Date:  ${bud}</p></div>
         </div></div>`);
 
 }
@@ -86,6 +89,9 @@ function genBarcodeBasic(event) {
     let lot = $("input#lot").val();
     let drug = $("input#drug").val();
     let facility = $("input#facility").val();
+    let strength = $("input#strength").val();
+    let route = $("input#route").val();
+    let bud = $("input#bud").val();
 
 
     $("p#barcodeDiv").after(`<div id="bcprint"><div class ="label" style='float: left; padding: 5px;'>
@@ -95,8 +101,8 @@ function genBarcodeBasic(event) {
         src='https://barcode.tec-it.com/barcode.ashx?data=${ndc}&code=DataMatrix&unit=Min&dmsize=Default'/>
         <div class="label" style='float: left; padding: 15px;'>
         <p class="contents" style='left: -15px;top: -25px;position: relative; font-size: 0.75em;'>NDC: ${ndc}, Exp: ${month}/${day}/${year}, Lot: ${lot} <br>
-        ${drug} <br>
-        ${facility}</p></div>
+        ${drug} ${strength} ${route} <br>
+        ${facility} |Beyond Use Date:${bud}</p></div>
         </div></div>`);
 
 }
