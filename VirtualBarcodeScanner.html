@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Virtual Barcode Scanner</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<h1>Virtual Barcode Scanner </h1>
+<h2>This is a recommendation for a virtual barcode scanner that I use.</h2>
+<h2>There are two parts: <br>
+    1) A desktop virtual scanner that sends what it reads to the clipboard (unless you are lucky and the scanner sends to window correctly).<br>
+    2) A shortcut using AutoHotKey that "sends" what is in your clipboard to your app (if needed).
+</h2>
+
+<p><b>Getting started:</b></p>
+    <ol>
+<li>Download Virtual barcode reader: <a href="https://virtualbarcodereader.orpalis.com/download/">https://virtualbarcodereader.orpalis.com/download/</a></li>
+
+        <img src="image/orpalisscanner.png" height="117" width="357"/>
+<li>Note that you turn the scanner “ON/OFF” by clicking this icon in your tray</li>
+        <img src="image/orpalistray.png" height="44" width="48"/>
+<li>Make sure, with the scanner OFF, to right click on the icon and check mark “copy to clipboard”</li>
+
+        <img src="image/orpalisstrayopen.png" height="149" width="224"/>
+<li>Although the Virtual barcode reader can “output window” the scan…it doesn’t work with Citrix in my experience. So download the current version of autohotkey: <a href="https://autohotkey.com/download/">https://autohotkey.com/download/</a></li>
+
+        <img src="image/AhkImage.png" height="131" width="356"/>
+<li>SAVE the BarcodeBarry file linked here anywhere (network drive, desktop, your documents, etc):  <a href="/files/BarcodeBarry.ahk" download>Barcode Barry Auto Hot Key File</a>   </li>
+<li>Simply double click/open the BarcodeBarry file   (it will look like it did nothing, but it should be running in your tray)</li>
+
+        <img src="image/barcodeBarryIcon.png" height="71" width="89"/>
+<li>You are the owner of a sweet fully integrated PC barcode scanner (configured with "/" prefix/suffix) if you see both of these icons running in your tray</li>
+
+        <img src="image/orpalisAndBarryBarcode.png" height="44" width="81"/></ol>
+<p><b>Using your scanner:</b></p>
+
+<p>There are two ways to fire a scan (assuming you can NOT use the Orpaliss Scanner directly to the output window).</p>
+<ol>
+    <li>Capture the scan code from your screen.  You know it worked when the box turns <b style="color:green">green</b>:
+        <br>
+        <img src="image/scanExample.png" height="271" width="494"/>
+
+        <br>
+        OR, you can directly copy and paste something to scan (a NDC, order ID, etc).  Either way, the “barcode” is stored in your clipboard.  NOTE: you do not need the virtualized scanner at all if you are just copying values.  It is the running “H” application in your tray that is really submitting the scan.</li>
+    <li>Pull up Epic and fire off your scan using this keystroke combo:        <b>Windows button + b</b></li>
+    <li>Fire it off over and over again.  The keystroke will send off whatever is last stored in the clipboard.</li>
+</ol>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+
+</script>
+<script src="code.js"></script>
+</body>
+</html>
