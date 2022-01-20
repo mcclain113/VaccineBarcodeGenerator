@@ -35,9 +35,9 @@ function genBarcode(event) {
         id = 'theBarcode'
         src='https://barcode.tec-it.com/barcode.ashx?data=01${input}${checkDigit}17${year}${month}${day}10${lot}&code=DataMatrix&unit=Min&dmsize=Default'/>
         <div class="label" style='float: left; padding: 15px;'>
-        <p class="contents" style='left: -15px;top: -25px;position: relative; font-size: 0.75em;'>NDC: ${ndc}, Exp: ${month}/${day}/${year}, Lot: ${lot} <br>
+        <p class="contents" style='left: -15px;top: -25px;position: relative; font-size: 0.75em;'>NDC: ${ndc}, Lot: ${lot}, Exp: ${month}/${day}/${year} <br>
         ${drug} ${strength} ${route} <br>
-        ${facility} |Beyond Use Date:  ${bud}</p></div>
+        ${facility} |Administer By:  ${bud}</p></div>
         </div></div>`);
 
 }
@@ -100,9 +100,9 @@ function genBarcodeBasic(event) {
         id = 'theBarcode'
         src='https://barcode.tec-it.com/barcode.ashx?data=${ndc}&code=DataMatrix&unit=Min&dmsize=Default'/>
         <div class="label" style='float: left; padding: 15px;'>
-        <p class="contents" style='left: -15px;top: -25px;position: relative; font-size: 0.75em;'>NDC: ${ndc}, Exp: ${month}/${day}/${year}, Lot: ${lot} <br>
+        <p class="contents" style='left: -15px;top: -25px;position: relative; font-size: 0.75em;'>NDC: ${ndc}, Lot: ${lot}, Exp: ${month}/${day}/${year} <br>
         ${drug} ${strength} ${route} <br>
-        ${facility} |Beyond Use Date:${bud}</p></div>
+        ${facility} |Administer By:  ${bud}</p></div>
         </div></div>`);
 
 }
