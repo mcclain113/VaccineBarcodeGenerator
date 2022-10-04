@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Barcode Generator (No Lot Number or Expiration Date Required)</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<h1>RX Barcode Generator </h1>
+<h2>This is a basic barcode label generator.</h2>
+<h2>This format only embeds NDC/identifier into the barcode.</h2>
+<h2>Instead of requiring lot and expiration date, there is a free text field for additional information.</h2>
+
+<form id="filter3">
+    <p>Required:</p>
+    <label for="ndc">Type NDC to be Generated. Barcode Will Scan What is Exactly Typed Here.</label>
+    <input type="text" id="ndc" name="ndc" size="16" required="required">
+    <br>
+    <br>
+    <p>Optional:</p>
+    <label for="drug">Product Name</label>
+    <input type="text" id="drug" name="drug">
+    <br>
+    <br>
+    <label for="strength">Strength</label>
+    <input type="text" id="strength" name="strength">
+    <br>
+    <br>
+    <label for="route">Route</label>
+    <input type="text" id="route" name="route">
+    <br>
+    <br>
+    <label for="facility">Facility Name</label>
+    <input type="text" id="facility" name="facility">
+    <br>
+    <br>
+    <label for="freetext">Free-text</label>
+    <input type="text" id="freetext" name="freetext">
+    <br>
+    <br>
+    <p style="font-size: small">Press Generate Barcode Multiple Times For Every Label Needed (can fit up to 21 labels per sheet in landscape depending on lot length)    </p>
+    <p style="font-size: small">Otherwise, Copy and Paste Label Image into Custom Labels in EHR</p>
+    <input type="submit" value="Generate Barcode" >
+
+</form>
+<br>
+<br>
+<button type="button" id="print2">Print Label</button>
+<br>
+<br>
+<br>
+<button type="button" id="start-over">Reset</button>
+
+<br>
+<br>
+<div id="printSpace">
+<p id="barcodeDiv"></p>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style='padding-top:8px; text-align:center; font-size:15px; float:bottom; font-family: Source Sans Pro, Arial, sans-serif;'>
+    <!-- back-linking to www.tec-it.com is required -->
+    <a href='https://www.tec-it.com' title='Barcode Software by TEC-IT' target='_blank'>
+        TEC-IT Barcode Generator<br/>
+        <!-- logos are optional -->
+        <img alt='TEC-IT Barcode Software' border='0'
+             src='https://www.tec-it.com/pics/banner/web/TEC-IT_Logo_75x75.gif'>
+    </a>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+
+</script>
+<script src="code.js"></script>
+</body>
+</html>
