@@ -180,7 +180,7 @@ Main Styles
 }
 
 #contents{
-
+	min-height: 408px;
 	width: 65%;
 	float: left;
 	padding:15px;
@@ -303,7 +303,7 @@ content: '\201D';
 		flex-wrap: wrap;}
 	#Wrapper{ width: 420px; margin:0px auto;}
 	header{ text-align:center;}
-	.navigation{ height:190px;
+	.navigation{
 		text-align:center;}
 	#navigation ul li{ float:none; text-align:center; border-bottom:1px solid #dedede; }
 	/*.navigation a{ float:none; font-size:16px; padding:0px 0px; width:100%; text-align:center; text-transform:uppercase;}*/
@@ -327,8 +327,9 @@ content: '\201D';
 	#Wrapper3{display: flex;
 		flex-wrap: wrap;}
 	#Wrapper{ width: 320px; margin:0px auto;}
-	header{ text-align:center;}
-	.navigation{ height:190px;
+	header{ text-align:center;
+	}
+	.navigation{
 		text-align:center;}
 	#navigation ul li{ float:none; text-align:center; border-bottom:1px solid #dedede; }
 	.navigation a{ float:none; font-size:13px; padding:0px 0px; width:100%; text-align:center; text-transform:uppercase;}
@@ -352,7 +353,7 @@ content: '\201D';
 		flex-wrap: wrap;}
 	#Wrapper{ width: 100%; margin:0px auto;}
 	header{ text-align:center;}
-	.navigation{ height:190px;
+	.navigation{
 		text-align:center;}
 	.navigation a{ float:none; font-size:13px; padding:0px 0px; width:100%; text-align:center; text-transform:uppercase;}
 	#contents{
