@@ -9,11 +9,13 @@
 xlDown := -4121
 
 WorkbookPath := A_ScriptDir "\copyandpaster.xlsx"       ; <-- Change this to the path of your workbook
+ColumnStart := 0					; Enter in the Offset the range of columns. Always start at 0
+ColumnEnd := 1 					; Enter in the Offset the range of columns. Computers consider "0" as 1, so 3 columns (A,B,C) would be 0,2.
 xlApp := ComObjCreate("Excel.Application")                            ; Create an instance of Excel
 xlApp.Visible := true                                                          ; Make Excel visible
 MyWorkbook := xlApp.Workbooks.Open(WorkbookPath)                                ; Open the workbook
 CellA2 := xlApp.Cells(2, 1)                                          ; Store a reference to cell A2
-LastCell := CellA2.End(xlDown).Offset(0, 1)  ; Enter in the Offset the range of columns. Computers consider "0" as 1, so 3 columns (A,B,C) would be 0,2. End is like pressing Ctrl+Down
+LastCell := CellA2.End(xlDown).Offset(ColumnStart, ColumnEnd)  ; End is like pressing Ctrl+Down
 MyRange := xlApp.Range(CellA2, LastCell)               ; Store a reference to the Range A2:LastCell
 CellNumber := 1                                   ; This variable will store the cell number to use
 CellCount := MyRange.Cells.Count                            ; Store the count of cells in the range
@@ -23,13 +25,12 @@ return
    Loop {									
     SendRaw % MyRange.Cells(CellNumber).Text      ; Loop and send the current cell specified by 'CellNumber'
     CellNumber++                                                     ; Increase 'CellNumber' by one
-    Sleep, 500								; slow down or speed up 1 sec = 1000microseconds
+    Sleep, 5								; slow down or speed up 1 sec = 1000microseconds
     if (CellNumber > CellCount) {    ; If 'CellNumber' is greater than the total amount of cells...
         MsgBox, 64, Info, Finished. No more cells.                                           ; Done
         CellNumber := 1
 	break
     }
-Send, {Tab}
 }
 return
 Esc::ExitApp  ;Escape key will exit

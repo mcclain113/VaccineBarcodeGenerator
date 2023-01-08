@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="description" content="Automated Copy, Paste, and Tab from Excel to Another Application">
+    <meta name="description" content="Automated Copy and Paste from Excel to Another Application">
     <meta charset="utf-8">
     <meta name="description" content="Pharmacy Informatics Information, Education, Tools, and Solutions">
     <meta name="keywords" content="autohotkey, copy and paste, copy paste and tab, informatics, auto hot key">
@@ -49,33 +49,44 @@
         <article id="contents">
 
 
-            <h1>Automated Copy, Paste, and Tab from Excel to Another Application</h1>
-            <h2>This is a tool that simplifies having to copy and paste a lot of data from excel to any application. (Note: AutoHotkey works only on Windows)</h2>
+            <h1>Automated Copy and Paste from Excel to Another Application</h1>
+            <h2>This is a tool that simplifies having to copy and paste a lot of data from excel to any application, especially when the destination forces you to manually copy and paste each value one-by-one</h2>
             <h2>There are two parts:
                 <br>
-                1) Create your list of contents in Microsoft Excel.  There can be any number of columns and rows. I provide a sample Microsoft Excel file that has the file name pre-loaded in the AutoHotkey script (just add your data to the workbook).  Just one last thing to modify.<br>
+                1) Create your list of contents in Microsoft Excel.  There can be any number of columns and rows. I provide a sample Microsoft Excel file that has the file name preloaded in the AutoHotkey script (just add your data to the workbook).  Just one last thing to modify.<br>
                 <br>
                 2) A shortcut using AutoHotKey that then automatically starts the process until it hits a blank cell
             </h2>
 
+            <h3>(Note: AutoHotkey works only on Windows)</h3>
+
             <p><b>Getting started:</b></p>
             <ol>
-                <li>If you do not have it installed already, download and install the current version of AutoHotkey: <a href="https://autohotkey.com/download/">https://autohotkey.com/download/</a></li>
+                <li>If you do not have it installed already, download and install the current version of AutoHotkey: <a href="https://autohotkey.com/download/" target="_blank">https://autohotkey.com/download/</a></li>
                 <img src="image/AhkImage.png" alt="auto hot key download icon" height="131" width="356"/>
 
-                <li>SAVE the CopyandPaster file linked here anywhere (network drive, desktop, your documents, etc).  For this demonstration, I recommend placing the file on your desktop:  <a href="/files/CopyandPaster.ahk" download>CopyandPaster AutoHotKey File</a>   </li>
-                <li>SAVE a Microsoft Excel file that contains what you want copied and pasted to a destination application. For this demonstration, I have provided a sample file (named copyandpaster.xlsx). I recommend placing the file on your desktop:  <a href="/files/copyandpaster.xlsx" download>CopyandPaster Excel File</a>   </li>
+                <li>SAVE the CopyandPaster file linked here anywhere (network drive, desktop, your documents, etc).  For this demonstration, I recommend placing the file on your desktop. There are three different versions of the script.  See descriptions and links below:</li>
+                <br>
+                <ol>
+                    <li>This version of the script is meant to be ran in a single field, turning a list into a continuous string. Great for producing deliminted lists (comma, semicoln, etc). In the example, there are three columns (and ID, a semicoln, and a space), and the script types each value one after another. <a href="/files/CopyandPaster-%20No%20Tab%20or%20Enter.ahk" download>CopyandPaster (No Tab or Enter) AutoHotKey File</a></li>
+                    <img src="image/AHKNoTabNoEnter.png" alt="Copy and Paster No Tab, No Enter" height="264" width="714"/>
+                    <li>This script is designed to send a "tab" keystroke after each value. This works well in applications that can accept multiple parameters, usually dynamically creating another row with each entry. In the example, there are two columns, and after the second column is populated, the application opens another row for more until the end: <a href="/files/CopyandPaster-%20Tab.ahk" download>CopyandPaster (Tab) AutoHotKey File</a></li>
+                    <img src="image/AHKTab.png" alt="Copy and Paster Tab" height="341" width="446"/>
+                    <li>This script is the same as number 2, but sends an "enter" keystroke after the value in the last column of a row in the MS Excel sheet. This version best works in filling out a form repeatedly. It does send an additional "tab" keystroke after "enter" to get the cursor back on track on the form, as seen in the example:<a href="/files/CopyandPaster-%20Tab%20and%20Enter.ahk" download>CopyandPaster (Tab and Enter) AutoHotKey File</a></li>
+                    <img src="image/AHKTabEnter.png" alt="Copy and Paster Tab and Enter" height="288" width="654"/>
+                </ol>
+                <li>SAVE a Microsoft Excel file that contains what you want copied and pasted to a destination application. NOTE, the script assumes you have a HEADER on the Excel worksheet. For this demonstration, I have provided a sample file (named copyandpaster.xlsx). I recommend placing the file on your desktop:  <a href="/files/copyandpaster.xlsx" download>CopyandPaster Excel File</a></li>
 
                 <li>To EDIT the script, right-click the CopyandPaster file and select Edit Script</li>
-                <img  src="image/ahkEditScript.png" alt="edit AHK script" height="157" width="404"/>
+                <img  src="image/ahkEditScript.png" alt="edit AHK script right-click" height="157" width="404"/>
 
                 <li>Suggested modifiable items are highlighted</li>
-                <img   src="image/ahkScriptForCopyAndPaster.png" alt="edit AHK script" height="371" width="1275"/>
+                <img   src="image/ahkScriptForCopyAndPaster.png" alt="edit AHK script highlights" height="596" width="1280"/>
 
                 <ol>
                     <li>Update the path name of your MS Excel workbook. IF you are using the instructions above and using the same desktop path and file name, then ignore.</li>
                     <li>Update number of columns on the spreadsheet. 0, 0 = 1 column. 0, 1 = 2 columns. 0, 2 = 3 columns. And so on. By default, 2 columns are set. Computers like to start counting at 0.</li>
-                    <li>Update the speed of the script. By default, it is set to 500 microseconds (0.5 seconds). Depending on what is receiving the data, it might not be able to handle a fast velocity.</li>
+                    <li>Update the speed of the script. For example 500 microseconds = 0.5 seconds. Depending on what is receiving the data, it might not be able to handle a fast velocity.</li>
                 </ol>
 
             </ol>
