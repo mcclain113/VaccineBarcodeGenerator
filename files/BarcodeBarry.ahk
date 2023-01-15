@@ -5,7 +5,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #b::
 send \
 Sleep, 1
-sendinput %clipboard%
+SendRaw %clipboard%
 Sleep, 1
 send \
 Sleep, 1
