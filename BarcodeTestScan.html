@@ -60,6 +60,7 @@
       height: auto;
       text-align: center;
   float: right;
+      white-space: pre;
     }
 #Wrapper{
   float: left;
@@ -98,7 +99,7 @@
     <p class="pTimer">Works for scanners with OR without submitting a carriage return (otherwise known as the Enter Key).
       Clearing the screen will remove everything from the screen, including the history. Not for protected health information.</p>
 
-    <button onclick="copyToClipboard('#pResult2')">Copy Results</button>
+    <button onclick="copyToClipboard('#pResult2')">Copy Result</button>
     <button type="button" id="start-over">Clear Screen (Or Just Scan Again)</button>
     <button onclick="exportTableToCSV('Barcode_Scan_Test_List.csv')">Export Results To CSV File</button>
 

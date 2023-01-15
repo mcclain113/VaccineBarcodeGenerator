@@ -26,9 +26,15 @@ function addLetter(e){
             $("#pResult1").append('<br>');
             $("#pResult2").append(myArray.join("").toString());
 
-            var scan = myArray.join("").toString();
+            const convertString = myArray;
+            const scan =    "";        //myArray.join('').toString();
+            let arrayString = "";
+            for (var i = 0; i < convertString.length-1; i++) {
+                arrayString += convertString[i];
+            }
+            const finalString = arrayString;//`"${arrayString}"`;
             const myObject = {
-                Scan_Value_History: scan
+                Scan_Value_History: finalString
             };
             while (myArray.length > 0) {
                 myArray.pop();}
