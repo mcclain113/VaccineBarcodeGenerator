@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Barcode Scan Test Screen</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Barcode Testing Screen">
+  <meta name="keywords" content="Barcoding, BCMA, pharmacy informatics, pharmacy automation">
+  <meta name="author" content="Barry McClain">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../images/favicon.png" type="image/ico">
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <style>
+    #pResult{
+      width: auto;
+      height: auto;
+      text-align: center;
+      font-family: "Arial Black",serif;
+      font-size: xxx-large;
+
+    }
+    #pInfo{image-resolution: normal;
+      text-align: center;
+      font-family: "Arial Black",serif;
+      font-size: x-large;
+    }
+    .pResult{image-resolution: normal;
+      text-align: center;
+      font-family: "Arial Black",serif;
+      font-size: xxx-large;
+    }
+    .pTimer{image-resolution: normal;
+      text-align: center;
+      font-family: "Arial Black",serif;
+      font-size: medium;
+    }
+    #pResult1{
+      width: auto;
+      height: auto;
+      text-align: center;
+      font-family: "Arial Black",serif;
+      font-size: xxx-large;
+
+    }
+    #pResult2{
+      width: auto;
+      height: auto;
+      text-align: center;
+      font-family: "Arial Black",serif;
+      font-size: xxx-large;
+      white-space: pre-wrap;
+      white-space: -moz-pre-wrap;
+      white-space: -o-pre-wrap;
+      word-wrap: break-word;
+
+    }
+
+  </style>
+</head>
+<body>
+<div id="Wrapper">
+  <!-- Header Element Starts Here -->
+  <header id="header">
+
+    <!-- Hgroup Element Ends Here -->
+    <!-- Nav Element Starts Here -->
+    <nav class="navigation"> <a href="../index.html">Home</a>  <a href="../publications.html">Publications</a>  <a href="../about.html">About</a> <a href="../VirtualBarcodeScanner.html">Virtual Barcode Scanner</a></nav>
+
+  </header>
+  <div class="pResult">
+    <p>Barcode Scan Test Screen</p>
+    <p id="pInfo">Works for scanners with OR without submitting a carriage return (otherwise known as the Enter Key or ASCII Character Code 13) </p>
+    <p class="pTimer">Scanners that submit a carriage return will result faster and beat the timer below</p>
+    <button onclick="copyToClipboard('#pResult2')">Copy Results</button>
+    <button type="button" id="start-over">Clear Screen (Or Just Scan Again)</button>
+
+  </div>
+  <div id="menu_countdown" class="pTimer">Result Will Display in: <span id="seconds"></span></div>
+  <div id="pResult1">
+  </div>
+  <div id="pResult2">
+  </div>
+</div>
+<script>
+  function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+  }
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+
+</script>
+<script src="bcsimple.js"></script>
+</body>
+</html>
