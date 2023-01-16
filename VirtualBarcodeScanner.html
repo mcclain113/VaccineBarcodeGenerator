@@ -21,7 +21,23 @@
         height:15% !important;
         width: 15% !important;
 
-    }</style>
+    }
+
+     .iframe-container{
+         position: relative;
+         width: 100%;
+         padding-bottom: 56.25%;
+         height: 0;
+     }
+    .iframe-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    </style>
 </head>
 <body>
 
@@ -56,7 +72,13 @@
                 2) A shortcut using AutoHotKey that "sends" what is in your clipboard to your app (if needed) (Note: AutoHotkey works only on Windows).
             </h2>
 
-            <p><b>Getting started:</b></p>
+            <div class="iframe-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/ItrHL5upVYo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <h2>Video Link</h2>
+                <a href="https://www.youtube.com/watch?v=DVyRCwLfW8o">YouTube Link to Virtual Barcode Scanner Video</a>
+
+            <p><h2>Getting started</h2></p>
             <ol>
                 <li>Download Virtual barcode reader: <a href="https://virtualbarcodereader.orpalis.com/download/" target="_blank">https://virtualbarcodereader.orpalis.com/download/</a></li>
 
@@ -78,7 +100,7 @@
 
                 <img class = "contentz" src="image/orpalisAndBarryBarcode.png" alt="both orpalis and auto hot key tray icons ON" height="44" width="81"/>
             </ol>
-            <p><b>Using your scanner:</b></p>
+            <p><h2>Using your scanner</h2></p>
 
             <p>There are two ways to fire a scan (assuming you can NOT use the Orpaliss Scanner directly to the output window).</p>
             <ol>
@@ -92,6 +114,7 @@
                 <li>Fire it off over and over again.  The keystroke will send off whatever is last stored in the clipboard.</li>
             </ol>
 
+            <p><h2>Bonus</h2></p>
             <ul>
                 <li>For a more advanced version of Barcode Barry that links directly to a Citrix based window, download and edit this version of the script (I prefer the original listed in step 5 above): <a href="/files/BarcodeBarry2.ahk" download>Barcode Barry Two AutoHotkey File (v2.0)</a>   </li>
                     <br>
@@ -105,7 +128,7 @@
     <!-- Div wrapper2 ends here -->
     <!-- Footer Element Starts Here -->
     <footer id="copyrights">
-        <p><small>&copy; 2022 </small>
+        <p><small>&copy; 2023 </small>
         <p><a href="about.html">About Us</a>  - <a href="contact.html">Contact Us</a></p>
 
     </footer>
