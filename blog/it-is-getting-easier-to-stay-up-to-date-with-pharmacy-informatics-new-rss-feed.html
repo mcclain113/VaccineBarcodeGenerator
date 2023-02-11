@@ -1,0 +1,21 @@
+
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="keywords" content="pharmacy informatics">
+  <title>It is Getting Easier to Stay Up-to-Date With Pharmacy Informatics- New RSS Feed - Pharmacy Informatics</title>
+  <meta name="description" content="Using our new blog site, we have implemented a feed that can be used with RSS readers as another means to stay current."><link rel="stylesheet" type="text/css" href="/static/css/style.css"><link rel="stylesheet" type="text/css" href="/static/css/prism-tomorrow.css"></head>
+
+<body><div class="w-full"><nav class="flex items-center justify-center lg:justify-between flex-wrap p-6 lg:px-0 container mx-auto" x-data="{ isOpen: false }" @keydown.escape="isOpen = false" @click.away="isOpen = false"><div class="items-center"><img src="https://www.pharmacyinformatics.net/images/logo2.png" alt="pharmacy informatics"></div>
+  <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto text-center" :class="{ 'block shadow-3xl': isOpen, 'hidden': !isOpen }" x-show.transition="true"></div></nav></div><div class="container max-w-4xl mt-6 px-6"><div class="pb-5 mb-5 border-b border-gray-100"><a href="javascript:history.back()" class="text-indigo-500 font-bold text-lg">Back to List</a><br>
+
+  <!--inject h1 to end of article, and images-->
+  <h1 class="font-bold text-5xl">It is Getting Easier to Stay Up-to-Date With Pharmacy Informatics- New RSS Feed</h1><p class="text-center text-base leading-6 font-medium text-gray-500"><time>Feb 10, 2023 by <a>Barry McClain</a></time></p></div><article class="prose lg:prose-xl my-4 mx-auto"><p>Again, pharmacyinformatics.blog has developed our blog site (aka social media machine) using 11ty and Netlify CMS. The newest feature is this really simple syndication (RSS) feed, which is a fairly easy plugin that can be customized for your site and then validated through the <a href="https://validator.w3.org/feed/">W3C RSS Validator</a>:</p><p><img src="static/img/rss-validation.png" alt="RSS Validation" title="RSS Validation of pharmacyinformatics.blog"></p><p>RSS is not a super novel thing, but it is a valuable tool for any blog to supply feeds to those that use RSS readers or other tools that combine user specific feeds. So hopefully it is useful to some out there!</p><p>A couple of items to note for those that are considering developing a similar build with a static site generator like 11ty:</p><ol><li>For pulling in blog posts, instead of using &quot;for post in collections.all&quot;, I applied a tag to my posts of &quot;blogging&quot; to filter out garbage that was collecting in it.</li><li>I also focused on pulling in the post.data.description as the actual description of the blog, not the content. I have seen examples doing this different ways.</li></ol><p>But here is what the nunjucks file ended up looking like:</p><p><img src="static/img/njk-file-for-rss-feed.png" alt="NJK file for RSS" title="NJK file for RSS"></p><p>Happy Feeding!</p>
+
+</article>
+
+
+</div><script src="/static/js/alpine.js"></script></body>
+
+</html>
