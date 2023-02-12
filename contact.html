@@ -51,6 +51,41 @@
         <a href = "mailto: accessrealitytechnology@gmail.com">Send Email</a>
       </p>
 
+      <br>
+
+
+      <p>Or you may reach out via this form below.  All fields require a response.  Data is not sold, only read by admin of this site.</p>
+      <form name="contact" method="POST" data-netlify="true">
+        <p>
+          <label>Name: <input type="text" name="name" required="required" /></label>
+        </p>
+        <p>
+          <label>Email: <input type="email" name="email" required="required"/></label>
+        </p>
+        <p>
+          <label>Your Role(s): <select required="required" name="role[]" multiple>
+            <option value="Pharmacist">Pharmacist</option>
+            <option value="Pharmacy Technician">Pharmacy Technician</option>
+            <option value="Physician/Provider">Physician/Provider</option>
+            <option value="Nurse">Nurse</option>
+            <option value="Other Healthcare Professional">Other Healthcare Professional</option>
+            <option value="IT Professional">IT Professional</option>
+            <option value="Engineer">Engineer</option>
+            <option value="Student">Student</option>
+            <option value="Other">Other</option>
+          </select></label>
+        </p>
+        <p>
+          <input type="checkbox" checked="checked" id="newsletter" name="newsletter" value="newsletter list YES">
+          <label for="newsletter">Check if you are interested joining newsletter</label>
+        </p>
+        <p>
+          <label>Message: <textarea required="required" name="message"></textarea></label>
+        </p>
+        <p>
+          <button type="submit">Send</button>
+        </p>
+      </form>
 
 
     </article>
