@@ -4,7 +4,9 @@
               top: 5px;
               position: relative;
           }
-
+body {
+    padding: 15px;
+}
 
 header, nav
 
