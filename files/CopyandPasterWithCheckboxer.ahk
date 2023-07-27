@@ -8,7 +8,7 @@
 ; Constants
 xlDown := -4121
 
-WorkbookPath := A_ScriptDir "\copyandpaster.xlsx"       ; <-- Change this to the path of your workbook
+WorkbookPath := A_ScriptDir "\copyandpaster2.xlsx"       ; <-- Change this to the path of your workbook
 ColumnStart := 0					; Enter in the Offset the range of columns. Always start at 0
 ColumnEnd := 0 					; Enter in the Offset the range of columns. Computers consider "0" as 1, so 3 columns (A,B,C) would be 0,2.
 xlApp := ComObjCreate("Excel.Application")                            ; Create an instance of Excel
