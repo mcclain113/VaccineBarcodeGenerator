@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description" content="Automate Clicking Checkboxes in Any Application">
+    <meta charset="utf-8">
+    <meta name="description" content="Pharmacy Informatics Information, Education, Tools, and Solutions">
+    <meta name="keywords" content="autohotkey, copy and paste, copy paste and tab, analytics, informatics, auto hot key">
+    <meta name="author" content="Barry McClain">
+    <title>Automate Clicking Checkboxes in Any Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="icon" href="images/favicon.png" type="image/ico">
+    <style> .contentz {
+        -moz-box-shadow: 2px 2px 10px #ccc;
+        -webkit-box-shadow: 2px 2px 5px #ccc;
+        box-shadow: 2px 2px 10px #ccc;
+        border: #ffffff solid 8px;
+        margin-top: 15px;
+        border-radius: 6px;
+
+        height: 15% !important;
+        width: 15% !important;
+    }
+     .iframe-container{
+         position: relative;
+         width: 100%;
+         padding-bottom: 56.25%;
+         height: 0;
+     }
+    .iframe-container iframe{
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    </style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CRTFNMJ4FV');
+</script>
+<body>
+
+<!-- Div Wrapper Element Starts Here -->
+<div id="Wrapper">
+    <!-- Header Element Starts Here -->
+    <header id="header">
+        <!-- Hgroup Element Starts Here -->
+        <hgroup id="title">
+            <div >
+                <a href="index.html" id="logo" alt="Pharmacy Informatics"></a>
+            </div>
+            <h2>For Safer and Easier Medication Use</h2>
+        </hgroup>
+        <!-- Hgroup Element Ends Here -->
+        <!-- Nav Element Starts Here -->
+        <nav class="navigation"> <a href="index.html">Pharmacy Informatics Home</a>  <a href="publications.html">Publications</a>   <a href="about.html">About</a>  </nav>
+
+    </header>
+    <!-- Header Element Ends Here -->
+    <!-- Div wrapper2 starts here -->
+    <div id="Wrapper2">
+
+        <!-- Article Element Starts Here -->
+        <article id="contents">
+
+
+            <h1>Automate Clicking Checkboxes in Any Application*</h1>
+            <h2>Introduction</h2>
+<p>This is a scripting tool using AutoHotkey that simplifies having to click a lot of checkboxes in any software application, particularly when the situation forces you to select a large list of values manually using checkboxes. These instructions provide solutions to two specific situations: </p>
+<ol style="font-weight: bold;">
+    <li><h3>Option 1: Simple Checkbox Selection </h3>
+        <p>For automating the selection (or deselection) of a specified number of checkboxes. For example, figure 1 displays a discrete list of 18 states with checkboxes. Running the tool provides an option to indicate how many checkboxes to click and is then ran to execute the clicking. This tool is the equivalent of pressing the keystrokes “down arrow then spacebar” in a loop. A solution like this is usually preventable when there is a “select all” option available.</p>
+       <i>Figure 1. Selecting a specific number of checkboxes</i> <br>
+        <img src="/files/Auto%20Checker-Simple.gif" width="278" height="238"/>
+    </li>
+    <li>
+        <h3>Option 2: Lookup, Then Select Checkbox</h3>
+<p>For the automation of looking-up a list of specific values and selecting the checkbox for each one. This is accomplished by 1) the tool entering a discrete value in an application’s search bar, 2) the application pulling up the selectable value, and 3) the tool selecting the checkbox for the value. For example, figure 2 demonstrates how a list of specific states (Arizona, Nevada, Illinois, and Wisconsin) are entered one-by-one into an application that pulls up the value and is then selected.</p>
+    <i>Figure 2. Selecting a specific number of checkboxes</i> <br>
+        <img src="/files/Auto%20Checker-%20Lookup.gif" width="126" height="144"/>
+    </li>
+</ol>
+
+      <p><b>*Note:</b>AutoHotkey works only on Windows</p>
+
+            <h2>Getting Started:</h2>
+            <ol><li>
+                <p>If you do not have it installed already, download and install the current version of AutoHotkey: <a href="https://autohotkey.com/download/" target="_blank">https://autohotkey.com/download/</a>. <b>Note:</b> AutoHotkey v1.1 is being phased out.</p>
+            <br>
+                <img src="image/AHKDownload.png"/>
+            </li>
+            </ol>
+<h2>Instructions for Option 1: Simple Checkbox Selection</h2>
+            <ol>
+                <li><p>Click and save the <a href="files/SimpleCheckboxer.ahk"target="_blank">SimpleCheckboxer</a> file linked here anywhere (network drive, desktop, your documents, etc.). For this demonstration, it is recommend placing the file on your desktop.</p></li>
+                <li><p>Simply double click the SimpleCheckboxer file to load the script </p> <br>
+                <img class = "contentz" src="image/SimpleCheckboxer.png" width="127" height="139"></li>
+                <li><p>Once the file is loaded, it should be visible in the workstation’s tray</p><br>
+                <img class = "contentz"  src="image/AHKDesktopTray.png" width="141" height="113"></li>
+                <li><p>To set the number of specified boxes to check, press this keystroke combo to activate the script: Windows <b>button + b</b>. This “hotkey” will display the “Click Number” box.  Enter the number of clicks and press enter.</p>
+                <br><img src="image/AHKClickNumber.png"></li>
+                <li><p>Once your cursor is in the destination application, press this keystroke combo to activate the script: <b>Windows button + /</b></p></li>
+                <li><p><b>Note:</b> The script can be edited by right clicking the file and selecting “edit file”.  There, it is possible to change the speed of the script or change where it starts selecting checkboxes.</p>
+                <br><img src="image/AHKCheckboxerScript.png" width="975" height="361"></li>
+                <li><p>When the script completes, it will display a window stated it is finished</p>
+                <br><img src="image/AHKFinishedClicking.png"></li>
+                <li><p>If the script needs to be aborted immediately for any reason, just press the escape key (Esc) or right-click the loaded script in your tray and exit</p></li>
+            </ol>
+<h2>Instructions for Option 2: Lookup, Then Select Checkbox</h2>
+            <h2>There are two parts:</h2>
+            <h3>Part 1</h3>
+            <ol>
+            <li>Create and save the list of values in Microsoft Excel. A <a href="https://www.pharmacyinformatics.net/files/copyandpaster2.xlsx" target="_blank">sample</a> Microsoft Excel file that has the file name preloaded in the AutoHotkey script is provided (i.e. just add your data to the workbook). </li>
+               <ol type="a" >
+                   <li><b>Note,</b> the script will assume there is a header. Otherwise the AutoHotkey file will need the different file name edited</li>
+                   <li><b>Note,</b> the values entered in the spreadsheet must match the destination application’s values exactly to lookup cleanly</li>
+               </ol>
+
+            </ol>
+            <h3>Part 2</h3>
+            <ol>
+                <li>Click and save the <a href="https://www.pharmacyinformatics.net/files/CopyandPasterWithCheckboxer.ahk" target="_blank">CopyandPasterWithCheckboxer</a> file linked here anywhere (network drive, desktop, your documents, etc.). For this demonstration, it is recommend placing the file on your desktop.  </li>
+                <li>Simply double click the CopyandPasterWithCheckboxer file to load the script <br>
+                <img class = "contentz" src="image/CopyandPasterWithCheckboxer.png"></li>
+                <li>Once the file is loaded, it should be visible in the workstation’s tray <br>
+                <img class = "contentz" src="image/AHKDesktopTray.png"></li>
+                <li>Once your cursor is in the destination application’s search bar, press this keystroke combo (or “hotkey”) to activate the script: <b>Windows button + b</b>
+                    <ol type="a" >
+                        <li><b>Note:</b> Running the script will open the spreadsheet</li></ol></li>
+                <li>The script runs the process until it hits a blank cell. When the script completes, it will display a window stated it is finished.<br>
+                <img src="image/AHKFinishedClicking.png"></li>
+                <li><b>Note:</b> The script can be edited by right clicking the file and selecting “edit file”.  There, it is possible to change:
+                    <ol type="a" >
+                        <li>the speed of the script <br>
+                        <img src="image/AHKCopyAndPasterWithCheckboxerScript.png"></li>
+                        <li>the spreadsheet’s file name <br>
+                        <img src="image/CopyAndPasterWithCheckboxerScriptWorkbookPath.png"></li>
+                    </ol></li>
+                </li>
+                <li>If the script falls off track and needs to be aborted immediately, just press the escape key (Esc) or right-click the running script in your tray and exit</li>
+            </ol>
+<h2>Conclusion</h2>
+<p>These instructions provide two options for auto-clicking checkboxes using scripting through AutoHotkey. Both options, through editing, can be adjusted to give more flexibility for any special needs.  If scripting is optimized for the destination application, this tool should provide increases in productivity when faced with the repetitive task of checking/unchecking many boxes.</p>
+
+
+        </article>
+        <!-- Article Element Ends Here -->
+    </div>
+    <!-- Div wrapper2 ends here -->
+    <!-- Footer Element Starts Here -->
+    <footer id="copyrights">
+        <p><small>&copy; 2023 </small>
+        <p><a href="about.html">About Us</a>  - <a href="contact.html">Contact Us</a></p>
+
+    </footer>
+    <!-- Footer Element Ends Here -->
+</div>
+<!-- Div Wrapper Element ends Here -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+
+</script>
+<script src="code.js"></script>
+</body>
+</html>
