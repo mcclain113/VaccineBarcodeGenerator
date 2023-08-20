@@ -4,7 +4,7 @@
     <meta name="description" content="Automate Clicking Checkboxes in Any Application">
     <meta charset="utf-8">
     <meta name="description" content="Pharmacy Informatics Information, Education, Tools, and Solutions">
-    <meta name="keywords" content="autohotkey, copy and paste, copy paste and tab, analytics, informatics, auto hot key">
+    <meta name="keywords" content="autohotkey, checkbox, auto hot key">
     <meta name="author" content="Barry McClain">
     <title>Automate Clicking Checkboxes in Any Application</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,7 +77,7 @@
 <p>This is a scripting tool using AutoHotkey that simplifies having to click a lot of checkboxes in any software application, particularly when the situation forces you to select a large list of values manually using checkboxes. These instructions provide solutions to two specific situations: </p>
 <ol style="font-weight: bold;">
     <li><h3>Option 1: Simple Checkbox Selection </h3>
-        <p>For automating the selection (or deselection) of a specified number of checkboxes. For example, figure 1 displays a discrete list of 18 states with checkboxes. Running the tool provides an option to indicate how many checkboxes to click and is then ran to execute the clicking. This tool is the equivalent of pressing the keystrokes “down arrow then spacebar” in a loop. A solution like this is usually preventable when there is a “select all” option available.</p>
+        <p>For automating the selection (or deselection) of a specified number of checkboxes. For example, figure 1 displays a discrete list of 18 states with checkboxes. Running the tool provides an option to indicate how many checkboxes to click and is then ran to execute the clicking. This tool is the equivalent of pressing the keystrokes “down arrow then space bar” in a loop. A solution like this is usually preventable when there is a “select all” option available.</p>
        <i>Figure 1. Selecting a specific number of checkboxes</i> <br>
         <img src="/files/Auto%20Checker-Simple.gif" width="278" height="238"/>
     </li>
@@ -100,15 +100,15 @@
             </ol>
 <h2>Instructions for Option 1: Simple Checkbox Selection</h2>
             <ol>
-                <li><p>Click and save the <a href="files/SimpleCheckboxer.ahk"target="_blank">SimpleCheckboxer</a> file linked here anywhere (network drive, desktop, your documents, etc.). For this demonstration, it is recommend placing the file on your desktop.</p></li>
-                <li><p>Simply double click the SimpleCheckboxer file to load the script </p> <br>
+                <li><p>Click and save the <a href="files/SimpleCheckboxer.ahk"target="_blank">SimpleCheckboxer</a> file linked here anywhere (network drive, desktop, your documents, etc.). For this demonstration, it is recommended placing the file on your desktop.</p></li>
+                <li><p>Simply double-click the SimpleCheckboxer file to load the script </p> <br>
                 <img class = "contentz" src="image/SimpleCheckboxer.png" width="127" height="139"></li>
                 <li><p>Once the file is loaded, it should be visible in the workstation’s tray</p><br>
                 <img class = "contentz"  src="image/AHKDesktopTray.png" width="141" height="113"></li>
                 <li><p>To set the number of specified boxes to check, press this keystroke combo to activate the script: Windows <b>button + b</b>. This “hotkey” will display the “Click Number” box.  Enter the number of clicks and press enter.</p>
                 <br><img src="image/AHKClickNumber.png"></li>
                 <li><p>Once your cursor is in the destination application, press this keystroke combo to activate the script: <b>Windows button + /</b></p></li>
-                <li><p><b>Note:</b> The script can be edited by right clicking the file and selecting “edit file”.  There, it is possible to change the speed of the script or change where it starts selecting checkboxes.</p>
+                <li><p><b>Note:</b> The script can be edited by right-clicking the file and selecting “edit file”.  There, it is possible to change the speed of the script or change where it starts selecting checkboxes.</p>
                 <br><img src="image/AHKCheckboxerScript.png" width="975" height="361"></li>
                 <li><p>When the script completes, it will display a window stated it is finished</p>
                 <br><img src="image/AHKFinishedClicking.png"></li>
@@ -120,15 +120,15 @@
             <ol>
             <li>Create and save the list of values in Microsoft Excel. A <a href="https://www.pharmacyinformatics.net/files/copyandpaster2.xlsx" target="_blank">sample</a> Microsoft Excel file that has the file name preloaded in the AutoHotkey script is provided (i.e. just add your data to the workbook). </li>
                <ol type="a" >
-                   <li><b>Note,</b> the script will assume there is a header. Otherwise the AutoHotkey file will need the different file name edited</li>
-                   <li><b>Note,</b> the values entered in the spreadsheet must match the destination application’s values exactly to lookup cleanly</li>
+                   <li><b>Note,</b> the script will assume there is a header. Otherwise, the AutoHotkey file will need the different file name edited</li>
+                   <li><b>Note,</b> the values entered into the spreadsheet must match the destination application’s values exactly to lookup cleanly</li>
                </ol>
 
             </ol>
             <h3>Part 2</h3>
             <ol>
-                <li>Click and save the <a href="https://www.pharmacyinformatics.net/files/CopyandPasterWithCheckboxer.ahk" target="_blank">CopyandPasterWithCheckboxer</a> file linked here anywhere (network drive, desktop, your documents, etc.). For this demonstration, it is recommend placing the file on your desktop.  </li>
-                <li>Simply double click the CopyandPasterWithCheckboxer file to load the script <br>
+                <li>Click and save the <a href="https://www.pharmacyinformatics.net/files/CopyandPasterWithCheckboxer.ahk" target="_blank">CopyandPasterWithCheckboxer</a> file linked here anywhere (network drive, desktop, your documents, etc.). For this demonstration, it is recommended placing the file on your desktop.  </li>
+                <li>Simply double-click the CopyandPasterWithCheckboxer file to load the script <br>
                 <img class = "contentz" src="image/CopyandPasterWithCheckboxer.png"></li>
                 <li>Once the file is loaded, it should be visible in the workstation’s tray <br>
                 <img class = "contentz" src="image/AHKDesktopTray.png"></li>
@@ -137,7 +137,7 @@
                         <li><b>Note:</b> Running the script will open the spreadsheet</li></ol></li>
                 <li>The script runs the process until it hits a blank cell. When the script completes, it will display a window stated it is finished.<br>
                 <img src="image/AHKFinishedClicking.png"></li>
-                <li><b>Note:</b> The script can be edited by right clicking the file and selecting “edit file”.  There, it is possible to change:
+                <li><b>Note:</b> The script can be edited by right-clicking the file and selecting “edit file”.  There, it is possible to change:
                     <ol type="a" >
                         <li>the speed of the script <br>
                         <img src="image/AHKCopyAndPasterWithCheckboxerScript.png"></li>
