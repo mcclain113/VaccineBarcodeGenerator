@@ -22,6 +22,7 @@ exports.handler = async (event, context) => {
             };
         }
     }
+
 };
 
 exports.handler = async (event, context) => {
