@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "express": "^4.19.2",
+    "netlify-cli": "^17.33.4",
     "serverless-http": "^3.2.0"
   }
 }
