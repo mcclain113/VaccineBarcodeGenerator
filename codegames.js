@@ -50,7 +50,7 @@ function generator() {
         const randomFacts = randomPerson.facts.sort(() => Math.random() - 0.5).slice(0, 3);
         let factsHTML = "";
         for (const fact of randomFacts) {
-            factsHTML += `<p>${fact.fact}: <span class="truth hidden">${fact.value}</span></p>`;
+            factsHTML += `<p>${fact.fact}: <span class="truth hidden">${String(fact.value)}</span></p>`;
         }
         document.getElementById("facts").innerHTML = factsHTML;
     }
@@ -79,6 +79,7 @@ function uploadFile() {
                 peopleData = JSON.parse(event.target.result);
                 peopleDataView = JSON.parse(JSON.stringify(peopleData)); // Deep copy
                 console.log("File uploaded successfully!");
+                alert("File uploaded successfully!");
             } catch (error) {
                 console.error("Error parsing JSON file:", error);
             }
