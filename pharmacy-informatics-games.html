@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description" content="API">
+    <meta charset="utf-8">
+    <meta name="description" content="Pharmacy Informatics Information, Education, Tools, and Solutions">
+    <meta name="keywords" content="Pharmacy Informatics, Pharmacy Week, Games ">
+    <meta name="author" content="Barry McClain">
+    <title>Pharmacy Week Games</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/stylegames.css">
+    <link rel="icon" href="images/favicon.png" type="image/ico">
+
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CRTFNMJ4FV');
+</script>
+<body>
+
+<!-- Div Wrapper Element Starts Here -->
+<div id="Wrapper">
+    <!-- Header Element Starts Here -->
+    <header id="header">
+        <!-- Hgroup Element Starts Here -->
+        <hgroup id="title">
+            <div >
+                <a href="index.html" id="logo" alt="Pharmacy Informatics"></a>
+            </div>
+            <h2>For Safer and Easier Medication Use</h2>
+        </hgroup>
+        <!-- Hgroup Element Ends Here -->
+        <!-- Nav Element Starts Here -->
+        <nav class="navigation"> <a href="index.html">Pharmacy Informatics Home</a>  <a href="about.html">About</a>  </nav>
+
+    </header>
+    <!-- Header Element Ends Here -->
+    <!-- Div wrapper2 starts here -->
+    <div id="Wrapper2">
+
+        <!-- Article Element Starts Here -->
+        <article id="contents">
+            <div class="container-fluid">
+                <h1 class="box light-green-box text-center">
+                    RANDOM NAME GENERATOR:<br> TWO TRUTHS AND A LIE
+                </h1>
+                <div class="box light-gray-box text-center">
+                    <h3>Instructions</h3>
+
+                    <h4>Load a JSON file with two truths and a lie in the following format:</h4>
+                    <h3>[</h3>
+                       <h3> {name: "Person1",</h3>
+                       <h3> facts: [ </h3>
+                    <h3>{ fact: "Fact 1", value: true },</h3>
+                      <h3>  { fact: "Fact 2", value: false },</h3>
+                    <h3>  { fact: "Fact 3", value: true }]},</h3>
+                    <h3>   -- Add more people and their facts here</h3>
+                    <h3>   ];</h3>
+                    <input type="file" id="fileUpload" accept=".json">
+                    <button onclick="uploadFile()">Upload JSON File</button>
+
+                    <h4>Click the "Generate" Button to Generate a Random Name!</h4>
+                </div>
+                <h4></h4>
+                <button onclick="generator()" class="btn btn-primary btn-block btn-large">Generate!</button>
+                <button onclick="revealTruth()" class="btn btn-primary btn-block btn-large">Display Truth</button>
+                <h1 class="jumbotron text-center" id="name">Name Will Appear Here</h1>
+                <h1 class="jumbotron text-center" id="facts"></h1>
+            </div>
+
+
+        </article>
+        <!-- Article Element Ends Here -->
+    </div>
+    <!-- Div wrapper2 ends here -->
+    <!-- Footer Element Starts Here -->
+    <footer id="copyrights">
+        <p><small>&copy; 2024 </small></p>
+        <p><a href="about.html">About Us</a>  - <a href="contact.html">Contact Us</a></p>
+
+    </footer>
+    <!-- Footer Element Ends Here -->
+</div>
+<!-- Div Wrapper Element ends Here -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+
+</script>
+<script src="code.js"></script>
+<script src="codegames.js"></script>
+</body>
+</html>

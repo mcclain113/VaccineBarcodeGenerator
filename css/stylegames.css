@@ -1,0 +1,26 @@
+@import url(https://fonts.googleapis.com/css?family=Rokkitt);
+
+.rokkitt {
+    /*font-family: rokkitt;*/
+}
+
+.light-green-box {
+    background-color: lightgreen;
+    color: black;
+    padding: 20px 20px 20px 20px;
+}
+
+.light-gray-box {
+    background-color: lightgrey;
+    color: black;
+    padding: 2px 2px 2px 2px;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.truth {
+    display: inline-block;
+
+}
