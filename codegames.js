@@ -1,30 +1,31 @@
 var peopleData = [
-    {
-        name: "Person1",
-        facts: [
-            { fact: "Fact 1", value: true },
-            { fact: "Fact 2", value: false },
-            { fact: "Fact 3", value: true }
-        ]
-    },
-    {
-        name: "Person2",
-        facts: [
-            { fact: "Fact 1", value: true },
-            { fact: "Fact 2", value: false },
-            { fact: "Fact 3", value: true }
-        ]
-    },
-    {
-        name: "Person3",
-        facts: [
-            { fact: "Fact 1", value: true },
-            { fact: "Fact 2", value: false },
-            { fact: "Fact 3", value: true }
-        ]
-    },
-    // Add more people and their facts here
+    // {
+    //     name: "Person1",
+    //     facts: [
+    //         { fact: "Fact 1", value: true },
+    //         { fact: "Fact 2", value: false },
+    //         { fact: "Fact 3", value: true }
+    //     ]
+    // },
+    // {
+    //     name: "Person2",
+    //     facts: [
+    //         { fact: "Fact 1", value: true },
+    //         { fact: "Fact 2", value: false },
+    //         { fact: "Fact 3", value: true }
+    //     ]
+    // },
+    // {
+    //     name: "Person3",
+    //     facts: [
+    //         { fact: "Fact 1", value: true },
+    //         { fact: "Fact 2", value: false },
+    //         { fact: "Fact 3", value: true }
+    //     ]
+    // },
+    // // Add more people and their facts here
 ];
+
 var peopleDataView = [];
 
 
@@ -62,4 +63,5 @@ function revealTruth() {
     truthElements.forEach((truthElement) => {
         truthElement.classList.remove("hidden");
     });
+
 }
