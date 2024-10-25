@@ -50,7 +50,7 @@ function generator() {
         const randomFacts = randomPerson.facts.sort(() => Math.random() - 0.5).slice(0, 3);
         let factsHTML = "";
         for (const fact of randomFacts) {
-            factsHTML += `<p>${fact.fact}: <span class="truth hidden">${String(fact.value)}</span></p>`;
+            factsHTML += `<p>${fact.fact}: <span class="truth hidden">${fact.value ? "True" : "False"}</span></p>`;
         }
         document.getElementById("facts").innerHTML = factsHTML;
     }
