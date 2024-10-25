@@ -65,3 +65,27 @@ function revealTruth() {
     });
 
 }
+
+function uploadFile() {
+    const fileInput = document.getElementById("fileUpload");
+    const file = fileInput.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function(event)
+        {
+            try {
+                peopleData = JSON.parse(event.target.result);
+                peopleDataView = JSON.parse(JSON.stringify(peopleData)); // Deep copy
+                console.log("File uploaded successfully!");
+            } catch (error) {
+                console.error("Error parsing JSON file:", error);
+            }
+        };
+
+        reader.readAsText(file);
+    } else {
+        console.warn("No file selected");
+    }
+}
