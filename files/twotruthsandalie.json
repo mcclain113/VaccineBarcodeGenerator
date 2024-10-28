@@ -37,15 +37,15 @@
       "name":"Test Person 3",
       "facts":[
          {
-            "fact":"I like unicorns;",
+            "fact":"I like unicorns",
             "value":true
          },
          {
-            "fact":"I have a horn;",
+            "fact":"I have a horn",
             "value":true
          },
          {
-            "fact":" I am a unicorn;",
+            "fact":" I am a unicorn",
             " value":false
          }
       ]
