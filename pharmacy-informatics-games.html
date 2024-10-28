@@ -46,31 +46,70 @@
 
         <!-- Article Element Starts Here -->
         <article id="contents">
+            <h3>Here are a couple considerations for team games or other celebrations like pharmacy week.  Other options can include "tales from the pharmacy", scavenger hunts, prizes, and food.</h3>
+            <br>
             <div class="container-fluid">
-                <h1 class="box light-green-box text-center"> <a href="https://pinkylam.me/playground/random-name-picker/" target="_blank">RANDOM DRAWING GENERATOR</a></h1>
+                <h1 class="box light-green-box text-center"> <a href="https://wheelofnames.com/" target="_blank">RANDOM DRAWING GENERATOR</a></h1>
 
             </div>
-<br>
+
+            <br>
             <div class="container-fluid">
                 <h1 class="box light-green-box text-center">
                     RANDOM NAME GENERATOR:<br> TWO TRUTHS AND A LIE
                 </h1>
                 <div class="box light-gray-box text-center">
-                    <h3>Instructions</h3>
+                   <details open id="target-me-2">
+                  <summary>  <h3>Instructions</h3></summary>
 
+                    <h4>Load a CSV file with two truths and a lie in the following format:</h4>
+                       <table>
+                           <thead>
+                           <tr>
+                               <th>name</th>
+                               <th>Fact 1</th>
+                               <th>Value 1</th>
+                               <th>Fact 2</th>
+                               <th>Value 2</th>
+                               <th>Fact 3</th>
+                               <th>Value 3</th>
+                           </tr>
+                           </thead>
+                           <tbody>
+                           <tr>
+                               <td>Person1</td>
+                               <td >Fact1</td>
+                               <td>true</td>
+                               <td>Fact2</td>
+                               <td>false</td>
+                               <td>Fact3</td>
+                               <td>true</td>
+                           </tr>
+                           </tbody>
+                       </table>
+                       <p>Example File: <a href="https://www.pharmacyinformatics.net/files/twotruthsandalie.csv" target="_blank">CSV sample</a></p>
+                       <input type="file" id="fileCsvUpload" accept=".csv">
+                       <button onclick="uploadCsvFile()">Upload CSV File</button>
+                       <br>
+                       <br>
+                       <h4>OR</h4>
+                       <br>
                     <h4>Load a JSON file with two truths and a lie in the following format:</h4>
                     <h3>[</h3>
-                       <h3> {name: "Person1",</h3>
-                       <h3> facts: [ </h3>
-                    <h3>{ fact: "Fact 1", value: true },</h3>
-                      <h3>  { fact: "Fact 2", value: false },</h3>
-                    <h3>  { fact: "Fact 3", value: true }]},</h3>
+                       <h3> {"name":"Person1",</h3>
+                       <h3> "facts":[ </h3>
+                    <h3>{"fact":"Fact 1", "value":true},</h3>
+                      <h3>  {"fact":"Fact 2", "value":false},</h3>
+                    <h3>  {"fact":"Fact 3", "value":true}]},</h3>
                     <h3>   -- Add more people and their facts here</h3>
-                    <h3>   ];</h3>
+                    <h3>   ]</h3>
+
+                   <p>Example File: <a href="https://www.pharmacyinformatics.net/files/twotruthsandalie.json" target="_blank">JSON sample</a></p>
                     <input type="file" id="fileUpload" accept=".json">
                     <button onclick="uploadFile()">Upload JSON File</button>
-
+                   </details>
                     <h4>Click the "Generate" Button to Generate a Random Name!</h4>
+
                 </div>
                 <h4></h4>
                 <button onclick="generator()" class="btn btn-primary btn-block btn-large">Generate!</button>

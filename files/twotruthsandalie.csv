@@ -1,0 +1,4 @@
+name,Fact 1,Value 1,Fact 2,Value 2,Fact 3,Value 3
+Person1,Fact1,true,Fact2,false,Fact3,true
+Person2,Fact1,false,Fact2,true,Fact3,true
+Person3,Fact1,true,Fact2,true,Fact3,false

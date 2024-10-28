@@ -1,0 +1,53 @@
+[
+   {
+      "name":"Test Person 1",
+      "facts":[
+         {
+            "fact":"I am the coolest",
+            "value":true
+         },
+         {
+            "fact":"I am the fastest",
+            "value":true
+         },
+         {
+            "fact":"I am the tallest",
+            " value":false
+         }
+      ]
+   },
+   {
+   "name":"Test Person 2",
+      "facts":[
+         {
+            "fact":"I jumped into cave",
+            "value":true
+         },
+         {
+            "fact":"I jumped into a swamp",
+            "value":true
+         },
+         {
+            "fact":"I jumped into a sewer",
+            " value":false
+         }
+      ]
+   },
+   {
+      "name":"Test Person 3",
+      "facts":[
+         {
+            "fact":"I like unicorns;",
+            "value":true
+         },
+         {
+            "fact":"I have a horn;",
+            "value":true
+         },
+         {
+            "fact":" I am a unicorn;",
+            " value":false
+         }
+      ]
+   }
+]
