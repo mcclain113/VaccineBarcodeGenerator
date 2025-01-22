@@ -138,6 +138,33 @@ Main Styles
 
 #searchdiv {display: none}
 
+#showCode{
+	background-color: black;
+	color: lightgreen;
+	font-size: medium;
+	font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, serif;
+}
+
+#showGraph{
+	padding: 25px 25px 200px 25px;
+}
+
+.clickable-result {
+	cursor: pointer; /* Make the cursor a pointer on hover */
+	display: inline-block; /* Makes the whole text clickable */
+	padding: 5px; /* Add some padding for better click area */
+
+}
+
+.clickable-result:hover {
+	background-color: lightgray; /* Change background color on hover */
+}
+.count {
+	color: gray;
+	font-size: smaller;
+	align-content: start;
+}
+
 #title h1 a, #title h1 a:hover, #title h1 a:hover, #title h1 a:hover  {	
 	margin: 40px auto 20px auto;
 	padding: 15px;

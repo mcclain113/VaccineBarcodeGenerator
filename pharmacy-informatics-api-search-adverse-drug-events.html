@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description" content="API">
+    <meta charset="utf-8">
+    <meta name="description" content="Pharmacy Informatics Information, Education, Tools, and Solutions">
+    <meta name="keywords" content="Pharmacy Informatics, API ">
+    <meta name="author" content="Barry McClain">
+    <title>Prevent Screen from Timing Out</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="icon" href="images/favicon.png" type="image/ico">
+
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CRTFNMJ4FV');
+</script>
+<body>
+<!--api key dThIPOcs2BJl2ahDmcZqmR41LJlPjNscFj9WENQu-->
+<!-- Div Wrapper Element Starts Here -->
+<div id="Wrapper">
+    <!-- Header Element Starts Here -->
+    <header id="header">
+        <!-- Hgroup Element Starts Here -->
+        <hgroup id="title">
+            <div >
+                <a href="index.html" id="logo" alt="Pharmacy Informatics"></a>
+            </div>
+            <h2>For Safer and Easier Medication Use</h2>
+        </hgroup>
+        <!-- Hgroup Element Ends Here -->
+        <!-- Nav Element Starts Here -->
+        <nav class="navigation"> <a href="index.html">Pharmacy Informatics Home</a>  <a href="about.html">About</a>  </nav>
+
+    </header>
+    <!-- Header Element Ends Here -->
+    <!-- Div wrapper2 starts here -->
+    <div id="Wrapper2">
+
+        <!-- Article Element Starts Here -->
+        <article>
+            <h2>API Search Constructor (Adverse Drug Events)</h2>
+            <br>
+                <ul>
+                    <li>The data on this page is pulled using the adverse drug event API as referenced on the open FDA site <a target="_blank" href="https://open.fda.gov/apis/">https://open.fda.gov/apis/</a>. All disclaimers and limitations from the open FDA site apply to this data retrieval. </li>
+            <li>By default, the API limits results at 100. Limits can be increased to 1000 max. That is limited by the FDA for performance and can impact your data.</li>
+                    <li>Each of the search bar lookups are pulling directly from the API to show exactly how the data is stored.  Just start typing and the search starts automatically.  When the lookup begins searching, it may take a few seconds longer the first time and faster subsequent times since the browser will cache the results.</li>
+       <li>Not to take anything away from the current interactive graphs provided by the FDA. They have a <a target="_blank" href="https://open.fda.gov/apis/drug/event/explore-the-api-with-an-interactive-chart/">graphical tool</a> too.  Both tools have different options and functionality to consider.</li>
+        </ul>
+
+
+
+
+            <br>
+            <br>
+            <div class="search-container">
+                <form class="search-form">
+                    <input
+                            type="hidden"
+                            class="search-bar"
+                            id="date"
+                            aria-label="Search"
+                            size="1"
+                            maxlength="1"
+                            data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api
+                    />
+            <p><label for="receivedDate">Received date start </label><input data-api-url="" type="date" id="receivedDate" name="receivedDate" placeholder="Received Date Start">
+            to
+                <label for="endDate"></label>received date end <input type="date" id="endDate" name="endDate" placeholder="Received Date End">
+
+                <label for="addDateRange"></label>
+                <input type="button" id="addDateRange" name="addDateRange" value="Include to Search">
+
+<!--                <label for="addCountDate"></label>
+                <input type="button" id="addCountDate" class="byCount" name="receivedDate" value="Count by">-->
+
+            </p>
+                </form>
+                <div class="search-results">
+                    <ul class="characters-list"></ul>
+                </div>
+            </div>
+            <input type="checkbox" id="IncludeRangeForLookup" name="include date range for lookups" value="y">
+            <label for="IncludeRangeForLookup">Include date range in the lookup values below</label>
+
+            <br><br>
+            <p>Generic Drug Name List: <a target="_blank" href="https://api.fda.gov/drug/event.json?count=patient.drug.openfda.generic_name.exact&limit=1000">https://api.fda.gov/drug/event.json?count=patient.drug.openfda.generic_name.exact&limit=1000</a> </p>
+            <div class="search-container">
+                <form class="search-form">
+                    <input
+                            type="text"
+                            class="search-bar"
+                            id="genericDrugName"
+                            placeholder="Generic Drug Name"
+                            aria-label="Search"
+                            size="40"
+                            maxlength="500"
+                            data-api-url=https://api.fda.gov/drug/event.json?count=patient.drug.openfda.generic_name.exact&limit=1000
+
+                    />
+                    <label for="includeGenericName"></label>
+                    <input type="button" id="includeGenericName" name="include" value="Include to Search">
+
+                    <label for="addCountGenericName"></label>
+                    <input type="button" id="addCountGenericName" class="byCount" name="genericDrugName" value="Count by">
+
+                </form>
+                <div class="search-results">
+                    <ul class="characters-list"></ul>
+                </div>
+            </div>
+            <br>
+            <p>Established Pharmacologic Class List: <a target="_blank" href="https://api.fda.gov/drug/event.json?count=patient.drug.openfda.pharm_class_epc.exact&limit=1000">https://api.fda.gov/drug/event.json?count=patient.drug.openfda.pharm_class_epc.exact&limit=1000</a> </p>
+            <div class="search-container">
+                <form class="search-form">
+                    <input
+                            type="text"
+                            class="search-bar"
+                            id="establishedPharmClass"
+                            placeholder="Established Pharmacologic Class"
+                            aria-label="Search"
+                            size="40"
+                            maxlength="500"
+                            data-api-url=https://api.fda.gov/drug/event.json?count=patient.drug.openfda.pharm_class_epc.exact&limit=1000
+
+                    />
+                    <label for="includeEPC"></label>
+                    <input type="button" id="includeEPC" name="include" value="Include to Search">
+
+                    <label for="addCountEPC"></label>
+                    <input type="button" id="addCountEPC" class="byCount" name="establishedPharmClass" value="Count by">
+
+                </form>
+                <div class="search-results">
+                    <ul class="characters-list"></ul>
+                </div>
+            </div>
+            <br>
+            <p>Chemical Structure Classification List: <a target="_blank" href="https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=1000">https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=1000</a> </p>
+            <div class="search-container">
+                <form class="search-form">
+                    <input
+                            type="text"
+                            class="search-bar"
+                            id="chemicalStructureClass"
+                            placeholder="Chemical Structure Classification"
+                            aria-label="Search"
+                            size="40"
+                            maxlength="500"
+                            data-api-url=https://api.fda.gov/drug/event.json?count=patient.drug.openfda.pharm_class_cs.exact&limit=1000
+
+                    />
+                    <label for="includeCS"></label>
+                    <input type="button" id="includeCS" name="include" value="Include to Search">
+
+                    <label for="addCountCS"></label>
+                    <input type="button" id="addCountCS" class="byCount" name="chemicalStructureClass" value="Count by">
+
+                </form>
+                <div class="search-results">
+                    <ul class="characters-list"></ul>
+                </div>
+            </div>
+            <br>
+
+<p>Patient Reaction List: <a target="_blank" href="https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=1000">https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=1000</a></p>
+            <div class="search-container">
+                <form class="search-form">
+                    <input
+                            type="text"
+                            class="search-bar"
+                            id="reaction"
+                            placeholder="Patient Reaction"
+                            aria-label="Search"
+                            size="40"
+                            maxlength="500"
+                            data-api-url=https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=1000
+
+                    />
+                    <label for="includeReaction"></label>
+                    <input type="button" id="includeReaction" name="include" value="Include to Search">
+
+                    <label for="addCountReaction"></label>
+                    <input type="button" id="addCountReaction" class="byCount" name="reaction" value="Count by">
+
+                </form>
+                <div class="search-results">
+                    <ul class="characters-list"></ul>
+                </div>
+            </div>
+<br>
+            <p>Country List: <a target="_blank" href="https://api.fda.gov/drug/event.json?count=occurcountry.exact&limit=1000">https://api.fda.gov/drug/event.json?count=occurcountry.exact&limit=1000</a></p>
+            <div class="search-container">
+                <form class="search-form" >
+                    <input
+                            type="text"
+                            class="search-bar"
+                            id="country"
+                            placeholder="Countries"
+                            aria-label="Search"
+                            size="40"
+                            maxlength="500"
+                            data-api-url="https://api.fda.gov/drug/event.json?count=occurcountry.exact&limit=1000"
+
+                    />
+                    <label for="includeCountry"></label>
+                    <input type="button" id="includeCountry" name="include" value="Include to Search">
+
+<!--                    <label for="addCountCountry"></label>
+                    <input type="button" id="addCountCountry" class="byCount" name="country" value="Count by">-->
+
+                </form>
+                <div class="search-results">
+                    <ul class="characters-list"></ul>
+                </div>
+            </div>
+            <br><br>
+
+            <div class="search-container">
+                <form class="search-form">
+                    <input
+                            type="hidden"
+                            class="search-bar"
+                            id="safetyReport"
+                            aria-label="Search"
+                            size="1"
+                            maxlength="1"
+                            data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api
+                    />
+            <label for="safetyReportId">Unique Safety Report ID</label>
+            <input type="button" id="safetyReportId" class="byCount" name="safetyReportId" value="Count by">
+
+                </form>
+                <div class="search-results">
+                    <ul class="characters-list"></ul>
+                </div>
+            </div>
+
+
+            <br><br>
+            <div class="search-container">
+                <form class="search-form">
+                    <input
+                            type="hidden"
+                            class="search-bar"
+                            id="limitForm"
+                            aria-label="Search"
+                            size="1"
+                            maxlength="1"
+                            data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api
+                    />
+            <!--            <label for="count"></label>
+                        <input type="number" id="count" name="count" placeholder="Count">-->
+            <label for="limit"></label>
+            <input type="number" id="limit" name="limit" placeholder="Result Limit (1000 max)">
+            <label for="includeLimit"></label>
+            <input type="button" id="includeLimit" name="include" value="Include Limit" max="1000">
+                </form>
+                <div class="search-results">
+                    <ul class="characters-list"></ul>
+                </div>
+            </div>
+            <br><br>
+ <!--           <label for="sort">Sort</label>
+            <select id="sort" name="sort">
+                <option value="none">none</option>
+                <option value="descending">descending</option>
+                <option value="ascending">ascending</option>
+
+            </select>-->
+            <br><br>
+            <p>Constructed Adverse Drug Event URL</p>
+            <div id="showCode"  spellcheck="false">
+
+            </div>
+<!--            <div id="showCode" contenteditable="true" spellcheck="false">
+
+            </div>-->
+            <br><br>
+            <div class="search-container">
+                <form class="search-form">
+                    <input
+                            type="hidden"
+                            class="search-bar"
+                            id="submitAndReset"
+                            aria-label="Search"
+                            size="1"
+                            maxlength="1"
+                            data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api
+                    />
+
+            <label for="submit"></label>
+            <input type="button" id="submit" name="submit" value="Submit">
+
+            <label for="reset"></label>
+            <input type="button" id="reset" name="reset" value="Reset">
+                </form>
+                <div class="search-results">
+                    <ul class="characters-list"></ul>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div id="showError">
+
+            </div>
+            <div id="showGraph">
+
+            </div>
+
+            <br>
+            <br>
+            <script src="api.js"></script>
+<!--            <script>
+                function myFunction() {
+                    var x = document.getElementById("searchdiv");
+                    var y = document.forms["myForm"]["searchBar"].value;
+                    if (y == "" || y == null) {
+                        x.style.display = "none";
+                    } else {
+                        x.style.display = "block";
+                    }
+                }
+            </script>-->
+
+
+
+        </article>
+        <!-- Article Element Ends Here -->
+    </div>
+    <!-- Div wrapper2 ends here -->
+    <!-- Footer Element Starts Here -->
+    <footer id="copyrights">
+        <p><small>&copy; 2025 </small></p>
+        <p><a href="about.html">About Us</a>  - <a href="contact.html">Contact Us</a></p>
+
+    </footer>
+    <!-- Footer Element Ends Here -->
+</div>
+<!-- Div Wrapper Element ends Here -->
+<!--<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+
+</script>
+<script src="code.js"></script>-->
+
+</body>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</html>
