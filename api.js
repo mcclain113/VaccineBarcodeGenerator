@@ -280,7 +280,7 @@ function constructUrl() {
             url += `+${drugName}`;
         }
         if(firstParamAdded === false){
-        url += `patient.drug.openfda.generic_name.exact:${drugName}`;
+        url += `patient.drug.openfda.generic_name.exact:"${drugName}"`;
         }
         firstParamAdded = true;
     }
@@ -301,7 +301,7 @@ function constructUrl() {
             url += `+${epc}`;
         }
         if(firstParamAdded === false){
-        url += `patient.drug.openfda.pharm_class_epc.exact:${epc}`;}
+        url += `patient.drug.openfda.pharm_class_epc.exact:"${epc}"`;}
         firstParamAdded = true;
     }
 
@@ -321,7 +321,7 @@ function constructUrl() {
             url += `+${cs}`;
         }
         if(firstParamAdded === false){
-        url += `patient.drug.openfda.pharm_class_cs.exact:${cs}`;}
+        url += `patient.drug.openfda.pharm_class_cs.exact:"${cs}"`;}
         firstParamAdded = true;
     }
 
@@ -343,7 +343,7 @@ function constructUrl() {
             url += `+${rxn}`;
         }
         if(firstParamAdded === false){
-        url += `patient.reaction.reactionmeddrapt.exact:${rxn}`;}
+        url += `patient.reaction.reactionmeddrapt.exact:"${rxn}"`;}
         firstParamAdded = true;
     }
 
@@ -363,7 +363,7 @@ function constructUrl() {
             url += `+${cn}`;
         }
         if(firstParamAdded === false){
-        url += `country.exact:${cn}`;}
+        url += `occurcountry.exact:${cn}`;}
         firstParamAdded = true;
     }
 
@@ -388,7 +388,7 @@ function constructUrl() {
                 url += "patient.reaction.reactionmeddrapt.exact";
                 break;
             case "country":
-                url += "country.exact";
+                url += "occurcountry.exact";
                 break;
             case "safetyReportId":
                 url += "safetyreportid.exact";
