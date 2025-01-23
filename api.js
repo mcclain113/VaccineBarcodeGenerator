@@ -277,7 +277,7 @@ function constructUrl() {
     let firstParamAdded = false;
     for (const drugName of genericDrugName) {
         if (firstParamAdded) {
-            url += `+${drugName}`;
+            url += `+"${drugName}"`;
         }
         if(firstParamAdded === false){
         url += `patient.drug.openfda.generic_name.exact:"${drugName}"`;
@@ -298,7 +298,7 @@ function constructUrl() {
      firstParamAdded = false;
     for (const epc of establishedPharmClass) {
         if (firstParamAdded) {
-            url += `+${epc}`;
+            url += `+"${epc}"`;
         }
         if(firstParamAdded === false){
         url += `patient.drug.openfda.pharm_class_epc.exact:"${epc}"`;}
@@ -318,7 +318,7 @@ function constructUrl() {
     firstParamAdded = false;
     for (const cs of chemicalStructureClass) {
         if (firstParamAdded) {
-            url += `+${cs}`;
+            url += `+"${cs}"`;
         }
         if(firstParamAdded === false){
         url += `patient.drug.openfda.pharm_class_cs.exact:"${cs}"`;}
@@ -340,7 +340,7 @@ function constructUrl() {
     firstParamAdded = false;
     for (const rxn of reaction) {
         if (firstParamAdded) {
-            url += `+${rxn}`;
+            url += `+"${rxn}"`;
         }
         if(firstParamAdded === false){
         url += `patient.reaction.reactionmeddrapt.exact:"${rxn}"`;}
