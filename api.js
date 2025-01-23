@@ -1,7 +1,7 @@
 
 const apiCache = {};
 /*Site Settings -> Build & Deploy -> Environment. Add a new variable with a descriptive name (e.g., MY_API_KEY) and set its value to your actual key.*/
-const apiKey = process.env.MY_API_KEY;
+let apiKey =  '';
 const encodedApiKey = btoa(`${apiKey}:`);
 let receivedDate = "";
 let endDate = "";
@@ -28,6 +28,7 @@ const debounce = (func, delay) => {
 };
 
 function handleSearch(container, initialApiUrl) { // Store initial URL
+     apiKey =  apiCall();
     constructUrl();
     const searchBar = container.querySelector('.search-bar');
     const charactersList = container.querySelector('.characters-list');
@@ -415,7 +416,16 @@ function constructUrl() {
 }
 
 
-
+async function apiCall(parameter) {
+    const url = `/.netlify/functions/token-hider`;
+    try {
+        const response = await fetch(url);
+        const data = await response;
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 // Function to process country data
 function processCountryData(data) {
