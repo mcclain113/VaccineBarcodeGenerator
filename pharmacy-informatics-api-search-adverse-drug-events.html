@@ -8,9 +8,29 @@
     <meta name="author" content="Barry McClain">
     <title>API Search Constructor For Adverse Drug Events</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style2.css">
     <link rel="icon" href="images/favicon.png" type="image/ico">
+    <style>
+       .entry{
+           width: 900px;
+       }
+        .label {
+            float: left;
+            width: 300px; /* Adjust the label width as needed */
+        }
 
+        .input {
+            float: left;
+            width: 400px; /* Adjust the input field width as needed */
+        }
+
+        /* Clear floats to prevent layout issues */
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
@@ -44,18 +64,19 @@
     <div id="Wrapper2">
 
         <!-- Article Element Starts Here -->
-        <article>
+        <article id="contents">
             <h2>API Search Constructor (Adverse Drug Events)</h2>
-            <br>
                 <ul>
                     <li>The data on this page is pulled using the adverse drug event API as referenced on the open FDA site <a target="_blank" href="https://open.fda.gov/apis/">https://open.fda.gov/apis/</a>. All disclaimers and limitations from the open FDA site apply to this data retrieval. </li>
             <li>By default, the API limits results at 100. Limits can be increased to 1000 max. That is limited by the FDA for performance and can impact your data.</li>
                     <li>Each of the searchbar lookups are pulling directly from the API to show exactly how the data is stored.  Just start typing and the search starts automatically.  When the lookup begins searching, it may take a few seconds longer the first time and faster subsequent times since the browser will cache the results.</li>
        <li>Not to take anything away from the current interactive graphs provided by the FDA. They have a <a target="_blank" href="https://open.fda.gov/apis/drug/event/explore-the-api-with-an-interactive-chart/">graphical tool</a> too.  Both tools have different options and functionality to consider.</li>
-        <li>Use spelling, capitalization, and suffixes of values as they appear exactly in the lookup results below. These values show exactly how the API has the data stored, and the URL constructor defaults to matching on exact values.</li>
+        <li>Use spelling, capitalization, and suffixes of values as they appear exactly in the lookup results below. These values show exactly how openFDA has the data stored, and the URL constructor defaults to <u>matching on the exact text as included</u>.</li>
+                    <li>To learn more about how to use this search tool, use the guide <a target="_blank" href="https://docs.google.com/presentation/d/15JeFFSepC1SXXR6jQoBX8EcvlzgIqeKxz6Y01it8XVo/edit#slide=id.p">here.</a></li>
                 </ul>
 
-
+            <h3>Use "include" buttons to filter your data (X axis/labels). Any combination of parameters can be used, including multiples of the same field (e.g. Patient Reaction = WHEEZING, ASTHMA, etc)</h3>
+            <h3>Use "count by" buttons to quantify your data (Y axis/percentage). Only one parameter can be selectable per search.</h3>
 
 
             <br>
@@ -71,32 +92,37 @@
                             maxlength="1"
                             data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api
                     />
-            <p><label for="receivedDate">Received date start </label><input data-api-url="" type="date" id="receivedDate" name="receivedDate" placeholder="Received Date Start">
+                   <div class="label" title="Date the report was first received by FDA.">Received Date: </div>
+                    <div class="input">
+                    <label  for="receivedDate" class="input"></label><input data-api-url="" type="date" id="receivedDate" name="receivedDate" placeholder="Received Date Start" value="2004-01-01">
             to
-                <label for="endDate"></label>received date end <input type="date" id="endDate" name="endDate" placeholder="Received Date End">
-
+                <label for="endDate"></label><input type="date" id="endDate" name="endDate" placeholder="Received Date End">
+                    </div>
                 <label for="addDateRange"></label>
-                <input type="button" id="addDateRange" name="addDateRange" value="Include to Search">
+                <input type="button" id="addDateRange" name="addDateRange" value="Include in Search">
 
-<!--                <label for="addCountDate"></label>
-                <input type="button" id="addCountDate" class="byCount" name="receivedDate" value="Count by">-->
+                <label for="addCountDate"></label>
+                <input type="button" id="addCountDate" class="byCount" name="receivedDate" value="Count by" title="Displays as Bar Graph. This specific count does not appear to be subject to the 1000 max for results.">
 
-            </p>
+
                 </form>
+                <br><br>
+                <input type="checkbox" id="IncludeRangeForLookup" name="include date range for lookups" value="y">
+                <label for="IncludeRangeForLookup">Include date range in the lookup values below</label>
                 <div class="search-results">
                     <ul class="characters-list"></ul>
                 </div>
             </div>
-            <input type="checkbox" id="IncludeRangeForLookup" name="include date range for lookups" value="y">
-            <label for="IncludeRangeForLookup">Include date range in the lookup values below</label>
+
 
             <br><br>
-            <p>Generic Drug Name List: <a target="_blank" href="https://api.fda.gov/drug/event.json?count=patient.drug.openfda.generic_name.exact&limit=1000">https://api.fda.gov/drug/event.json?count=patient.drug.openfda.generic_name.exact&limit=1000</a> </p>
+
             <div class="search-container">
-                <form class="search-form">
+
+                <form class="search-form">  <a title="Generic name(s) of the drug product." target="_blank" class="label" href="https://api.fda.gov/drug/event.json?count=patient.drug.openfda.generic_name.exact&limit=1000">Generic Drug Name List: </a>
                     <input
                             type="text"
-                            class="search-bar"
+                            class="search-bar input"
                             id="genericDrugName"
                             placeholder="Generic Drug Name"
                             aria-label="Search"
@@ -106,10 +132,10 @@
 
                     />
                     <label for="includeGenericName"></label>
-                    <input type="button" id="includeGenericName" name="include" value="Include to Search">
+                    <input type="button" id="includeGenericName" name="include" value="Include in Search">
 
                     <label for="addCountGenericName"></label>
-                    <input type="button" id="addCountGenericName" class="byCount" name="genericDrugName" value="Count by">
+                    <input type="button" id="addCountGenericName" class="byCount" name="genericDrugName" value="Count by" title="Displays as Line Graph">
 
                 </form>
                 <div class="search-results">
@@ -117,12 +143,13 @@
                 </div>
             </div>
             <br>
-            <p>Established Pharmacologic Class List: <a target="_blank" href="https://api.fda.gov/drug/event.json?count=patient.drug.openfda.pharm_class_epc.exact&limit=1000">https://api.fda.gov/drug/event.json?count=patient.drug.openfda.pharm_class_epc.exact&limit=1000</a> </p>
+
             <div class="search-container">
                 <form class="search-form">
+                    <a title="Established pharmacologic class associated with an approved indication of an active moiety (generic drug) that the FDA has determined to be scientifically valid and clinically meaningful. Takes the form of the pharmacologic class, followed by [EPC]." target="_blank" class="label" href="https://api.fda.gov/drug/event.json?count=patient.drug.openfda.pharm_class_epc.exact&limit=1000">Established Pharmacologic Class List: </a>
                     <input
                             type="text"
-                            class="search-bar"
+                            class="search-bar input"
                             id="establishedPharmClass"
                             placeholder="Established Pharmacologic Class"
                             aria-label="Search"
@@ -132,10 +159,10 @@
 
                     />
                     <label for="includeEPC"></label>
-                    <input type="button" id="includeEPC" name="include" value="Include to Search">
+                    <input type="button" id="includeEPC" name="include" value="Include in Search">
 
                     <label for="addCountEPC"></label>
-                    <input type="button" id="addCountEPC" class="byCount" name="establishedPharmClass" value="Count by">
+                    <input type="button" id="addCountEPC" class="byCount" name="establishedPharmClass" value="Count by" title="Displays as Line Graph">
 
                 </form>
                 <div class="search-results">
@@ -143,12 +170,13 @@
                 </div>
             </div>
             <br>
-            <p>Chemical Structure Classification List: <a target="_blank" href="https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=1000">https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=1000</a> </p>
+
             <div class="search-container">
                 <form class="search-form">
+                    <a title="Chemical structure classification of the drug product’s pharmacologic class." class="label" target="_blank" href="https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=1000">Chemical Structure Classification List: </a>
                     <input
                             type="text"
-                            class="search-bar"
+                            class="search-bar input"
                             id="chemicalStructureClass"
                             placeholder="Chemical Structure Classification"
                             aria-label="Search"
@@ -158,10 +186,10 @@
 
                     />
                     <label for="includeCS"></label>
-                    <input type="button" id="includeCS" name="include" value="Include to Search">
+                    <input type="button" id="includeCS" name="include" value="Include in Search">
 
                     <label for="addCountCS"></label>
-                    <input type="button" id="addCountCS" class="byCount" name="chemicalStructureClass" value="Count by">
+                    <input type="button" id="addCountCS" class="byCount" name="chemicalStructureClass" value="Count by" title="Displays as Line Graph">
 
                 </form>
                 <div class="search-results">
@@ -170,12 +198,13 @@
             </div>
             <br>
 
-<p>Patient Reaction List: <a target="_blank" href="https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=1000">https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=1000</a></p>
+
             <div class="search-container">
                 <form class="search-form">
+                    <a title="Patient reaction, as a MedDRA term. Note that these terms are encoded in British English." class="label" target="_blank" href="https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=1000">Patient Reaction List: </a>
                     <input
                             type="text"
-                            class="search-bar"
+                            class="search-bar input"
                             id="reaction"
                             placeholder="Patient Reaction"
                             aria-label="Search"
@@ -185,10 +214,10 @@
 
                     />
                     <label for="includeReaction"></label>
-                    <input type="button" id="includeReaction" name="include" value="Include to Search">
+                    <input type="button" id="includeReaction" name="include" value="Include in Search">
 
                     <label for="addCountReaction"></label>
-                    <input type="button" id="addCountReaction" class="byCount" name="reaction" value="Count by">
+                    <input type="button" id="addCountReaction" class="byCount" name="reaction" value="Count by" title="Displays as Line Graph">
 
                 </form>
                 <div class="search-results">
@@ -196,12 +225,40 @@
                 </div>
             </div>
 <br>
-            <p>Country List: <a target="_blank" href="https://api.fda.gov/drug/event.json?count=occurcountry.exact&limit=1000">https://api.fda.gov/drug/event.json?count=occurcountry.exact&limit=1000</a></p>
+
             <div class="search-container">
-                <form class="search-form" >
+                <form class="search-form">
+                    <a title="Indication for the drug’s use." class="label" target="_blank" href="https://api.fda.gov/drug/event.json?&count=patient.drug.drugindication.exact&limit=1000">Indication List: </a>
                     <input
                             type="text"
-                            class="search-bar"
+                            class="search-bar input"
+                            id="indication"
+                            placeholder="Indication"
+                            aria-label="Search"
+                            size="40"
+                            maxlength="500"
+                            data-api-url=https://api.fda.gov/drug/event.json?&count=patient.drug.drugindication.exact&limit=1000
+
+                    />
+                    <label for="includeIndication"></label>
+                    <input type="button" id="includeIndication" name="include" value="Include in Search">
+
+                    <label for="addCountIndication"></label>
+                    <input type="button" id="addCountIndication" class="byCount" name="indication" value="Count by" title="Displays as Line Graph">
+
+                </form>
+                <div class="search-results">
+                    <ul class="characters-list"></ul>
+                </div>
+            </div>
+            <br>
+
+            <div class="search-container">
+                <form class="search-form" >
+                    <a title="The name of the country where the event occurred." class="label" target="_blank" href="https://api.fda.gov/drug/event.json?count=occurcountry.exact&limit=1000">Country List: </a>
+                    <input
+                            type="text"
+                            class="search-bar input"
                             id="country"
                             placeholder="Countries"
                             aria-label="Search"
@@ -211,31 +268,46 @@
 
                     />
                     <label for="includeCountry"></label>
-                    <input type="button" id="includeCountry" name="include" value="Include to Search">
+                    <input type="button" id="includeCountry" name="include" value="Include in Search">
 
                     <label for="addCountCountry"></label>
-                    <input type="button" id="addCountCountry" class="byCount" name="country" value="Count by">
+                    <input type="button" id="addCountCountry" class="byCount" name="country" value="Count by" title="Displays as Line Graph">
 
                 </form>
                 <div class="search-results">
                     <ul class="characters-list"></ul>
                 </div>
             </div>
-            <br><br>
+
+
+
+
+            <br>
+
 
             <div class="search-container">
                 <form class="search-form">
                     <input
                             type="hidden"
                             class="search-bar"
-                            id="safetyReport"
+                            id="ageRange"
                             aria-label="Search"
-                            size="1"
+                            size=""
                             maxlength="1"
                             data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api
                     />
-            <label for="safetyReportId">Unique Safety Report ID</label>
-            <input type="button" id="safetyReportId" class="byCount" name="safetyReportId" value="Count by">
+                    <div title="Age of the patient when the event first occured." class="label">Age Range: </div>
+                    <div class="input">
+                        <label for="ageBegin"></label><input data-api-url="" type="number" id="ageBegin" name="ageRange" placeholder="Age Start" value="0" max="150" style="width: 4em">
+                        to
+                        <label for="ageEnd"></label><input type="number" id="ageEnd" name="ageRange" placeholder="Age End" value="0" max="150" style="width: 4em">
+                    </div>
+                    <label for="addAgeRange"></label>
+                    <input type="button" id="addAgeRange" name="addAgeRange" value="Include in Search">
+
+                    <label for="addCountAgeRange"></label>
+                    <input type="button" id="addCountAgeRange" class="byCount" name="ageRange" value="Count by" title="Displays as Bar Graph">
+
 
                 </form>
                 <div class="search-results">
@@ -244,7 +316,168 @@
             </div>
 
 
-            <br><br>
+            <br>
+
+            <div class="search-container">
+                <section>
+                    <details>
+                        <summary title="Populated with Patient Age Group code.">Age Group:</summary>
+                <form class="search-form" >
+                    <input type="radio" id="neonate" name="ageGroup" class="search-bar" aria-label="Search" data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api value="1">
+                    <label for="neonate">Neonate</label><br>
+                    <input type="radio" id="infant" name="ageGroup" class="search-bar" aria-label="Search" data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api value="2">
+                    <label for="infant">Infant</label><br>
+                    <input type="radio" id="child" name="ageGroup" class="search-bar" aria-label="Search" data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api value="3">
+                    <label for="child">Child</label><br>
+                    <input type="radio" id="adolescent" name="ageGroup" class="search-bar" aria-label="Search" data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api value="4">
+                    <label for="adolescent">Adolescent</label><br>
+                    <input type="radio" id="adult" name="ageGroup" class="search-bar" aria-label="Search" data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api value="5">
+                    <label for="adult">Adult</label><br>
+                    <input type="radio" id="elderly" name="ageGroup" class="search-bar" aria-label="Search" data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api value="6">
+                    <label for="elderly">Elderly</label><br>
+
+
+                    <br><br>
+                    <label for="includeAgeGroup"></label>
+                    <input type="button" id="includeAgeGroup" name="ageGroup" value="Include in Search">
+
+                    <label for="addCountAgeGroup"></label>
+                    <input type="button" id="addCountAgeGroup" class="byCount" name="ageGroup" value="Count by" title="Displays as Pie Graph">
+
+                </form>
+                    </details>
+                </section>
+                <div class="search-results">
+                    <ul class="characters-list"></ul>
+                </div>
+            </div>
+
+         <br>
+
+            <div class="search-container">
+
+                <section>
+                    <details>
+                        <summary title="The sex of the patient.">Patient Sex: </summary>
+                        <form class="search-form" >
+
+
+                            <input type="radio" id="female" name="sex" class="search-bar" aria-label="Search" data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api value="2">
+                            <label for="female">Female</label><br>
+                            <input type="radio" id="male" name="sex" class="search-bar" aria-label="Search" data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api value="1">
+                            <label for="male">Male</label><br>
+                            <input type="radio" id="other" name="sex" class="search-bar" aria-label="Search" data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api value="0">
+                            <label for="other">Other</label>
+
+                            <br><br>
+                            <label for="includeSex"></label>
+                            <input type="button" id="includeSex" name="sex" value="Include in Search">
+
+                            <label for="addCountCountry"></label>
+                            <input type="button" id="addCountSex" class="byCount" name="sex" value="Count by" title="Displays as Pie Graph">
+
+
+                        </form>
+                    </details>
+                </section>
+                <div class="search-results">
+                    <ul class="characters-list"></ul>
+                </div>
+
+            </div>
+            <br>
+
+            <div class="search-container">
+                <section>
+                    <details>
+                        <summary title="Seriousness of the adverse event.">Seriousness: </summary>
+                <form class="search-form" >
+                    <input type="radio" id="serious" name="serious" class="search-bar" aria-label="Search" data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api value="1">
+                    <label for="serious">The adverse event resulted in death, a life threatening condition, hospitalization, disability, congenital anomaly, or other serious condition</label><br>
+                    <input type="radio" id="lessSerious" name="serious" class="search-bar" aria-label="Search" data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api value="2">
+                    <label for="lessSerious">The adverse event did not result in any of the above</label><br>
+
+
+
+                    <br>
+                    <label for="includeSerious"></label>
+                    <input type="button" id="includeSerious" name="serious" value="Include in Search">
+
+                    <label for="addCountSerious"></label>
+                    <input type="button" id="addCountSerious" class="byCount" name="serious" value="Count by" title="Displays as Pie Graph">
+
+                </form>
+                    </details>
+                </section>
+                <div class="search-results">
+                    <ul class="characters-list"></ul>
+                </div>
+            </div>
+            <br>
+
+            <div class="search-container">
+
+                <section>
+                    <details>
+                        <summary title="Was report by the public or manufacturer">Reported By: </summary>
+                        <form class="search-form" >
+
+
+                            <input type="radio" id="manufacturer" name="reportBy" class="search-bar" aria-label="Search" data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api value="_exists_:companynumb">
+                            <label for="female">Manufacturer</label><br>
+                            <input type="radio" id="public" name="reportBy" class="search-bar" aria-label="Search" data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api value="_missing_:companynumb">
+                            <label for="male">Public</label><br>
+
+                            <br><br>
+                            <label for="includeReportBy"></label>
+                            <input type="button" id="includeReportBy" name="sex" value="Include in Search">
+
+                            <label for="addCountReportBy"></label>
+                            <input type="button" id="addCountReportBy" class="byCount" name="reportBy" value="Count by" title="Displays as Line Graph">
+
+
+                        </form>
+                    </details>
+                </section>
+                <div class="search-results">
+                    <ul class="characters-list"></ul>
+                </div>
+
+            </div>
+
+
+
+
+
+
+            <br>
+            <div class="search-container">
+                <form class="search-form">
+                    <input
+                            type="hidden"
+                            class="search-bar"
+                            id="reportBySearch"
+                            aria-label="Search"
+                            size="1"
+                            maxlength="1"
+                            data-api-url=https://www.pharmacyinformatics.net/.netlify/functions/api
+                    />
+                    <section>
+
+                        <details>
+                            <summary title="The 8-digit Safety Report ID number, also known as the case report number or case ID. The first 7 digits (before the hyphen) identify an individual report and the last digit (after the hyphen) is a checksum. This field can be used to identify or find a specific adverse event report.">Unique Safety Report ID: </summary>
+                            <label for="safetyReportId"></label>
+                            <input type="button" id="safetyReportId" class="byCount" name="safetyReportId" value="Count by" title="Shows count and list of IDs to provide a look of the specific report contents">
+                        </details>
+                    </section>
+                </form>
+                <div class="search-results">
+                    <ul class="characters-list"></ul>
+                </div>
+            </div>
+
+
+            <br>
             <div class="search-container">
                 <form class="search-form">
                     <input
@@ -258,11 +491,17 @@
                     />
             <!--            <label for="count"></label>
                         <input type="number" id="count" name="count" placeholder="Count">-->
-            <label for="limit"></label>
+                    <section>
+                        <details>
+                            <summary title="Must have value >0 and <=1000 to add.">Limit Number of Results: </summary>
+                                <label for="limit"></label>
             <input type="number" id="limit" name="limit" placeholder="Result Limit (1000 max)">
             <label for="includeLimit"></label>
-            <input type="button" id="includeLimit" name="include" value="Include Limit" max="1000">
+            <input type="button" id="includeLimit" name="include" value="Include Limit" max="1000" title="Adds customized limit to URL constructor">
+                        </details>
+                    </section>
                 </form>
+
                 <div class="search-results">
                     <ul class="characters-list"></ul>
                 </div>
@@ -275,14 +514,13 @@
                 <option value="ascending">ascending</option>
 
             </select>-->
-            <br><br>
-            <p>Constructed Adverse Drug Event URL</p>
-            <div id="showCode"  spellcheck="false">
-
-            </div>
-<!--            <div id="showCode" contenteditable="true" spellcheck="false">
+            <p title="This field is modifiable if search customization is desirable.">Constructed Adverse Drug Event URL</p>
+<!--            <div id="showCode"  spellcheck="false">
 
             </div>-->
+            <div id="showCode" contenteditable="true" spellcheck="false">
+
+            </div>
             <br><br>
             <div class="search-container">
                 <form class="search-form">
