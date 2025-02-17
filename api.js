@@ -75,6 +75,7 @@ function handleSearch(container, initialApiUrl) { // Store initial URL
                  genericDrugName = [];
                  establishedPharmClass = [];
                  chemicalStructureClass = [];
+                 indication = [];
                  reaction = [];
                  country = [];
                  byCount = null;
@@ -99,6 +100,7 @@ function handleSearch(container, initialApiUrl) { // Store initial URL
                     const showFinalCodeDiv = document.getElementById('showCode');
 
                 document.getElementById('showError').innerHTML = `<p> </p>`;
+                    document.getElementById('showGraph').innerHTML =`<p> </p>`;
                 await fetchDataAndPlot(showFinalCodeDiv.innerText, encodedApiKey);}
 
             }
@@ -411,15 +413,20 @@ function constructUrl() {
         url += "+AND+";
     }
 
-    let firstParamAdded = false;
-    for (const drugName of genericDrugName) {
+
+   let firstParamAdded = false;
+    for (let i = 0; i < genericDrugName.length; i++) {
+        const drugName = genericDrugName[i];
         if (firstParamAdded) {
-            url += `+"${drugName}"`;
+            url += `+OR+"${drugName}"`;
         }
-        if(firstParamAdded === false){
-        url += `patient.drug.openfda.generic_name.exact:"${drugName}"`;
+        if (firstParamAdded === false) {
+            url += `patient.drug.openfda.generic_name.exact:("${drugName}"`;
         }
         firstParamAdded = true;
+        if (i === genericDrugName.length - 1) { // Check if it's the last element
+            url += ")";
+        }
     }
 
     if (
@@ -432,14 +439,20 @@ function constructUrl() {
         url += "+AND+";
     }
 
-     firstParamAdded = false;
-    for (const epc of establishedPharmClass) {
+
+    firstParamAdded = false;
+    for (let i = 0; i < establishedPharmClass.length; i++) {
+        const epc = establishedPharmClass[i];
         if (firstParamAdded) {
-            url += `+"${epc}"`;
+            url += `+OR+"${epc}"`;
         }
-        if(firstParamAdded === false){
-        url += `patient.drug.openfda.pharm_class_epc.exact:"${epc}"`;}
+        if (firstParamAdded === false) {
+            url += `patient.drug.openfda.pharm_class_epc.exact:("${epc}"`;
+        }
         firstParamAdded = true;
+        if (i === establishedPharmClass.length - 1) { // Check if it's the last element
+            url += ")";
+        }
     }
 
 
@@ -452,16 +465,21 @@ function constructUrl() {
         url += "+AND+";
     }
 
-    firstParamAdded = false;
-    for (const cs of chemicalStructureClass) {
-        if (firstParamAdded) {
-            url += `+"${cs}"`;
-        }
-        if(firstParamAdded === false){
-        url += `patient.drug.openfda.pharm_class_cs.exact:"${cs}"`;}
-        firstParamAdded = true;
-    }
 
+    firstParamAdded = false;
+    for (let i = 0; i < chemicalStructureClass.length; i++) {
+        const cs = chemicalStructureClass[i];
+        if (firstParamAdded) {
+            url += `+OR+"${cs}"`;
+        }
+        if (firstParamAdded === false) {
+            url += `patient.drug.openfda.pharm_class_cs.exact:("${cs}"`;
+        }
+        firstParamAdded = true;
+        if (i === chemicalStructureClass.length - 1) { // Check if it's the last element
+            url += ")";
+        }
+    }
 
 
     if (
@@ -475,13 +493,18 @@ function constructUrl() {
     }
 
     firstParamAdded = false;
-    for (const rxn of reaction) {
+    for (let i = 0; i < reaction.length; i++) {
+        const rxn = reaction[i];
         if (firstParamAdded) {
-            url += `+"${rxn}"`;
+            url += `+OR+"${rxn}"`;
         }
-        if(firstParamAdded === false){
-        url += `patient.reaction.reactionmeddrapt.exact:"${rxn}"`;}
+        if (firstParamAdded === false) {
+            url += `patient.reaction.reactionmeddrapt.exact:("${rxn}"`;
+        }
         firstParamAdded = true;
+        if (i === reaction.length - 1) { // Check if it's the last element
+            url += ")";
+        }
     }
 
     if (
@@ -494,15 +517,22 @@ function constructUrl() {
         url += "+AND+";
     }
 
+
     firstParamAdded = false;
-    for (const cn of country) {
+    for (let i = 0; i < country.length; i++) {
+        const cn = country[i];
         if (firstParamAdded) {
-            url += `+${cn}`;
+            url += `+OR+"${cn}"`;
         }
-        if(firstParamAdded === false){
-        url += `occurcountry.exact:${cn}`;}
+        if (firstParamAdded === false) {
+            url += `occurcountry.exact:("${cn}"`;
+        }
         firstParamAdded = true;
+        if (i === country.length - 1) { // Check if it's the last element
+            url += ")";
+        }
     }
+
 
     if (
         (receivedDate && sex != null)||
@@ -546,14 +576,20 @@ function constructUrl() {
         url += "+AND+";
     }
 
+
     firstParamAdded = false;
-    for (const id of indication) {
+    for (let i = 0; i < indication.length; i++) {
+        const id = indication[i];
         if (firstParamAdded) {
-            url += `+"${id}"`;
+            url += `+OR+"${id}"`;
         }
-        if(firstParamAdded === false){
-            url += `patient.drug.drugindication.exact:"${id}"`;}
+        if (firstParamAdded === false) {
+            url += `patient.drug.drugindication.exact:("${id}"`;
+        }
         firstParamAdded = true;
+        if (i === indication.length - 1) { // Check if it's the last element
+            url += ")";
+        }
     }
 
 
