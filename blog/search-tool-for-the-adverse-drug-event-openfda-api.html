@@ -1,0 +1,36 @@
+
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="keywords" content="pharmacy informatics, API, adverse drug event,blog">
+    <title>Try Our New API Search Tool</title>
+    <meta name="description" content="search-tool-for-the-adverse-drug-event-openfda-api"><link rel="stylesheet" type="text/css" href="/static/css/style.css"><link rel="stylesheet" type="text/css" href="/static/css/prism-tomorrow.css"></head>
+
+<body><div class="w-full"><nav class="flex items-center justify-center lg:justify-between flex-wrap p-6 lg:px-0 container mx-auto" x-data="{ isOpen: false }" @keydown.escape="isOpen = false" @click.away="isOpen = false"><div class="items-center"><img src="https://www.pharmacyinformatics.net/images/logo2.png" alt="pharmacy informatics"></div>
+    <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto text-center" :class="{ 'block shadow-3xl': isOpen, 'hidden': !isOpen }" x-show.transition="true"></div></nav></div><div class="container max-w-4xl mt-6 px-6"><div class="pb-5 mb-5 border-b border-gray-100"><a href="javascript:history.back()" class="text-indigo-500 font-bold text-lg">Back to List</a><br>
+
+    <!--inject h1 to end of article, and images-->
+    <h1 class="font-bold text-5xl">Try Our New API Search Tool</h1><p class="text-center text-base leading-6 font-medium text-gray-500"><time>February 23, 2025 by <a>Barry McClain</a></time></p></div><article class="prose lg:prose-xl my-4 mx-auto">
+    <p>Looking to search the FDA's reported adverse drug events (ADEs)? Pharmacyinformatics.net’s API URL constructor is a convenient way to query the openFDA ADE endpoint and present impressive visualizations of the data.</p>
+
+    <p>The search tool sets up the query by using the adverse drug event API as referenced on the open FDA site <a href="https://open.fda.gov/apis/">https://open.fda.gov/apis/</a>. All disclaimers and limitations from the open FDA site apply to this data retrieval.</p>
+
+    <p>The data is then returned to the site and is displayed into customizable Plotly graphs.</p>
+
+    <p>Not to take anything away from the current interactive graphs provided by the FDA. They have a graphical tool too. Both tools have different options and functionality to consider.</p>
+
+    <p>What distinguishes this tool from others?</p>
+
+    <ol>
+        <li>Easy lookup fields to show how terms are stored.</li>
+        <li>Make graphs easily with the tool by using “count by” versus “include in search” prompts.</li>
+        <li>Show what is in a detailed safety report by using “count by” Unique Safety Report ID.</li>
+        <li>For advanced users, the constructed URL is modifiable for additional syntax or adjustments.</li>
+    </ol>
+</article>
+
+
+</div><script src="/static/js/alpine.js"></script></body>
+
+</html>
