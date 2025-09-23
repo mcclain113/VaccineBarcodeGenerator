@@ -68,9 +68,13 @@
             <h2>API Search Constructor (Adverse Drug Events)</h2>
                 <ul>
                     <li>The data on this page is pulled using the adverse drug event API as referenced on the open FDA site <a target="_blank" href="https://open.fda.gov/apis/">https://open.fda.gov/apis/</a>. All disclaimers and limitations from the open FDA site apply to this data retrieval. </li>
-            <li>By default, the API limits results at 100. Limits can be increased to 1000 max. That is limited by the FDA for performance and can impact your data.</li>
+            <li>By default, the API limits results at 100. Limits can be increased to 1000 max. That is limited by the FDA for performance and can impact your data. Limits don't appear to impact received date searches.</li>
                     <li>Each of the searchbar lookups are pulling directly from the API to show exactly how the data is stored.  Just start typing and the search starts automatically.  When the lookup begins searching, it may take a few seconds longer the first time and faster subsequent times since the browser will cache the results.</li>
+                    <ul><li>Also, because of the API result limits, searchbar lookups will only match to the top 1000 items. This can be most notable for generic drug names if there are not a lot of events. Unmatching terms can still be added to the search, and likely makes sense to remove "exact" match in that case.</li> </ul>
        <li>Not to take anything away from the current interactive graphs provided by the FDA. They have a <a target="_blank" href="https://open.fda.gov/apis/drug/event/explore-the-api-with-an-interactive-chart/">graphical tool</a> too.  Both tools have different options and functionality to consider.</li>
+                    <ul>
+                        <li>***New as of August 2025*** The FDA released a real-time adverse event reporting <a target="_blank" href="https://fis.fda.gov/sense/app/95239e26-e0be-42d9-a960-9a5f7f1c25ee/sheet/7a47a261-d58b-4203-a8aa-6d3021737452/state/analysis">dashboard</a>. Certainly cool too, but I still like this one's usability to drill down.</li>
+                    </ul>
         <li>Use spelling, capitalization, and suffixes of values as they appear exactly in the lookup results below. These values show exactly how openFDA has the data stored, and the URL constructor defaults to <u>matching on the exact text as included</u>.</li>
                     <li>To learn more about how to use this search tool, use the guide <a target="_blank" href="files/Adverse-Drug-Event-API-and-URL-Constructor-Worksheet.pdf">here.</a></li>
                 </ul>
@@ -106,7 +110,7 @@
 
 
                 </form>
-                <br><br>
+                <br>
                 <input type="checkbox" id="IncludeRangeForLookup" name="include date range for lookups" value="y">
                 <label for="IncludeRangeForLookup">Include date range in the lookup values below</label>
                 <div class="search-results">
@@ -142,8 +146,10 @@
                     <ul class="characters-list"></ul>
                 </div>
             </div>
-            <br>
 
+            <input type="checkbox" id="excludeExactGeneric" name="Exclude exact match for generic drug" value="y">
+            <label for="excludeExactGeneric">Exclude exact match for generic drug (helpful if looking for a drug not showing up in searchbar)</label>
+            <br><br>
             <div class="search-container">
                 <form class="search-form">
                     <a title="Established pharmacologic class associated with an approved indication of an active moiety (generic drug) that the FDA has determined to be scientifically valid and clinically meaningful. Takes the form of the pharmacologic class, followed by [EPC]." target="_blank" class="label" href="https://api.fda.gov/drug/event.json?count=patient.drug.openfda.pharm_class_epc.exact&limit=1000">Established Pharmacologic Class List: </a>
@@ -515,6 +521,7 @@
 
             </select>-->
             <p title="This field is modifiable if search customization is desirable.">Constructed Adverse Drug Event URL</p>
+            <p>This field is modifiable if search customization is desirable</p>
 <!--            <div id="showCode"  spellcheck="false">
 
             </div>-->

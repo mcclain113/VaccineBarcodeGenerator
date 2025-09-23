@@ -26,6 +26,7 @@ let ageEnd = null;
 let serious = null;
 let reportBy = "";
 
+
 const debounce = (func, delay) => {
     let timeoutId;
     return (...args) => {
@@ -421,7 +422,9 @@ function constructUrl() {
             url += `+OR+"${drugName}"`;
         }
         if (firstParamAdded === false) {
-            url += `patient.drug.openfda.generic_name.exact:("${drugName}"`;
+            const excludeExactGenericCheckbox = document.getElementById('excludeExactGeneric');
+            if(excludeExactGenericCheckbox.checked){url += `patient.drug.openfda.generic_name:("${drugName}"`;}
+            else {url += `patient.drug.openfda.generic_name.exact:("${drugName}"`;}
         }
         firstParamAdded = true;
         if (i === genericDrugName.length - 1) { // Check if it's the last element
@@ -448,6 +451,7 @@ function constructUrl() {
         }
         if (firstParamAdded === false) {
             url += `patient.drug.openfda.pharm_class_epc.exact:("${epc}"`;
+
         }
         firstParamAdded = true;
         if (i === establishedPharmClass.length - 1) { // Check if it's the last element
