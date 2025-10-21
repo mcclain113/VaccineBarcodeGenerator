@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pharmacy IT & Safety Crossword</title>
+    <style>
+        :root{
+            --bg:#0b1220; --panel:#0f1b2d; --panel-br:#1f3354;
+            --text:#e8f0ff; --muted:#9fb0cc;
+            --accent:#18b26a; --accent-2:#34c9f2; --warn:#f59e0b; --danger:#ef4444; --ok:#22c55e;
+            --grid-br:#1f3b62; --block:#0a1627; --num:#7fb0ff; --focus:#fde68a;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0; font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+            color:var(--text);
+            background:
+                    radial-gradient(1200px 640px at 50% -10%, #152c52 0%, var(--bg) 60%),
+                    linear-gradient(180deg, #091226, #0a1324 40%, #0a1324);
+            display:grid; place-items:center;
+        }
+        .wrap{width:min(1100px,100%); padding:16px}
+        .header{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+        .logo{width:44px;height:44px;border-radius:10px;background:
+                conic-gradient(from 90deg,#16a34a,#34c9f2 45%,#60a5fa,#16a34a);
+            display:grid;place-items:center;color:#052e16;font-weight:900;
+            box-shadow:0 0 0 2px #134e4a inset, 0 10px 30px rgba(0,0,0,.35)}
+        h1{margin:0;font-size:1.32rem}
+        .sub{color:var(--muted);font-size:.95rem}
+
+        .layout{display:grid;grid-template-columns:1fr 380px;gap:16px}
+        @media (max-width: 1020px){.layout{grid-template-columns:1fr}}
+        .card{background: color-mix(in oklab, var(--panel), black 10%);
+            border:1px solid var(--panel-br);border-radius:14px;padding:14px}
+
+        /* GRID */
+        .grid{
+            width:100%; aspect-ratio:1/1; border-radius:12px; overflow:hidden;
+            border:1px solid var(--grid-br);
+            background: linear-gradient(180deg,#0a172b,#0c1c35);
+            display:grid; grid-template-columns: repeat(var(--cols), 1fr);
+            grid-auto-rows: 1fr; user-select:none;
+        }
+        .cell{position:relative;border:1px solid #102545;display:grid;place-items:center}
+        .cell.block{background:var(--block)}
+        .cell .num{position:absolute;top:3px;left:3px;font-size:10px;color:var(--num);pointer-events:none}
+        .cell input{
+            width:100%;height:100%;background:transparent;border:0;outline:none;
+            text-transform:uppercase;color:var(--text);font-weight:800;
+            font-size:min(3.2vw, 28px);text-align:center;caret-color:#fff;
+        }
+        .cell.active{box-shadow: inset 0 0 0 2px #38bdf8}
+        .cell.cursor{box-shadow: inset 0 0 0 2px var(--focus)}
+        .cell.wrong input{color:var(--danger)} .cell.right input{color:var(--ok)}
+
+        /* SIDEBAR */
+        .controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+        button{
+            background:linear-gradient(180deg,#2563eb,#1d4ed8);color:#fff;border:0;
+            padding:9px 12px;border-radius:10px;font-weight:700;cursor:pointer
+        }
+        button.secondary{background:linear-gradient(180deg,#374151,#1f2937)}
+        button.warn{background:linear-gradient(180deg,#f59e0b,#d97706)}
+        button.danger{background:linear-gradient(180deg,#ef4444,#dc2626)}
+        .clues{display:grid;grid-template-columns:1fr;gap:12px}
+        .clue-section h3{margin:6px 0 2px;font-size:1.05rem;color:#c7e0ff}
+        ol{margin:0;padding-left:1.15rem}
+        li{margin:6px 0}
+        .clue{cursor:pointer;border-radius:8px;padding:4px 6px}
+        .clue:hover{background:rgba(52,201,242,.08)}
+        .clue.active{background:rgba(24,178,106,.12);outline:1px solid rgba(24,178,106,.4)}
+        .enum{color: rgba(255, 0, 0, 0);;font-size:.88em}
+
+        .footer{margin-top:10px;color:var(--muted);font-size:.9rem;
+            display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+        .pill{background:#0b223d;border:1px solid #27466f;padding:4px 8px;border-radius:999px}
+
+        /* PRINT */
+        @media print{
+            body{background:#fff;color:#000}
+            .card{border:0;background:#fff}
+            .logo,.controls,.footer .pill{display:none !important}
+            .grid{border:1px solid #000}
+            .cell{border:1px solid #000}
+            .cell.block{background:#000}
+            .cell input{color:#000}
+            .clue:hover,.clue.active{background:transparent;outline:0}
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+        <div class="logo">Rx</div>
+        <div>
+            <h1>Pharmacy IT &amp; Safety Crossword — Interactive</h1>
+            <div class="sub">Click a clue or square. Type A–Z. Space toggles Across/Down. “Reveal” unmask answers.</div>
+        </div>
+    </div>
+
+    <div class="layout">
+        <!-- GRID -->
+        <div class="card">
+            <div id="grid" class="grid" role="grid" aria-label="Crossword grid"></div>
+            <div class="footer">
+                <div id="status">Select a clue to begin.</div>
+                <div id="progress" class="pill">Filled: 0/0 (0%)</div>
+            </div>
+        </div>
+
+        <!-- CONTROLS + CLUES -->
+        <div class="card">
+            <div class="controls">
+                <button id="checkBtn" title="Check current entry">Check</button>
+                <button id="revealLetterBtn" class="warn" title="Reveal letter at cursor">Reveal letter</button>
+                <button id="revealWordBtn" class="warn" title="Reveal current entry">Reveal word</button>
+                <button id="revealAllBtn" class="danger" title="Reveal entire puzzle">Reveal all</button>
+                <button id="clearBtn" class="secondary" title="Clear all letters">Clear</button>
+            </div>
+            <div class="clues">
+                <div class="clue-section">
+                    <h3>Across</h3>
+                    <ol id="acrossList"></ol>
+                </div>
+                <div class="clue-section">
+                    <h3>Down</h3>
+                    <ol id="downList"></ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /* ----------------------- TERMS & DEFINITIONS ----------------------- */
+    const TERMS = [
+        { phrase: "Alert Fatigue",
+            clue: "Desensitization to frequent or low‑value alerts that reduces attention to critical warnings." },
+        { phrase: "Artificial Intelligence",
+            clue: "Techniques enabling software to perform tasks that usually require human perception or reasoning." },
+        { phrase: "User Experience",
+            clue: "Overall ease, efficiency, and satisfaction when interacting with a system." },
+        { phrase: "Workaround",
+            clue: "An informal, non‑standard process used to bypass a system limitation or policy." },
+        { phrase: "Clinical Decision Support",
+            clue: "Integrated tools that provide evidence‑based guidance within workflow at the point of care." },
+        { phrase: "Charge Description Master",
+            clue: "The hospital’s comprehensive catalog of billable items/services for pricing and charging." },
+        { phrase: "Downtime",
+            clue: "A period when systems are unavailable; triggers contingency procedures." },
+        { phrase: "Formulary",
+            clue: "Approved list of medications for a health system or payer." },
+        { phrase: "Medication Reconciliation",
+            clue: "Process to build the best possible medication list across care transitions." },
+        { phrase: "Graphical User Interface",
+            clue: "Visual layer—windows, icons, menus, buttons—for user interaction." },
+        { phrase: "Human Factors",
+            clue: "Discipline studying human‑system interaction to improve usability and safety." },
+        { phrase: "Interface Engine",
+            clue: "Middleware that routes/transforms messages (e.g., HL7, FHIR) between systems." },
+        { phrase: "Machine Learning",
+            clue: "Subset of AI where models learn patterns from data to make predictions or decisions." },
+        { phrase: "Interoperability",
+            clue: "Ability of disparate systems to exchange, interpret, and use information." },
+        { phrase: "Medication Use Process",
+            clue: "End‑to‑end steps from prescribing/transcribing to dispensing and administration." }
+    ];
+
+    /* ----------------------- UTILS ----------------------- */
+    const CLEAN = s => s.replace(/[^A-Za-z]/g,'').toUpperCase();
+    const ENUMERATION = s => s.split(/\s+/).map(w => w.replace(/[^A-Za-z]/g,'').length).join('‑');
+
+    const entries = TERMS.map(t => ({
+        answer: CLEAN(t.phrase),
+        display: t.phrase,
+        clue: t.clue,
+        enumeration: ENUMERATION(t.phrase)
+    }));
+
+    /* ----------------------- GENERATION ----------------------- */
+    /* Simple, reliable generator:
+       1) Place the longest Across in the middle.
+       2) Place others by trying to intersect; fallback to first available slot.
+       3) Render only cells that contain letters; everything else is a block.
+    */
+    const SIZE = 25;
+    let grid = Array.from({length:SIZE}, ()=> Array.from({length:SIZE}, ()=>({})));
+    let placements = [];              // {answer, display, clue, r, c, len, dir, number}
+    let indicesByCell = {};           // "r,c" -> [pi,...]
+
+    // Place words
+    generate();
+    computeIndices();
+    numberPlacements();
+
+    // After generation, mark all unfilled as blocks (for crisp crossword look)
+    for (let r=0;r<SIZE;r++) for (let c=0;c<SIZE;c++) {
+        if (!grid[r][c].ch) grid[r][c].block = true;
+    }
+
+    /* ----------------------- DOM ----------------------- */
+    const gridEl = document.getElementById('grid');
+    const acrossList = document.getElementById('acrossList');
+    const downList   = document.getElementById('downList');
+    const statusEl   = document.getElementById('status');
+    const progressEl = document.getElementById('progress');
+    gridEl.style.setProperty('--cols', SIZE);
+
+    let inputsMap = new Map(); // "r,c" -> input
+    let active = null;         // {pi, dir, cells:[{r,c}], idxWithin}
+
+    renderGrid();
+    renderClues();
+    selectFirst();
+
+    /* Controls */
+    document.getElementById('checkBtn').addEventListener('click', checkCurrent);
+    document.getElementById('revealLetterBtn').addEventListener('click', revealLetter);
+    document.getElementById('revealWordBtn').addEventListener('click', revealCurrent);
+    document.getElementById('revealAllBtn').addEventListener('click', revealAll);
+    document.getElementById('clearBtn').addEventListener('click', clearAll);
+
+    /* ----------------------- Generator functions ----------------------- */
+    function generate(){
+        const sorted = entries.slice().sort((a,b)=>b.answer.length - a.answer.length);
+        // 1) Longest across in middle row, centered
+        const first = sorted.shift();
+        const midR = Math.floor(SIZE/2);
+        const startC = Math.floor((SIZE - first.answer.length)/2);
+        place(first, midR, startC, 'across', true);
+
+        // 2) Try to place remaining by intersections; else by first open slot
+        for (const e of sorted){
+            if (!tryIntersect(e) && !tryOpen(e)) {
+                // Last‑chance vertical scan
+                bruteDown(e);
+            }
+        }
+    }
+
+    function place(e, r, c, dir, force=false, crossAt=-1){
+        const w = e.answer, len = w.length;
+        if (!force && !canPlace(w, r, c, dir, crossAt)) return false;
+        for (let i=0;i<len;i++){
+            const rr = r + (dir==='down'? i:0);
+            const cc = c + (dir==='across'? i:0);
+            grid[rr][cc].ch = w[i];
+        }
+        const p = {answer:w, display:e.display, clue:e.clue, r, c, len, dir, number:0};
+        placements.push(p);
+        return true;
+    }
+
+    function inBounds(r,c){ return r>=0 && c>=0 && r<SIZE && c<SIZE; }
+
+    function canPlace(word, r, c, dir, crossAt=-1){
+        const len = word.length;
+        for (let i=0;i<len;i++){
+            const rr = r + (dir==='down'? i:0);
+            const cc = c + (dir==='across'? i:0);
+            if (!inBounds(rr,cc)) return false;
+            const cell = grid[rr][cc];
+            if (cell.block) return false;
+            if (cell.ch && cell.ch !== word[i]) return false;
+
+            // Avoid side adjacency (no touching except at crossing)
+            if (!cell.ch){
+                if (dir==='across'){
+                    if (inBounds(rr-1,cc)&&grid[rr-1][cc].ch) return false;
+                    if (inBounds(rr+1,cc)&&grid[rr+1][cc].ch) return false;
+                } else {
+                    if (inBounds(rr,cc-1)&&grid[rr][cc-1].ch) return false;
+                    if (inBounds(rr,cc+1)&&grid[rr][cc+1].ch) return false;
+                }
+            } else if (crossAt!==-1 && i!==crossAt) return false;
+        }
+        // Start/end caps must be empty
+        const preR = r - (dir==='down'?1:0), preC = c - (dir==='across'?1:0);
+        const postR = r + (dir==='down'?len:0), postC = c + (dir==='across'?len:0);
+        if (inBounds(preR,preC) && grid[preR][preC].ch) return false;
+        if (inBounds(postR,postC) && grid[postR][postC].ch) return false;
+        return true;
+    }
+
+    function tryIntersect(e){
+        const w = e.answer;
+        for (let i=0;i<w.length;i++){
+            const ch = w[i];
+            for (let r=0;r<SIZE;r++){
+                for (let c=0;c<SIZE;c++){
+                    if (grid[r][c].ch === ch){
+                        // Try vertical with crossing at i
+                        const rStart = r - i;
+                        if (canPlace(w, rStart, c, 'down', i)) return place(e, rStart, c, 'down', false, i);
+                        // Try horizontal with crossing at i
+                        const cStart = c - i;
+                        if (canPlace(w, r, cStart, 'across', i)) return place(e, r, cStart, 'across', false, i);
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    function tryOpen(e){
+        const w = e.answer;
+        // Across scan
+        for (let r=0;r<SIZE;r++){
+            for (let c=0;c<=SIZE-w.length;c++){
+                if (canPlace(w, r, c, 'across', -1)) return place(e, r, c, 'across');
+            }
+        }
+        // Down scan
+        for (let c=0;c<SIZE;c++){
+            for (let r=0;r<=SIZE-w.length;r++){
+                if (canPlace(w, r, c, 'down', -1)) return place(e, r, c, 'down');
+            }
+        }
+        return false;
+    }
+
+    function bruteDown(e){
+        const w=e.answer;
+        for (let r=0;r<=SIZE-w.length;r++){
+            for (let c=0;c<SIZE;c++){
+                if (canPlace(w, r, c, 'down', -1)) return place(e, r, c, 'down');
+            }
+        }
+    }
+
+    function computeIndices(){
+        indicesByCell = {};
+        placements.forEach((p,pi)=>{
+            for (let i=0;i<p.len;i++){
+                const rr=p.r + (p.dir==='down'?i:0);
+                const cc=p.c + (p.dir==='across'?i:0);
+                (indicesByCell[rr+','+cc] ??= []).push(pi);
+            }
+        });
+    }
+
+    function numberPlacements(){
+        // Number by conventional rule: left‑to‑right (across), then top‑to‑bottom (down)
+        let num=1;
+        // Across numbers
+        placements
+            .filter(p=>p.dir==='across')
+            .sort((a,b)=>a.r-b.r || a.c-b.c)
+            .forEach(p=>{ p.number = num++; });
+        // Down numbers
+        placements
+            .filter(p=>p.dir==='down')
+            .sort((a,b)=>a.r-b.r || a.c-b.c)
+            .forEach(p=>{ p.number = num++; });
+    }
+
+    /* ----------------------- Rendering ----------------------- */
+    function renderGrid(){
+        gridEl.innerHTML=''; inputsMap.clear();
+        // Precompute grid labels at word starts
+        const starts = {};
+        for (const p of placements){ starts[p.r+','+p.c] = starts[p.r+','+p.c] || p.number; }
+
+        for (let r=0;r<SIZE;r++){
+            for (let c=0;c<SIZE;c++){
+                const cell = grid[r][c];
+                const div = document.createElement('div');
+                div.className = 'cell' + (cell.block ? ' block' : '');
+                div.dataset.r = r; div.dataset.c = c;
+                div.setAttribute('role','gridcell');
+                if (!cell.block && cell.ch){
+                    const input = document.createElement('input');
+                    input.maxLength = 1; input.autocapitalize='characters'; input.autocomplete='off'; input.spellcheck=false;
+                    input.addEventListener('input', onInput);
+                    input.addEventListener('keydown', onKey);
+                    input.addEventListener('focus', ()=>focusCell(r,c,true));
+                    div.appendChild(input);
+                    inputsMap.set(r+','+c, input);
+                }
+                const num = starts[r+','+c];
+                if (num){
+                    const lab=document.createElement('div'); lab.className='num'; lab.textContent=num;
+                    div.appendChild(lab);
+                }
+                gridEl.appendChild(div);
+            }
+        }
+        updateProgress();
+    }
+
+    function renderClues(){
+        acrossList.innerHTML=''; downList.innerHTML='';
+        const across = placements.filter(p=>p.dir==='across').sort((a,b)=>a.number-b.number);
+        const down   = placements.filter(p=>p.dir==='down').sort((a,b)=>a.number-b.number);
+        for (const p of across) acrossList.appendChild(makeClue(p));
+        for (const p of down)   downList.appendChild(makeClue(p));
+    }
+
+    function makeClue(p){
+        const li = document.createElement('li');
+        const enumStr = `${p.display.replace(/[^A-Za-z\s-]/g,'').replace(/\s+/g,' ').trim()} — ${entries.find(e=>e.answer===p.answer).enumeration}`;
+        li.innerHTML = `<span class="clue" data-pi="${placements.indexOf(p)}"><b>${p.number}.</b> ${p.clue} <span class="enum">(${enumStr})</span></span>`;
+        li.querySelector('.clue').addEventListener('click', ()=>selectPlacement(placements.indexOf(p)));
+        return li;
+    }
+
+    /* ----------------------- Interaction ----------------------- */
+    function cellsFor(p){
+        const cells=[]; for (let i=0;i<p.len;i++){
+            cells.push({ r: p.r + (p.dir==='down'?i:0), c: p.c + (p.dir==='across'?i:0) });
+        } return cells;
+    }
+
+    function selectPlacement(pi, moveToStart=true){
+        const p = placements[pi];
+        active = { pi, dir:p.dir, cells:cellsFor(p), idxWithin:0 };
+        highlightActive();
+        if (moveToStart){
+            const key = active.cells[0].r+','+active.cells[0].c;
+            const input = inputsMap.get(key); if (input) input.focus();
+        }
+        status(`Selected ${p.dir.toUpperCase()} ${p.number}`);
+    }
+
+    function focusCell(r,c,toggleDir=false){
+        const list = indicesByCell[r+','+c] || [];
+        if (!list.length) return;
+        let pi = list[0];
+        if (list.length>1){
+            if (toggleDir && active && list.includes(active.pi)){
+                const other = list.find(x=>x!==active.pi); pi = other ?? list[0];
+            } else if (active && list.includes(active.pi)){ pi = active.pi; }
+            else {
+                const acrossFirst = list.find(x=>placements[x].dir==='across');
+                if (acrossFirst!==undefined) pi = acrossFirst;
+            }
+        }
+        selectPlacement(pi,false);
+        const idx = active.cells.findIndex(cel=>cel.r===r && cel.c===c);
+        active.idxWithin = Math.max(0, idx);
+        highlightActive();
+    }
+
+    function highlightActive(){
+        document.querySelectorAll('.cell').forEach(el=>el.classList.remove('active','cursor'));
+        document.querySelectorAll('.clue').forEach(el=>el.classList.remove('active'));
+        if (!active) return;
+        for (const {r,c} of active.cells){
+            const el = cellEl(r,c); if (el) el.classList.add('active');
+        }
+        const cur = active.cells[active.idxWithin]; const curEl = cellEl(cur.r,cur.c);
+        if (curEl) curEl.classList.add('cursor');
+
+        const p = placements[active.pi];
+        const list = p.dir==='across' ? acrossList : downList;
+        const node = Array.from(list.querySelectorAll('.clue')).find(n=>+n.dataset.pi===active.pi);
+        if (node) node.classList.add('active');
+    }
+
+    function onInput(e){
+        const v=(e.target.value||'').toUpperCase().replace(/[^A-Z]/g,'');
+        e.target.value = v.slice(0,1);
+        if (v.length===1) moveCursor(1);
+        updateProgress();
+    }
+
+    function onKey(e){
+        if (!active) return;
+        const dir = active.dir;
+        if (e.key==='Backspace'){
+            if (!e.target.value){ moveCursor(-1); e.preventDefault(); }
+            return;
+        }
+        if (e.key===' '){
+            const r=+e.target.parentElement.dataset.r, c=+e.target.parentElement.dataset.c;
+            focusCell(r,c,true); e.preventDefault(); return;
+        }
+        if (e.key==='ArrowRight'){ if (dir==='across') moveCursor(1); else step(0,1); e.preventDefault(); }
+        if (e.key==='ArrowLeft'){  if (dir==='across') moveCursor(-1); else step(0,-1); e.preventDefault(); }
+        if (e.key==='ArrowDown'){  if (dir==='down') moveCursor(1); else step(1,0); e.preventDefault(); }
+        if (e.key==='ArrowUp'){    if (dir==='down') moveCursor(-1); else step(-1,0); e.preventDefault(); }
+    }
+
+    function moveCursor(delta){
+        if (!active) return;
+        const next = active.idxWithin + delta;
+        if (next>=0 && next<active.cells.length){
+            active.idxWithin = next;
+            const key = active.cells[next].r+','+active.cells[next].c;
+            const input = inputsMap.get(key); if (input) input.focus();
+            highlightActive();
+        }
+    }
+
+    function step(dr,dc){
+        if (!active) return;
+        const cur=active.cells[active.idxWithin];
+        const nr=cur.r+dr, nc=cur.c+dc;
+        const key=nr+','+nc; const input=inputsMap.get(key);
+        if (input) input.focus();
+    }
+
+    function cellEl(r,c){ return gridEl.children[r*SIZE + c]; }
+
+    function status(msg){ statusEl.textContent = msg; }
+
+    /* ----------------------- Check & Reveal ----------------------- */
+    function checkCurrent(){
+        if (!active) return;
+        clearMarks();
+        const p=placements[active.pi];
+        let allRight=true;
+        for (let i=0;i<p.len;i++){
+            const {r,c}=active.cells[i];
+            const inp = inputsMap.get(r+','+c);
+            const given=(inp?.value||'').toUpperCase();
+            const want=p.answer[i];
+            const el = cellEl(r,c);
+            if (!given || given!==want){ el.classList.add('wrong'); allRight=false; } else el.classList.add('right');
+        }
+        status(allRight ? `✅ Entry ${p.number} is correct.` : `Some letters in ${p.number} need attention.`);
+    }
+
+    function revealLetter(){
+        if (!active) return;
+        const p=placements[active.pi];
+        const cur=active.cells[active.idxWithin];
+        const idx=active.idxWithin;
+        const want=p.answer[idx];
+        const inp=inputsMap.get(cur.r+','+cur.c); if (inp) inp.value=want;
+        updateProgress();
+    }
+
+    function revealCurrent(){
+        if (!active) return;
+        const p=placements[active.pi];
+        for (let i=0;i<p.len;i++){
+            const {r,c}=active.cells[i];
+            const inp=inputsMap.get(r+','+c); if (inp) inp.value=p.answer[i];
+        }
+        updateProgress(); status(`Revealed entry ${p.number}: ${p.display}.`);
+    }
+
+    function revealAll(){
+        for (const p of placements){
+            const cells=cellsFor(p);
+            for (let i=0;i<cells.length;i++){
+                const {r,c}=cells[i];
+                const inp=inputsMap.get(r+','+c); if (inp) inp.value=p.answer[i];
+            }
+        }
+        updateProgress(); status('All answers revealed.');
+    }
+
+    function clearAll(){
+        inputsMap.forEach(inp => inp.value='');
+        clearMarks(); updateProgress(); status('Cleared all letters.');
+    }
+
+    function clearMarks(){
+        document.querySelectorAll('.cell').forEach(el=>el.classList.remove('wrong','right'));
+    }
+
+    /* ----------------------- Progress ----------------------- */
+    function updateProgress(){
+        let have=0,total=0;
+        inputsMap.forEach(inp => { total++; if (inp.value) have++; });
+        const pct = total? Math.round(have/total*100):0;
+        progressEl.textContent = `Filled: ${have}/${total} (${pct}%)`;
+    }
+
+    /* ----------------------- Selection helpers ----------------------- */
+    function selectFirst(){
+        const firstAcross = placements.findIndex(p=>p.dir==='across');
+        if (firstAcross>=0) selectPlacement(firstAcross);
+    }
+
+    /* ----------------------- Events ----------------------- */
+    gridEl.addEventListener('click', (e)=>{
+        const cell = e.target.closest('.cell');
+        if (!cell || cell.classList.contains('block')) return;
+        const r=+cell.dataset.r, c=+cell.dataset.c;
+        focusCell(r,c, e.detail===2 /*double click toggles direction*/);
+    });
+
+    /* ----------------------- Build indices for focus toggling ----------------------- */
+    function computeIndices(){
+        indicesByCell={};
+        placements.forEach((p,pi)=>{
+            for (let i=0;i<p.len;i++){
+                const rr=p.r+(p.dir==='down'?i:0), cc=p.c+(p.dir==='across'?i:0);
+                (indicesByCell[rr+','+cc] ??= []).push(pi);
+            }
+        });
+    }
+</script>
+</body>
+</html>

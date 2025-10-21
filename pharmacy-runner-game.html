@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pharmacy Runner Game (AI Generated)</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #0f172a;        /* slate-900 */
+            --panel: #000000;     /* gray-900 */
+            --text: #e5e7eb;      /* gray-200 */
+            --accent: #22c55e;    /* green-500 */
+            --accent-2: #38bdf8;  /* sky-400 */
+            --warn: #f87171;      /* red-400 */
+            --ground: #1f2937;    /* gray-800 */
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: system-ui, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+            background: radial-gradient(1200px 600px at 50% -10%, #1e293b 0%, var(--bg) 60%);
+            color: var(--text);
+            display: grid;
+            min-height: 100dvh;
+            place-items: center;
+        }
+        .wrap {
+            width: min(900px, 100%);
+            padding: 12px;
+        }
+        .panel {
+            background: color-mix(in oklab, var(--panel), black 10%);
+            border: 1px solid color-mix(in oklab, var(--panel), white 10%);
+            border-radius: 12px;
+            padding: 12px;
+        }
+        #topbar {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        #score {
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+        #effects {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        #game {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(#000000 0 60%, var(--ground) 60% 61%, transparent 100% 100%),
+            linear-gradient(180deg, #e68c5e 0%, #76645b 100%);
+            border-radius: 12px;
+            border: 1px solid #23304b;
+            display: block;
+        }
+        #menu {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: 1fr;
+            margin-top: 8px;
+        }
+        .char-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(120px, 1fr));
+            gap: 10px;
+        }
+        .char {
+            background: #0f1a30;
+            border: 1px solid #1f2a44;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+            user-select: none;
+        }
+        .char:hover { transform: translateY(-2px); }
+        .char.selected {
+            outline: 2px solid var(--accent-2);
+            border-color: var(--accent-2);
+            background: #0b2547;
+        }
+        .char canvas { width: 100%; height: auto; }
+        .char small { display: block; opacity: 0.85; }
+        .controls {
+            display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+        }
+        button {
+            background: linear-gradient(180deg, #2563eb, #1d4ed8);
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        button.secondary {
+            background: linear-gradient(180deg, #374151, #1f2937);
+        }
+        .hint { opacity: 0.8; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+<div class="wrap panel">
+    <div id="topbar">
+        <div id="score">Score: 0</div>
+        <div id="effects">Effects: none</div>
+    </div>
+    <canvas id="game"></canvas>
+
+    <div id="menu">
+        <div class="controls">
+            <button id="startBtn">Start</button>
+            <button id="restartBtn" class="secondary" style="display:none;">Restart</button>
+            <div class="hint">Press <b>Space</b> / <b>↑</b> or <b>Tap</b> to jump</div>
+        </div>
+
+        <h3>Choose your runner</h3>
+        <div class="char-grid" id="charGrid"></div>
+    </div>
+</div>
+
+<script>
+    (function(){
+        // ==== Settings you can tweak ====
+        const BASE_SPEED = 320;           // world speed in px/s (baseline)
+        const GRAVITY = 2200;             // px/s^2
+        const JUMP_VELOCITY = -820;       // px/s
+        const GROUND_HEIGHT = 96;         // px from bottom
+        const PLAYER_X = 120;             // fixed player x
+        const MIN_SPAWN_INTERVAL_MS = 750; // >= 1s between ANY spawns (tune to 2000 for easier)
+        const POWER_DURATION_MS = 5000;   // 5 seconds for boost/slow
+        const SPEED_BOOST_MULT = 1.4;
+        const SPEED_SLOW_MULT  = 0.6;
+
+        // Spawn probabilities (weights)
+        const SPAWN_TABLE = [
+            { type: 'pickup', subtype: 'RxCUI', weight: 2 },
+            { type: 'pickup', subtype: 'SCD',   weight: 3 },
+            { type: 'pickup', subtype: 'NDC',   weight: 5 },
+            { type: 'power',  subtype: 'boost', weight: 2 },
+            { type: 'power',  subtype: 'slow',  weight: 2 },
+            { type: 'obstacle', subtype: 'box', weight: 4 },
+            { type: 'hole',     subtype: 'gap', weight: 3 },
+        ];
+
+        const PICKUP_POINTS = { RxCUI: 100, SCD: 50, NDC: 10 };
+
+        // ==== Canvas setup (HiDPI aware) ====
+        const canvas = document.getElementById('game');
+        const ctx = canvas.getContext('2d');
+        function resizeCanvas() {
+            const ratio = window.devicePixelRatio || 1;
+            const cssW = canvas.clientWidth;
+            const cssH = canvas.clientHeight;
+            canvas.width = Math.round(cssW * ratio);
+            canvas.height = Math.round(cssH * ratio);
+            ctx.setTransform(ratio, 0, 0, ratio, 0, 0); // Paint in CSS pixels
+        }
+        new ResizeObserver(resizeCanvas).observe(canvas);
+
+        // ==== State ====
+        let state = 'menu'; // 'menu' | 'playing' | 'gameover'
+        let score = 0;
+        let lastTime = performance.now();
+        let lastSpawnAt = 0;
+
+        let worldSpeed = BASE_SPEED;
+        let boostUntil = 0;
+        let slowUntil  = 0;
+
+        const objects = []; // everything that moves left: pickups, powerups, obstacles, holes
+        let player = null;
+        let groundY = 0;
+
+        // Character presets (non-gendered pharmacist/tech, diverse skin tones, no stethoscopes)
+        const CHARACTERS = [
+            { id: 'pharm_green', role: 'Pharmacist', scrubs: '#16a34a', skin: '#f4c7a0' },
+            { id: 'pharm_blue',  role: 'Pharmacist', scrubs: '#2563eb', skin: '#c68642' },
+            { id: 'tech_purple', role: 'Technician', scrubs: '#7c3aed', skin: '#8d5524' },
+            { id: 'tech_teal',   role: 'Technician', scrubs: '#14b8a6', skin: '#f1c27d' },
+        ];
+        let selectedChar = CHARACTERS[0];
+
+        // ==== UI wiring ====
+        const startBtn = document.getElementById('startBtn');
+        const restartBtn = document.getElementById('restartBtn');
+        const scoreEl = document.getElementById('score');
+        const effectsEl = document.getElementById('effects');
+        const charGrid = document.getElementById('charGrid');
+
+        function makeCharCard(preset) {
+            const card = document.createElement('div');
+            card.className = 'char';
+            if (preset.id === selectedChar.id) card.classList.add('selected');
+
+            const thumb = document.createElement('canvas');
+            thumb.width = 160; thumb.height = 110;
+            const tctx = thumb.getContext('2d');
+
+            // Draw a tiny preview avatar
+            drawAvatar(tctx, 40, 70, preset);
+
+            const label = document.createElement('div');
+            label.innerHTML = `<b>${preset.role}</b><br><small>${preset.id.replace('_', ' ')}</small>`;
+
+            card.appendChild(thumb);
+            card.appendChild(label);
+            card.addEventListener('click', () => {
+                selectedChar = preset;
+                document.querySelectorAll('.char').forEach(el => el.classList.remove('selected'));
+                card.classList.add('selected');
+            });
+
+            return card;
+        }
+
+        function populateCharGrid() {
+            charGrid.innerHTML = '';
+            CHARACTERS.forEach(p => charGrid.appendChild(makeCharCard(p)));
+        }
+        populateCharGrid();
+
+        startBtn.addEventListener('click', () => {
+            if (state !== 'playing') startGame();
+        });
+        restartBtn.addEventListener('click', () => {
+            startGame();
+        });
+
+        // Input: jump on key/mouse/touch
+        let jumpQueued = false;
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' || e.code === 'ArrowUp') {
+                e.preventDefault();
+                jumpQueued = true;
+            }
+        }, { passive: false });
+
+        ['mousedown','touchstart'].forEach(evt =>
+            window.addEventListener(evt, () => jumpQueued = true, { passive: true })
+        );
+
+        // ==== Game core ====
+        function startGame() {
+            resizeCanvas();
+            state = 'playing';
+            restartBtn.style.display = 'inline-block';
+            score = 0;
+            worldSpeed = BASE_SPEED;
+            boostUntil = 0;
+            slowUntil  = 0;
+            objects.length = 0;
+            lastSpawnAt = performance.now();
+            lastTime = performance.now();
+            groundY = canvas.clientHeight - GROUND_HEIGHT;
+
+            player = {
+                x: PLAYER_X,
+                y: groundY - 64, // top-left Y (player height ~64)
+                w: 44,
+                h: 64,
+                vy: 0,
+                onGround: true,
+                animT: 0
+            };
+
+            requestAnimationFrame(tick);
+        }
+
+        function tick(now) {
+            const dt = Math.min(0.033, (now - lastTime) / 1000); // cap dt to avoid jumps
+            lastTime = now;
+
+            if (state === 'playing') {
+                // Update effects
+                const activeBoost = now < boostUntil;
+                const activeSlow  = now < slowUntil;
+                let mult = 1;
+                if (activeBoost) mult *= SPEED_BOOST_MULT;
+                if (activeSlow)  mult *= SPEED_SLOW_MULT;
+                worldSpeed = BASE_SPEED * mult;
+
+                // UI effects label
+                if (activeBoost && activeSlow) {
+                    effectsEl.textContent = `Effects: speed↑ ${(boostUntil-now|0)/1000}s & slow↓ ${(slowUntil-now|0)/1000}s`;
+                } else if (activeBoost) {
+                    effectsEl.textContent = `Effects: speed↑ ${(boostUntil-now|0)/1000}s`;
+                } else if (activeSlow) {
+                    effectsEl.textContent = `Effects: slow↓ ${(slowUntil-now|0)/1000}s`;
+                } else {
+                    effectsEl.textContent = 'Effects: none';
+                }
+
+                // Spawn control (≥ 1s apart)
+                if (now - lastSpawnAt >= MIN_SPAWN_INTERVAL_MS) {
+                    spawnSomething();
+                    lastSpawnAt = now;
+                }
+
+                // Update objects
+                for (let i = objects.length - 1; i >= 0; i--) {
+                    const o = objects[i];
+                    o.x -= worldSpeed * dt;
+
+                    // Remove off-screen
+                    if (o.x + o.w < -50) {
+                        objects.splice(i, 1);
+                        continue;
+                    }
+
+                    // Collisions
+                    if (o.kind === 'pickup') {
+                        if (aabb(player, o)) {
+                            score += PICKUP_POINTS[o.label];
+                            scoreEl.textContent = `Score: ${score}`;
+                            objects.splice(i, 1);
+                            continue;
+                        }
+                    }
+                    if (o.kind === 'power') {
+                        if (aabb(player, o)) {
+                            if (o.subtype === 'boost') boostUntil = now + POWER_DURATION_MS;
+                            if (o.subtype === 'slow')  slowUntil  = now + POWER_DURATION_MS;
+                            objects.splice(i, 1);
+                            continue;
+                        }
+                    }
+                    if (o.kind === 'obstacle') {
+                        if (aabb(player, o)) return gameOver();
+                    }
+                    if (o.kind === 'hole') {
+                        const pxCenter = player.x + player.w/2;
+                        const inHoleX = pxCenter > o.x && pxCenter < o.x + o.w;
+                        const feetY = player.y + player.h;
+
+                        // If player's feet are at or below ground while within the hole → they fall
+                        if (inHoleX && feetY >= groundY - 2) {
+                            return gameOver();
+                        }
+                    }
+                }
+
+                // Player physics
+                if (jumpQueued && player.onGround) {
+                    player.vy = JUMP_VELOCITY;
+                    player.onGround = false;
+                }
+                jumpQueued = false;
+
+                player.vy += GRAVITY * dt;
+                player.y += player.vy * dt;
+
+                // Ground collision
+                const maxY = groundY - player.h;
+                if (player.y >= maxY) {
+                    player.y = maxY;
+                    player.vy = 0;
+                    player.onGround = true;
+                }
+
+                player.animT += dt * (worldSpeed / BASE_SPEED);
+
+                // Draw
+                draw();
+                requestAnimationFrame(tick);
+            }
+        }
+
+        function gameOver() {
+            state = 'gameover';
+            draw(); // final frame
+            setTimeout(() => {
+                alert(`Game Over!\nTotal Score: ${score}`);
+            }, 10);
+        }
+
+        // ==== Spawn logic ====
+        function spawnSomething() {
+            const type = weightedPick(SPAWN_TABLE);
+            const viewW = canvas.clientWidth;
+
+            if (type.type === 'pickup') {
+                const label = type.subtype; // RxCUI/SCD/NDC
+                const size = 40;
+                const y = groundY - player.h - 20 - randRange(0, 60); // float above ground
+                objects.push({
+                    kind: 'pickup',
+                    label,
+                    x: viewW + 40,
+                    y,
+                    w: size,
+                    h: 26,
+                    draw: (ctx, o) => drawPill(ctx, o.x, o.y, o.w, o.h, label)
+                });
+            } else if (type.type === 'power') {
+                if (type.subtype === 'boost') {
+                    const y = groundY - 36;
+                    objects.push({
+                        kind: 'power',
+                        subtype: 'boost',
+                        x: viewW + 40,
+                        y,
+                        w: 38, h: 24,
+                        draw: (ctx, o) => drawGreenPill(ctx, o.x, o.y, o.w, o.h)
+                    });
+                } else {
+                    // slow: red ointment tube
+                    const y = groundY - 30;
+                    objects.push({
+                        kind: 'power',
+                        subtype: 'slow',
+                        x: viewW + 40,
+                        y,
+                        w: 50, h: 20,
+                        draw: (ctx, o) => drawOintment(ctx, o.x, o.y, o.w, o.h)
+                    });
+                }
+            } else if (type.type === 'obstacle') {
+                const w = randRange(34, 56);
+                const h = randRange(36, 64);
+                objects.push({
+                    kind: 'obstacle',
+                    x: viewW + 40,
+                    y: groundY - h,
+                    w, h,
+                    draw: (ctx, o) => drawObstacleBox(ctx, o.x, o.y, o.w, o.h)
+                });
+            } else if (type.type === 'hole') {
+                const w = randRange(80, 140);
+                const x = viewW + 60;
+                objects.push({
+                    kind: 'hole',
+                    x, y: groundY, w: w, h: 10,
+                    draw: (ctx, o) => drawHole(ctx, o.x, o.y, o.w, o.h)
+                });
+            }
+        }
+
+        // ==== Drawing helpers ====
+        function draw() {
+            // Clear
+            ctx.clearRect(0,0,canvas.clientWidth, canvas.clientHeight);
+
+            // Sky gradient overlay labels (subtle pharmacy cross)
+            drawBackground(ctx);
+
+            // Ground line
+            ctx.fillStyle = 'rgba(255,255,255,0.06)';
+            ctx.fillRect(0, groundY, canvas.clientWidth, 4);
+
+            // Draw objects
+            for (const o of objects) {
+                o.draw(ctx, o);
+            }
+
+            // Draw player avatar (animated)
+            drawRunner(ctx, player.x, player.y, player.w, player.h, selectedChar, player.animT);
+        }
+
+        function drawBackground(ctx) {
+            const w = canvas.clientWidth, h = canvas.clientHeight;
+            // Pharmacy cross tiles
+            const size = 22, step = 90;
+            ctx.save();
+            ctx.globalAlpha = 0.05;
+            ctx.fillStyle = '#10ae0a';
+            for (let y=40; y<h; y+=step) {
+                for (let x=20; x<w; x+=step) {
+                    drawCross(ctx, x, y, size);
+                }
+            }
+            ctx.restore();
+        }
+
+        function drawCross(ctx, cx, cy, s) {
+            const t = s/3;
+            ctx.fillRect(cx - t/2, cy - s/2, t, s);
+            ctx.fillRect(cx - s/2, cy - t/2, s, t);
+        }
+
+        function drawObstacleBox(ctx, x, y, w, h) {
+            ctx.save();
+            ctx.fillStyle = '#374151';
+            ctx.fillRect(x, y, w, h);
+            ctx.strokeStyle = '#93c5fd';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(x+1, y+1, w-2, h-2);
+            // Pharmacy label stripe
+            ctx.fillStyle = '#60a5fa';
+            ctx.fillRect(x, y + h*0.6, w, 6);
+            ctx.restore();
+        }
+
+        function drawHole(ctx, x, y, w, h) {
+            ctx.save();
+            // Dark opening
+            ctx.fillStyle = '#0b1020';
+            ctx.fillRect(x, y, w, 10);
+            // Edge
+            ctx.fillStyle = 'rgba(255,255,255,0.08)';
+            ctx.fillRect(x, y-3, w, 3);
+            ctx.restore();
+        }
+
+        function drawPill(ctx, x, y, w, h, label) {
+            const r = h/2;
+            ctx.save();
+            // pill body
+            const grad = ctx.createLinearGradient(x, y, x+w, y+h);
+            grad.addColorStop(0, '#e2e8f0');
+            grad.addColorStop(1, '#94a3b8');
+            roundRect(ctx, x, y, w, h, r);
+            ctx.fillStyle = grad; ctx.fill();
+            ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 1.5; ctx.stroke();
+            // center split
+            ctx.strokeStyle = 'rgba(30,41,59,0.45)';
+            ctx.beginPath();
+            ctx.moveTo(x + w/2, y + 4); ctx.lineTo(x + w/2, y + h - 4);
+            ctx.stroke();
+
+            // label
+            ctx.fillStyle = '#0b1325';
+            ctx.font = 'bold 12px system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(label, x + w/2, y + h/2);
+            ctx.restore();
+        }
+
+        function drawGreenPill(ctx, x, y, w, h) {
+            const r = h/2;
+            ctx.save();
+            roundRect(ctx, x, y, w, h, r);
+            ctx.fillStyle = '#22c55e';
+            ctx.fill();
+            ctx.strokeStyle = '#14532d';
+            ctx.stroke();
+            // lightning icon
+            ctx.fillStyle = '#052e16';
+            ctx.beginPath();
+            ctx.moveTo(x + w*0.35, y + h*0.2);
+            ctx.lineTo(x + w*0.55, y + h*0.2);
+            ctx.lineTo(x + w*0.45, y + h*0.55);
+            ctx.lineTo(x + w*0.65, y + h*0.55);
+            ctx.lineTo(x + w*0.35, y + h*0.85);
+            ctx.lineTo(x + w*0.45, y + h*0.5);
+            ctx.lineTo(x + w*0.3,  y + h*0.5);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function drawOintment(ctx, x, y, w, h) {
+            ctx.save();
+            // tube body
+            ctx.fillStyle = '#ef4444';
+            roundRect(ctx, x, y, w, h, 4);
+            ctx.fill();
+            ctx.strokeStyle = '#7f1d1d'; ctx.stroke();
+            // cap
+            ctx.fillStyle = '#e5e7eb';
+            roundRect(ctx, x + w - 10, y - 2, 12, h + 4, 3);
+            ctx.fill();
+            ctx.strokeStyle = '#6b7280'; ctx.stroke();
+            // label stripe
+            ctx.fillStyle = 'rgba(255,255,255,0.7)';
+            ctx.fillRect(x + 6, y + h/2 - 3, w - 22, 6);
+            ctx.restore();
+        }
+
+        function drawAvatar(ctx, x, y, preset) {
+            // Simple non-gendered avatar: head, scrubs top, pants, shoes, badge
+            const skin = preset.skin;
+            const scrubs = preset.scrubs;
+
+            // Head
+            ctx.fillStyle = skin;
+            ctx.beginPath();
+            ctx.arc(x, y - 40, 12, 0, Math.PI*2);
+            ctx.fill();
+
+            // Body (scrubs top)
+            ctx.fillStyle = scrubs;
+            roundRect(ctx, x - 14, y - 28, 28, 24, 4);
+            ctx.fill();
+
+            // Badge (no stethoscope)
+            ctx.fillStyle = '#e5e7eb';
+            roundRect(ctx, x + 6, y - 26, 10, 8, 2);
+            ctx.fill();
+
+            // Pants
+            ctx.fillStyle = '#1f2937';
+            roundRect(ctx, x - 12, y - 6, 24, 20, 3);
+            ctx.fill();
+
+            // Shoes
+            ctx.fillStyle = '#94a3b8';
+            roundRect(ctx, x - 12, y + 12, 12, 6, 2);
+            roundRect(ctx, x + 0,  y + 12, 12, 6, 2);
+            ctx.fill();
+        }
+
+        function drawRunner(ctx, x, y, w, h, preset, t) {
+            // Base avatar
+            drawAvatar(ctx, x + w/2, y + h - 8, preset);
+
+            // Simple leg animation overlay (swing)
+            const swing = Math.sin(t * 12) * 6;
+            ctx.save();
+            ctx.fillStyle = '#111827';
+            // Left leg
+            roundRect(ctx, x + w/2 - 14, y + h - 22, 10, 16, 3);
+            // Right leg with swing
+            roundRect(ctx, x + w/2 + 4, y + h - 22 - swing*0.5, 10, 16 + swing*0.5, 3);
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function roundRect(ctx, x, y, w, h, r) {
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.arcTo(x + w, y, x + w, y + h, r);
+            ctx.arcTo(x + w, y + h, x, y + h, r);
+            ctx.arcTo(x, y + h, x, y, r);
+            ctx.arcTo(x, y, x + w, y, r);
+            ctx.closePath();
+        }
+
+        function aabb(a, b) {
+            return (a.x < b.x + b.w &&
+                a.x + a.w > b.x &&
+                a.y < b.y + b.h &&
+                a.y + a.h > b.y);
+        }
+
+        function randRange(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function weightedPick(table) {
+            const sum = table.reduce((s, it) => s + it.weight, 0);
+            let r = Math.random() * sum;
+            for (const it of table) {
+                r -= it.weight;
+                if (r <= 0) return it;
+            }
+            return table[table.length - 1];
+        }
+
+        // Initial draw (menu preview)
+        resizeCanvas();
+        draw();
+    })();
+</script>
+</body>
+</html>

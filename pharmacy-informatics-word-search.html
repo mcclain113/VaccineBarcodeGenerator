@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pharmacy Informatics Interactive Word Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 { text-align: center; color: #00695c; }
+        .container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .grid { display: grid; grid-template-columns: repeat(18, 32px); gap: 2px; }
+        .cell {
+            width: 32px; height: 32px; background: #fff; border: 1px solid #ccc;
+            text-align: center; font-weight: bold; font-size: 18px; user-select: none;
+        }
+        .selected { background: #80cbc4; color: #fff; }
+        .found { background: #00695c; color: #fff; }
+        .controls { text-align: center; margin-top: 15px; }
+        button {
+            margin: 5px; padding: 10px 15px; font-size: 14px;
+            background: #00695c; color: #fff; border: none; border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover { background: #004d40; }
+        .word-list { max-width: 300px; }
+        .word-list h3 { margin-top: 0; color: #00695c; }
+        .word-list ul { list-style: none; padding: 0; }
+        .word-list li { margin: 5px 0; }
+        .found-word { text-decoration: line-through; color: #00695c; }
+    </style>
+</head>
+<body>
+<h1>Pharmacy Informatics Interactive Word Search</h1>
+<div class="container">
+    <div>
+        <div id="grid" class="grid"></div>
+        <div class="controls">
+            <button onclick="revealAll()">Reveal All</button>
+            <button onclick="resetGame()">Reset</button>
+        </div>
+    </div>
+    <div class="word-list">
+        <h3>Words to Find</h3>
+        <ul id="wordList"></ul>
+    </div>
+</div>
+
+<script>
+    const words = [
+        "Cyber Vigilance","Digital Health","Maintenance","Registry","RxNorm","HIPAA",
+        "Electronic Prescribing","Business Continuity","Order Set","Server","Smartpump",
+        "Data Warehouse","Change Management","Adverse Drug Event","SNOMED",
+        "Semantic Interoperability","Clinical Informatics","Telepharmacy","Data Analytics"
+    ];
+
+    const size = 18;
+    let grid = [];
+    let foundWords = new Set();
+    const gridEl = document.getElementById('grid');
+    const wordListEl = document.getElementById('wordList');
+
+    function initGrid() {
+        grid = Array.from({length: size}, () => Array(size).fill(''));
+    }
+
+    function randomDirection() {
+        const dirs = [[0,1],[1,0],[1,1],[-1,1]];
+        return dirs[Math.floor(Math.random()*dirs.length)];
+    }
+
+    function placeWords() {
+        for (let w of words) {
+            const clean = w.replace(/\s+/g,'').toUpperCase();
+            let placed = false;
+            for (let attempt=0; attempt<100 && !placed; attempt++) {
+                const dir = randomDirection();
+                const row = Math.floor(Math.random()*size);
+                const col = Math.floor(Math.random()*size);
+                if (canPlace(clean,row,col,dir)) {
+                    for (let i=0;i<clean.length;i++) {
+                        grid[row + dir[0]*i][col + dir[1]*i] = clean[i];
+                    }
+                    placed = true;
+                }
+            }
+        }
+    }
+
+    function canPlace(word,r,c,dir) {
+        for (let i=0;i<word.length;i++) {
+            const rr = r + dir[0]*i, cc = c + dir[1]*i;
+            if (rr<0||cc<0||rr>=size||cc>=size) return false;
+            if (grid[rr][cc] && grid[rr][cc]!==word[i]) return false;
+        }
+        return true;
+    }
+
+    function fillGrid() {
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        for (let r=0;r<size;r++) {
+            for (let c=0;c<size;c++) {
+                if (!grid[r][c]) grid[r][c] = letters[Math.floor(Math.random()*letters.length)];
+            }
+        }
+    }
+
+    function renderGrid() {
+        gridEl.innerHTML = '';
+        for (let r=0;r<size;r++) {
+            for (let c=0;c<size;c++) {
+                const div = document.createElement('div');
+                div.className = 'cell';
+                div.textContent = grid[r][c];
+                div.dataset.r = r;
+                div.dataset.c = c;
+                gridEl.appendChild(div);
+            }
+        }
+    }
+
+    function renderWordList() {
+        wordListEl.innerHTML = '';
+        for (let w of words) {
+            const li = document.createElement('li');
+            li.textContent = w;
+            wordListEl.appendChild(li);
+        }
+    }
+
+    let selecting = false;
+    let selection = [];
+
+    gridEl.addEventListener('mousedown', e => {
+        if (e.target.classList.contains('cell')) {
+            selecting = true;
+            selection = [e.target];
+            e.target.classList.add('selected');
+        }
+    });
+
+    gridEl.addEventListener('mouseover', e => {
+        if (selecting && e.target.classList.contains('cell') && !selection.includes(e.target)) {
+            selection.push(e.target);
+            e.target.classList.add('selected');
+        }
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (selecting) {
+            checkSelection();
+            selection.forEach(cell => cell.classList.remove('selected'));
+            selection = [];
+            selecting = false;
+        }
+    });
+
+    function checkSelection() {
+        const letters = selection.map(cell => cell.textContent).join('');
+        const rev = letters.split('').reverse().join('');
+        for (let w of words) {
+            const clean = w.replace(/\s+/g,'').toUpperCase();
+            if (letters === clean || rev === clean) {
+                selection.forEach(cell => cell.classList.add('found'));
+                markWordFound(w);
+            }
+        }
+    }
+
+    function markWordFound(word) {
+        if (!foundWords.has(word)) {
+            foundWords.add(word);
+            for (let li of wordListEl.children) {
+                if (li.textContent === word) li.classList.add('found-word');
+            }
+        }
+    }
+
+    function revealAll() {
+        for (let w of words) {
+            const clean = w.replace(/\s+/g,'').toUpperCase();
+            highlightWord(clean);
+            markWordFound(w);
+        }
+    }
+
+    function highlightWord(clean) {
+        const cells = Array.from(gridEl.children);
+        for (let i=0;i<cells.length;i++) {
+            cells[i].classList.remove('selected');
+        }
+        // Brute force search
+        for (let r=0;r<size;r++) {
+            for (let c=0;c<size;c++) {
+                for (let dir of [[0,1],[1,0],[1,1],[-1,1]]) {
+                    let letters = '';
+                    let coords = [];
+                    for (let k=0;k<clean.length;k++) {
+                        const rr=r+dir[0]*k, cc=c+dir[1]*k;
+                        if (rr<0||cc<0||rr>=size||cc>=size) break;
+                        letters += grid[rr][cc];
+                        coords.push(rr*size+cc);
+                    }
+                    if (letters===clean) {
+                        coords.forEach(idx => cells[idx].classList.add('found'));
+                    }
+                }
+            }
+        }
+    }
+
+    function resetGame() {
+        foundWords.clear();
+        initGrid();
+        placeWords();
+        fillGrid();
+        renderGrid();
+        renderWordList();
+    }
+
+    resetGame();
+</script>
+</body>
+</html>
+
+<!--wordsearch.html-->
+<!--Displaying pharmacy-informatics-crossword.html.-->
