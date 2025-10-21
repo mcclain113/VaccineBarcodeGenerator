@@ -30,18 +30,52 @@
         h1{margin:0;font-size:1.32rem}
         .sub{color:var(--muted);font-size:.95rem}
 
-        .layout{display:grid;grid-template-columns:1fr 380px;gap:16px}
-        @media (max-width: 1020px){.layout{grid-template-columns:1fr}}
-        .card{background: color-mix(in oklab, var(--panel), black 10%);
-            border:1px solid var(--panel-br);border-radius:14px;padding:14px}
+        .layout{
+            display:grid;
+            grid-template-columns:1fr 380px;
+            gap:16px;
+            /* * NEW: Set a max height for the whole layout
+             * so that the clue card can calculate its height
+             */
+            max-height: calc(100vh - 100px); /* 100vh minus header/margin */
+        }
+        @media (max-width: 1020px){
+            /* Keep max-height for mobile view as well */
+            .layout{
+                grid-template-columns:1fr;
+                max-height: none; /* Mobile can scroll the whole page */
+            }
+        }
+        .card{
+            background: color-mix(in oklab, var(--panel), black 10%);
+            border:1px solid var(--panel-br);
+            border-radius:14px;
+            padding:14px;
+
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow-y: auto;
+        }
+        .grid-wrapper {
+            flex-grow: 1; /* Allows the wrapper to take up all available space in the card */
+            display: flex; /* Centers the grid horizontally and vertically */
+            justify-content: center;
+            align-items: center;
+            /* IMPORTANT: Maximize height while allowing scroll for the grid */
+            overflow: auto;
+            padding: 10px; /* Optional: adds a little breathing room around the grid */
+        }
 
         /* GRID */
         .grid{
-            width:100%; aspect-ratio:1/1; border-radius:12px; overflow:hidden;
+            border-radius:12px; overflow:hidden;
             border:1px solid var(--grid-br);
             background: linear-gradient(180deg,#0a172b,#0c1c35);
             display:grid; grid-template-columns: repeat(var(--cols), 1fr);
             grid-auto-rows: 1fr; user-select:none;
+            min-width: 0;
+            min-height: 0;
         }
         .cell{position:relative;border:1px solid #102545;display:grid;place-items:center}
         .cell.block{background:var(--block)}
@@ -49,7 +83,7 @@
         .cell input{
             width:100%;height:100%;background:transparent;border:0;outline:none;
             text-transform:uppercase;color:var(--text);font-weight:800;
-            font-size:min(3.2vw, 28px);text-align:center;caret-color:#fff;
+            font-size: min(3.2vw, 28px, calc(100vh / var(--cols) * 0.9));text-align:center;caret-color:#fff;
         }
         .cell.active{box-shadow: inset 0 0 0 2px #38bdf8}
         .cell.cursor{box-shadow: inset 0 0 0 2px var(--focus)}
@@ -64,6 +98,14 @@
         button.secondary{background:linear-gradient(180deg,#374151,#1f2937)}
         button.warn{background:linear-gradient(180deg,#f59e0b,#d97706)}
         button.danger{background:linear-gradient(180deg,#ef4444,#dc2626)}
+        .clues {
+            /* Takes up all remaining vertical space in the card */
+            flex-grow: 1;
+            /* Ensures the content scrolls within the element's height limit */
+            overflow-y: auto;
+            /* Provides padding without interfering with scrollbar visibility */
+            padding-right: 8px;
+        }
         .clues{display:grid;grid-template-columns:1fr;gap:12px}
         .clue-section h3{margin:6px 0 2px;font-size:1.05rem;color:#c7e0ff}
         ol{margin:0;padding-left:1.15rem}
@@ -103,7 +145,9 @@
     <div class="layout">
         <!-- GRID -->
         <div class="card">
-            <div id="grid" class="grid" role="grid" aria-label="Crossword grid"></div>
+            <div class="grid-wrapper">
+                <div id="grid" class="grid" role="grid" aria-label="Crossword grid"></div>
+            </div>
             <div class="footer">
                 <div id="status">Select a clue to begin.</div>
                 <div id="progress" class="pill">Filled: 0/0 (0%)</div>
