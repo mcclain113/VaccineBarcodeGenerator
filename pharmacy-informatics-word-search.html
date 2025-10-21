@@ -136,39 +136,114 @@
 
     let selecting = false;
     let selection = [];
+    let startCell = null;
+    let endCell = null;
 
     gridEl.addEventListener('mousedown', e => {
         if (e.target.classList.contains('cell')) {
+            // Clear any existing 'selected' classes
+            document.querySelectorAll('.cell.selected').forEach(cell => cell.classList.remove('selected'));
+
             selecting = true;
-            selection = [e.target];
+            startCell = e.target;
+            endCell = e.target; // Start cell is also the initial end cell
             e.target.classList.add('selected');
         }
     });
 
     gridEl.addEventListener('mouseover', e => {
-        if (selecting && e.target.classList.contains('cell') && !selection.includes(e.target)) {
-            selection.push(e.target);
-            e.target.classList.add('selected');
+        if (selecting && e.target.classList.contains('cell')) {
+            endCell = e.target;
+
+            // Clear all previous temporary selections
+            document.querySelectorAll('.cell.selected').forEach(cell => {
+                if (!cell.classList.contains('found')) { // Don't remove 'found'
+                    cell.classList.remove('selected');
+                }
+            });
+
+            // Get and highlight all cells in the straight line path
+            const cellsToHighlight = getCellsBetween(startCell, endCell);
+            cellsToHighlight.forEach(cell => cell.classList.add('selected'));
         }
     });
 
     document.addEventListener('mouseup', () => {
         if (selecting) {
-            checkSelection();
-            selection.forEach(cell => cell.classList.remove('selected'));
-            selection = [];
+            // Only run check if we actually have a start and end cell
+            if (startCell && endCell) {
+                checkSelection();
+            }
+
+            // Reset state and clear temporary highlights
+            document.querySelectorAll('.cell.selected').forEach(cell => cell.classList.remove('selected'));
+            startCell = null;
+            endCell = null;
             selecting = false;
         }
     });
 
+    function getCellsBetween(start, end) {
+        const r1 = parseInt(start.dataset.r);
+        const c1 = parseInt(start.dataset.c);
+        const r2 = parseInt(end.dataset.r);
+        const c2 = parseInt(end.dataset.c);
+
+        const dR = r2 - r1;
+        const dC = c2 - c1;
+
+        // Check for a straight line: horizontal, vertical, or 45-degree diagonal
+        const isHorizontal = dR === 0 && dC !== 0;
+        const isVertical = dC === 0 && dR !== 0;
+        const isDiagonal = Math.abs(dR) === Math.abs(dC) && dR !== 0;
+
+        if (!isHorizontal && !isVertical && !isDiagonal) {
+            return []; // Not a straight line, return no cells to highlight
+        }
+
+        const cells = [];
+        const stepR = dR === 0 ? 0 : (dR > 0 ? 1 : -1);
+        const stepC = dC === 0 ? 0 : (dC > 0 ? 1 : -1);
+        const length = Math.max(Math.abs(dR), Math.abs(dC));
+
+        // Get all cell elements in the grid for easier access
+        const allCells = Array.from(gridEl.children);
+        const size = 18; // Use the global 'size' variable if it's accessible
+
+        for (let i = 0; i <= length; i++) {
+            const r = r1 + stepR * i;
+            const c = c1 + stepC * i;
+
+            // Calculate the index in the flat array of cells (r * size + c)
+            const index = r * size + c;
+
+            // Add the cell element to the list
+            if (index >= 0 && index < allCells.length) {
+                cells.push(allCells[index]);
+            }
+        }
+
+        return cells;
+    }
+
     function checkSelection() {
-        const letters = selection.map(cell => cell.textContent).join('');
+        // Only check if we have a valid straight path
+        const finalSelectionCells = getCellsBetween(startCell, endCell);
+
+        if (finalSelectionCells.length < 2) {
+            return; // Don't check for words shorter than 2 or invalid paths
+        }
+
+        // Use the calculated path for the word check
+        const letters = finalSelectionCells.map(cell => cell.textContent).join('');
         const rev = letters.split('').reverse().join('');
+
         for (let w of words) {
             const clean = w.replace(/\s+/g,'').toUpperCase();
             if (letters === clean || rev === clean) {
-                selection.forEach(cell => cell.classList.add('found'));
+                finalSelectionCells.forEach(cell => cell.classList.add('found'));
                 markWordFound(w);
+                return; // Found a word, stop checking
             }
         }
     }
