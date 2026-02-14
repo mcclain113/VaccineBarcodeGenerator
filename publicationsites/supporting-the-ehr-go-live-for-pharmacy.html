@@ -1,93 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Supporting the EHR Go-Live for Pharmacy (for Multi-Hospital Site Conversions) | Published 09/08/2023 by Barry McClain</title>
-<meta charset="utf-8">
-  <meta name="description" content="This presentation provides a coordination guide for supporting a mass, multi-site go-live for hospital pharmacies.">
-  <meta name="keywords" content="EHR Go-Live, EHR Conversion, Pharmacy Informatics, Support">
-  <meta name="author" content="Barry McClain">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Supporting Pharmacy EHR Go-Live: Multi-Site Strategies | Pharmacy Informatics</title>
+
+  <meta name="description" content="A comprehensive guide to coordinating pharmacy support during a multi-site EHR go-live. Learn about Triage Captains, escalation paths, and issue tracking strategies.">
+
+  <meta name="keywords" content="EHR Go-Live, Pharmacy Support, Epic Conversion, Triage Captain, Hospital Pharmacy, Willow, Informatics, Command Center, Barry McClain">
+
+  <meta name="author" content="Barry McClain">
+
+  <link rel="canonical" href="https://www.pharmacyinformatics.net/publicationsites/supporting-the-ehr-go-live-for-pharmacy">
+
   <link rel="stylesheet" type="text/css" href="../css/style.css">
   <link rel="icon" href="../images/favicon.png" type="image/ico">
+
   <style>
-    .iframe-container{
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%;
-      height: 0;
+    /* Clean, consolidated CSS for better performance */
+    body {
+      font-family: "Calibri", sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
     }
-    .iframe-container iframe{
-      position: absolute;
-      top:0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+
+    /* SEO: Semantic Container */
+    #main-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Heading Typography */
+    h1 { font-size: 2.2em; margin-bottom: 0.5em; color: #2c3e50; line-height: 1.3; }
+    h2 { font-size: 1.5em; margin-top: 1.5em; border-bottom: 2px solid #eee; padding-bottom: 10px; color: #2c3e50; }
+    h3 { font-size: 1.2em; margin-top: 1.2em; color: #34495e; font-weight: bold; }
+
+    /* Text readability */
+    p { margin-bottom: 1em; font-size: 16px; }
+    ul, ol { margin-bottom: 1em; padding-left: 30px; }
+    li { margin-bottom: 0.5em; font-size: 16px; }
+
+    /* Content Sections */
+    .content-section {
+      margin-bottom: 40px;
+    }
+
+    /* Resource Links Box */
+    .resource-links {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-left: 4px solid #0056b3;
+      border-radius: 4px;
+      margin-top: 30px;
+    }
+    .resource-links a {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-weight: 600;
+      color: #0056b3;
+      text-decoration: none;
+    }
+    .resource-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Metadata Info */
+    .meta-info {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 20px;
+      font-style: italic;
     }
   </style>
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-CRTFNMJ4FV');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CRTFNMJ4FV');
+  </script>
+</head>
+
 <body>
 
-<!-- Div Wrapper Element Starts Here -->
 <div id="Wrapper">
-  <!-- Header Element Starts Here -->
   <header id="header">
-    <!-- Hgroup Element Starts Here -->
     <hgroup id="title">
-      <div >
-        <a href="../index.html" id="logo" alt="Pharmacy Informatics"></a>
+      <div>
+        <a href="../index.html" id="logo"><img src="../images/logo.png" alt="Pharmacy Informatics Logo" style="display:none;"></a>
       </div>
       <h2>For Safer and Easier Medication Use</h2>
     </hgroup>
-    <!-- Hgroup Element Ends Here -->
-    <!-- Nav Element Starts Here -->
-    <nav class="navigation"> <a href="../index.html">Pharmacy Informatics Home</a> <a href="../publications.html">Publications</a>  <a href="../about.html">About</a>  </nav>
 
+    <nav class="navigation">
+      <a href="../index.html">Pharmacy Informatics Home</a>
+      <a href="../publications.html">Publications</a>
+      <a href="../about.html">About</a>
+    </nav>
   </header>
-  <!-- Header Element Ends Here -->
-  <!-- Div wrapper2 starts here -->
+
   <div id="Wrapper2">
+    <main id="main-content">
+      <article>
 
-    <!-- Article Element Starts Here -->
-    <article id="contents">
+        <h1>Supporting the EHR Go-Live for Pharmacy: Strategies for Multi-Site Conversions</h1>
 
+        <div class="meta-info">
+          Published 09/08/2023 by Barry McClain, PharmD MS
+        </div>
 
-      <h1>Slides</h1>
+        <section class="content-section">
+          <h2>Abstract</h2>
+          <p>
+            Successfully executing a multi-site EHR go-live (such as Epic) requires more than just technical preparation; it demands a rigorous support structure to maintain control over issue intake, tracking, and resolution. This presentation provides a coordination guide for hospital pharmacy leaders and informatics teams facing a mass conversion.
+          </p>
+          <p>
+            <strong>Key Support Concepts Covered:</strong>
+          </p>
+          <ul>
+            <li><strong>The "Triage Captain":</strong> A critical role recommended to direct traffic, assign ticket ownership, and prevent "cherry-picking" of easy issues. This ensures high-priority system blocks are addressed immediately.</li>
+            <li><strong>Escalation Hierarchy:</strong> A defined path moving from Frontline Users -> Superusers -> Triage Captains -> Pharmacy IT Analysts.</li>
+            <li><strong>Dual-Tracking Strategy:</strong> The necessity of maintaining a "Distilled Spreadsheet" (manual tracker) alongside the official ticketing system (e.g., ServiceNow) to cut through the noise and maintain focus on top-tier issues.</li>
+            <li><strong>Logistics:</strong> Strategies for balancing on-site support versus remote Command Centers, including realistic scheduling expectations (e.g., the rarity of true 24/7 analyst coverage).</li>
+          </ul>
+        </section>
 
+        <section class="resource-links">
+          <h2>Downloads & Resources</h2>
 
-      <ul style="list-style-type: circle; line-height: 30px">
+          <div>
+            <strong>Slide Deck:</strong><br>
+            <a href="../files/supporting-the-ehr-go-live-for-pharmacy.pdf" download>Download Support Guide Slide Deck (PDF)</a>
+          </div>
+        </section>
 
-        <li><h2>Supporting the EHR Go-Live for Pharmacy (for Multi-Site Conversions) | Published 09/08/2023 by Barry McClain</h2>
-          <p>Description: This presentation provides a coordination guide for supporting a mass, multi-site go-live for hospital pharmacies.</p>
-
-        </li>
-        <br>
-        <li> <h2>Slide Deck Link</h2>
-          <a href="../files/supporting-the-ehr-go-live-for-pharmacy.pdf">Supporting the EHR Go-Live for Pharmacy Slide Deck (PDF)</a>
-        </li>
-    </ul>
-
-
-    </article>
-    <!-- Article Element Ends Here -->
+      </article>
+    </main>
   </div>
-  <!-- Div wrapper2 ends here -->
-  <!-- Footer Element Starts Here -->
-  <footer id="copyrights">
-    <p><small>&copy; 2026 </small></p>
-    <p><a href="../about.html">About Us</a>  - <a href="../contact.html">Contact Us</a></p>
 
+  <footer id="copyrights">
+    <p><small>&copy; 2026 Pharmacy Informatics</small></p>
+    <p><a href="../about.html">About Us</a> - <a href="../contact.html">Contact Us</a></p>
   </footer>
-  <!-- Footer Element Ends Here -->
 </div>
-<!-- Div Wrapper Element ends Here -->
+
 </body>
 </html>

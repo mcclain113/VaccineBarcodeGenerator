@@ -1,123 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>The Role of Augmented Reality in the Medication Use ProcessMultiple Publications) | Published 01/02/2023 by Barry McClain</title>
-<meta charset="utf-8">
-  <meta name="description" content="Pharmacy Informatics Information, Education, Tools, and Solutions">
-  <meta name="keywords" content="Augmented Reality, Mixed Reality, Radio Frequency Identification, Sterile Preparation, AR, RFID, MR, Pharmacy Informatics, Medication Safety">
-  <meta name="author" content="Barry McClain">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Augmented Reality & RFID in Medication Safety | Pharmacy Informatics</title>
+
+  <meta name="description" content="Explore the future of sterile medication preparation using Augmented Reality (AR) and RFID. Watch demonstrations of HoloLens 2 and smart syringe tracking concepts.">
+
+  <meta name="keywords" content="Augmented Reality, AR in Healthcare, RFID, Mixed Reality, Sterile Compounding, HoloLens 2, Medication Safety, Pharmacy Informatics, Smart Syringes">
+
+  <meta name="author" content="Barry McClain">
+
+  <link rel="canonical" href="https://www.pharmacyinformatics.net/publicationsites/the-role-of-augmented-reality-in-the-medication-use-process-and-how-rfid-can-make-it-work">
+
   <link rel="stylesheet" type="text/css" href="../css/style.css">
   <link rel="icon" href="../images/favicon.png" type="image/ico">
+
   <style>
-    .iframe-container{
+    /* Clean, consolidated CSS for better performance */
+    body {
+      font-family: "Calibri", sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+    }
+
+    /* SEO: Semantic Container */
+    #main-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Heading Typography */
+    h1 { font-size: 2.2em; margin-bottom: 0.5em; color: #2c3e50; line-height: 1.3; }
+    h2 { font-size: 1.5em; margin-top: 1.5em; border-bottom: 2px solid #eee; padding-bottom: 10px; color: #2c3e50; }
+    h3 { font-size: 1.2em; margin-top: 1.2em; color: #34495e; font-weight: bold; }
+
+    /* Text readability */
+    p { margin-bottom: 1em; font-size: 16px; }
+    ul, ol { margin-bottom: 1em; padding-left: 30px; }
+    li { margin-bottom: 0.5em; font-size: 16px; }
+
+    /* Video Container */
+    .iframe-container {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
       height: 0;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 4px;
+      overflow: hidden;
     }
-    .iframe-container iframe{
+    .iframe-container iframe {
       position: absolute;
-      top:0;
+      top: 0;
       left: 0;
       width: 100%;
       height: 100%;
     }
-  </style>
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-CRTFNMJ4FV');
-</script>
+    /* GIF Container Styling */
+    .gif-container {
+      margin: 30px 0;
+      padding: 15px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    /* Content Sections */
+    .content-section {
+      margin-bottom: 40px;
+    }
+
+    /* Resource Links Box */
+    .resource-links {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-left: 4px solid #0056b3;
+      border-radius: 4px;
+      margin-top: 30px;
+    }
+    .resource-links a {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-weight: 600;
+      color: #0056b3;
+      text-decoration: none;
+    }
+    .resource-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Metadata Info */
+    .meta-info {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CRTFNMJ4FV');
+  </script>
+</head>
+
 <body>
 
-<!-- Div Wrapper Element Starts Here -->
 <div id="Wrapper">
-  <!-- Header Element Starts Here -->
   <header id="header">
-    <!-- Hgroup Element Starts Here -->
     <hgroup id="title">
-      <div >
-        <a href="../index.html" id="logo" alt="Pharmacy Informatics"></a>
+      <div>
+        <a href="../index.html" id="logo"><img src="../images/logo.png" alt="Pharmacy Informatics Logo" style="display:none;"></a>
       </div>
       <h2>For Safer and Easier Medication Use</h2>
     </hgroup>
-    <!-- Hgroup Element Ends Here -->
-    <!-- Nav Element Starts Here -->
-    <nav class="navigation"> <a href="../index.html">Pharmacy Informatics Home</a> <a href="../publications.html">Publications</a>  <a href="../about.html">About</a>  </nav>
 
+    <nav class="navigation">
+      <a href="../index.html">Pharmacy Informatics Home</a>
+      <a href="../publications.html">Publications</a>
+      <a href="../about.html">About</a>
+    </nav>
   </header>
-  <!-- Header Element Ends Here -->
-  <!-- Div wrapper2 starts here -->
+
   <div id="Wrapper2">
+    <main id="main-content">
+      <article>
 
-    <!-- Article Element Starts Here -->
-    <article id="contents">
+        <h1>Augmented Reality & RFID: The Future of Sterile Preparation</h1>
 
-
-      <h1>Video and Slides</h1>
-
-
-      <ul style="list-style-type: circle; line-height: 30px">
-        <div class="iframe-container">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/IIA_I2c1-gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <li><h2>Augmented Reality Demonstration: Sterile Preparation Concept Using HoloLens 2 | Published 01/02/2023 by Barry McClain</h2>
-          <p>Description: A quick overview and demonstration of HoloLens 2, and how it can be used in the medication use process.
-          </p>
-
-        </li>
-        <br>
-        <div class="iframe-container">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/PSS_6dG9PaQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-
-        <br>
-        <a href="#ar-rfid-syringe-demo"><h2>Demonstration of Augmented Reality/Radio Frequency Identification Syringes</h2></a>
-
-        <div id="ar-rfid-syringe-demo" style="width:753px;max-width:100%;"><div style="height:0;padding-bottom:56.18%;position:relative;"><iframe width="753" height="423" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameBorder="0" src="https://imgflip.com/embed/7edwo9"></iframe></div><p><a href="https://imgflip.com/gif/7edwo9">GIF demonstration of AR/RFID syringe concept</a></p>
-
-         <ol type="a">
-           <li>Red dots represent two passive RFID tags: one fixed on the tip of the syringe, and one attached to the syringe plunger which moves as the medication is drawn up.</li>
-           <li>The RFID tags are able to identify the size and contents of the syringe.  As product is drawn up, and the RFID tags move apart, the distance is represented as volume. All of this information is visible within a hologram while using augmented reality hardware. </li>
-         </ol>
-
+        <div class="meta-info">
+          Published 01/02/2023 by Barry McClain, PharmD MS
         </div>
 
+        <section class="content-section">
+          <h2>1. Demonstration: Sterile Preparation Concept Using HoloLens 2</h2>
+          <p>This quick overview demonstrates how the Microsoft HoloLens 2 can be integrated into the medication use process, specifically for sterile compounding verification.</p>
 
+          <div class="iframe-container">
+            <iframe src="https://www.youtube.com/embed/IIA_I2c1-gA" title="Video: Augmented Reality Demonstration using HoloLens 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </section>
 
-        <li><h2>Shining Light on the Matter: The Role of Augmented Reality in the Medication Use Process and How RFID Can Make it Work | Published 01/02/2023 by Barry McClain</h2>
-        <p>Description: This presentation is a futuristic model that considers the use case of augmented reality for sterile product preparation.
-        </p>
+        <section class="content-section">
+          <h2>2. Shining Light on the Matter: AR & RFID Integration</h2>
+          <p>This presentation explores a futuristic model that combines Augmented Reality (AR) with Radio Frequency Identification (RFID) to revolutionize sterile product preparation safety and workflow.</p>
 
-        </li>
-        <li> <h2>Video Link</h2>
-          <p> <a href="https://youtu.be/IIA_I2c1-gA">YouTube Link to Augmented Reality Demonstration: Sterile Preparation Concept Using HoloLens 2 Video</a></p>
-         <p> <a href="https://youtu.be/PSS_6dG9PaQ">YouTube Link to Shining Light on the Matter: The Role of Augmented Reality in the Medication Use Process and How RFID Can Make it Work Video</a></p>
-        </li>
-        <li> <h2>Slide Deck Link</h2>
-          <a href="../files/the-role-of-augmented-reality-in-the-medication-use-process-and-how-rfid-can-make-it-work-slides.pdf" download>Shining Light on the Matter: The Role of Augmented Reality in the Medication Use Process and How RFID Can Make it Work Slide Deck (PDF)</a>
-        </li>
-    </ul>
+          <div class="iframe-container">
+            <iframe src="https://www.youtube.com/embed/PSS_6dG9PaQ" title="Video: Shining Light on the Matter - AR and RFID in Medication Use" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </section>
 
+        <section class="content-section" id="ar-rfid-syringe-demo">
+          <h2>3. Concept Demo: AR/RFID Syringe Tracking</h2>
 
-    </article>
-    <!-- Article Element Ends Here -->
+          <div class="gif-container">
+            <div style="width:100%; height:0; padding-bottom:56.25%; position:relative;">
+              <iframe src="https://imgflip.com/embed/7edwo9" style="position:absolute; width:100%; height:100%; left:0; top:0;" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <p style="text-align: center; font-size: 0.9em; margin-top: 10px;"><a href="https://imgflip.com/gif/7edwo9" target="_blank" rel="noopener">View GIF on Imgflip</a></p>
+
+            <h3>How It Works:</h3>
+            <ol>
+              <li><strong>Dual Tags:</strong> Red dots represent two passive RFID tags: one fixed on the tip of the syringe, and one attached to the plunger.</li>
+              <li><strong>Volume Calculation:</strong> As the plunger moves to draw up medication, the distance between the two tags changes.</li>
+              <li><strong>Holographic Overlay:</strong> The system calculates the volume based on tag distance and projects this data as a hologram visible through AR hardware.</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="resource-links">
+          <h2>Downloads & Resources</h2>
+
+          <div>
+            <strong>HoloLens 2 Demo Video:</strong><br>
+            <a href="https://youtu.be/IIA_I2c1-gA" target="_blank" rel="noopener noreferrer">Watch on YouTube: Sterile Preparation Concept</a>
+          </div>
+
+          <div>
+            <strong>Full Presentation Video:</strong><br>
+            <a href="https://youtu.be/PSS_6dG9PaQ" target="_blank" rel="noopener noreferrer">Watch on YouTube: AR & RFID Integration</a>
+          </div>
+
+          <div>
+            <strong>Slide Deck:</strong><br>
+            <a href="../files/the-role-of-augmented-reality-in-the-medication-use-process-and-how-rfid-can-make-it-work-slides.pdf" download>Download Presentation Slides (PDF)</a>
+          </div>
+        </section>
+
+      </article>
+    </main>
   </div>
-  <!-- Div wrapper2 ends here -->
-  <!-- Footer Element Starts Here -->
-  <footer id="copyrights">
-    <p><small>&copy; 2026 </small></p>
-    <p><a href="../about.html">About Us</a>  - <a href="../contact.html">Contact Us</a></p>
 
+  <footer id="copyrights">
+    <p><small>&copy; 2026 Pharmacy Informatics</small></p>
+    <p><a href="../about.html">About Us</a> - <a href="../contact.html">Contact Us</a></p>
   </footer>
-  <!-- Footer Element Ends Here -->
 </div>
-<!-- Div Wrapper Element ends Here -->
+
 </body>
 </html>

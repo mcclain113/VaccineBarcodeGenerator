@@ -1,160 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>Pharmacy Informatics- Home</title>
-<meta charset="utf-8">
-<meta name="description" content="A premium pharmacy informatics resource dedicated to improving the medication use process and patient care.">
-<meta name="keywords" content="pharmacy informatics, pharmacy automation, pharmacy informatics education, pharmacy technology, pharmacy innovation, medication use process">
-<meta name="author" content="Barry McClain">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="icon" href="images/favicon.png" type="image/ico">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js?ver=3.7.1"></script>
-    <script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        $(function(){
+    <title>Pharmacy Informatics | Tools, Education & Leadership Resources</title>
 
-            var iFrames = $('iframe');
+    <meta name="description" content="The premier resource for pharmacy informatics. Access free tools (barcode generators, NDC converters), educational publications, and leadership guides to improve medication safety.">
 
-            function iResize() {
+    <meta name="keywords" content="pharmacy informatics, pharmacy automation, medication safety, barcode generator, NDC converter, pharmacy technology, EHR optimization, Barry McClain">
 
-                for (var i = 0, j = iFrames.length; i < j; i++) {
-                    iFrames[i].style.height = iFrames[i].contentWindow.document.body.offsetHeight + 'px';}
+    <meta name="author" content="Barry McClain">
+
+    <link rel="canonical" href="https://www.pharmacyinformatics.net/">
+
+    <link rel="icon" href="images/favicon.png" type="image/ico">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* General Layout Optimization */
+        body {
+            font-family: "Calibri", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        #Wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styling */
+        #header {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            border-bottom: 1px solid #dee2e6;
+            text-align: center;
+        }
+
+        #title h2 {
+            margin-top: 10px;
+            color: #2c3e50;
+            font-size: 1.5rem;
+        }
+
+        .navigation {
+            margin-top: 15px;
+            padding: 10px 0;
+            background-color: #e9ecef;
+        }
+        .navigation a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #0056b3;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .navigation a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Container Layout (Sidebar + Content) */
+        #Wrapper2 {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        /* Sidebar Styling */
+        #sidebar-wrapper {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            background-color: #f1f3f5;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+
+        #sidebar-wrapper h2 {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        #sidebar-wrapper h3 {
+            font-size: 1.1rem;
+            color: #495057;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        #sidebar-wrapper ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        #sidebar-wrapper li {
+            margin-bottom: 8px;
+        }
+
+        #sidebar-wrapper a {
+            text-decoration: none;
+            color: #0056b3;
+            font-size: 0.95rem;
+            display: block;
+            padding: 5px 0;
+            border-bottom: 1px dotted #ccc;
+        }
+
+        #sidebar-wrapper a:hover {
+            color: #003d82;
+            padding-left: 5px;
+            transition: padding-left 0.2s;
+        }
+
+        /* Main Content Styling */
+        #contents {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .intro-section {
+            background-color: #fff;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .intro-section h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .intro-section p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        /* Iframe Styling */
+        iframe {
+            width: 100%;
+            border: none;
+            min-height: 800px;
+        }
+
+        /* Footer Styling */
+        #copyrights {
+            background-color: #343a40;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        #copyrights a {
+            color: #adb5bd;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        #copyrights a:hover {
+            color: #fff;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-icons img {
+            transition: transform 0.2s;
+            width: 40px;
+            height: 40px;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            #Wrapper2 {
+                flex-direction: column;
             }
-
-            if ($.browser.safari || $.browser.opera) {
-
-                iFrames.load(function(){
-                    setTimeout(iResize, 0);
-                });
-
-                for (var i = 0, j = iFrames.length; i < j; i++) {
-                    var iSource = iFrames[i].src;
-                    iFrames[i].src = '';
-                    iFrames[i].src = iSource;
-                }
-
-            } else {
-                iFrames.load(function() {
-                    this.style.height = this.contentWindow.document.body.offsetHeight + 'px';
-                });
+            #sidebar-wrapper {
+                max-width: 100%;
             }
-
-        });
-
-    </script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-CRTFNMJ4FV');
-    </script>
+            .navigation {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- Div Wrapper Element Starts Here -->
 <div id="Wrapper">
-  <!-- Header Element Starts Here -->
-  <header id="header">
-    <!-- Hgroup Element Starts Here -->
-    <hgroup id="title">
-      <div >
-        <a href="index.html" id="logo" alt="Pharmacy Informatics"></a>
-      </div>
-      <h2>For Safer and Easier Medication Use</h2>
-    </hgroup>
-      <div style="text-align: left">
-      <h1>Premium Pharmacy Informatics Resources</h1>
 
+    <header id="header">
+        <hgroup id="title">
+            <div>
+                <a href="index.html" id="logo" aria-label="Pharmacy Informatics Home">
+                </a>
+            </div>
+            <h2>For Safer and Easier Medication Use</h2>
+        </hgroup>
 
-      <p><strong>Welcome to PharmacyInformatics.net, your premier digital hub dedicated to the rapidly evolving intersection of medication management and information technology. In an era where data drives healthcare decisions, bridging the gap between clinical pharmacy practice and technical innovation is more critical than ever. Our mission is simple yet profound: to champion "Safer and Easier Medication Use" through the intelligent application of informatics.</strong></p>
+        <nav class="navigation">
+            <a href="index.html">Pharmacy Informatics Home</a>
+            <a href="publications.html">Publications</a>
+            <a href="pharmacy-informatics-leadership-resources.html">Leadership Resources</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
 
-         <p><strong> Whether you are a curious member of the public, a student exploring career pathways, or a seasoned Pharmacy Informatics specialist, this platform is designed to support your journey. We believe that technology should empower clinicians, not burden them, and our content reflects this core philosophy.</strong></p>
+    <div id="Wrapper2">
 
-      <p><strong> Explore Our Resources:</strong></p>
-      <ul>
-          <li><strong> Publications & Insights: Dive into our comprehensive articles and visual demonstrations covering cutting-edge topics—from electronic health record (EHR) optimization and barcode medication administration (BCMA) to the futuristic potential of augmented reality (AR) in sterile compounding.</strong></li>
+        <aside id="sidebar-wrapper">
+            <h2>Pharmacy Informatics Tools</h2>
+            <nav>
+                <h3>Barcoding and Labels</h3>
+                <ul>
+                    <li><a href="BarcodeGeneratorBasicNDCNoLotorExp.html">Barcode Generator (Basic NDC)</a></li>
+                    <li><a href="BarcodeGeneratorBasicNDC.html">Barcode Generator (NDC + Lot/Exp)</a></li>
+                    <li><a href="BarcodeGeneratorGS1.html">GS1-128 Generator (Vaccine Prep)</a></li>
+                    <li><a href="BarcodeTestScan.html">Barcode Scan Test Screen</a></li>
+                    <li><a href="virtual-barcode-scanner.html">Virtual Barcode Scanner</a></li>
+                </ul>
 
-          <li><strong>Practical Tools: Utilize our free, web-based utilities, such as our custom Medication Label and Barcode Generators. These tools are built to assist professionals in testing, training, and operationalizing safety standards without barriers.</strong></li>
+                <h3>API Search</h3>
+                <ul>
+                    <li><a href="pharmacy-informatics-api-search-adverse-drug-events.html">Adverse Drug Events Search</a></li>
+                </ul>
 
-          <li><strong> Leadership & Career Development: Access curated resources including job descriptions, organizational charts, and expert advice on navigating board certification and residency training in the informatics field.</strong></li>
-      </ul>
-      <p><strong> This site is not just a repository of information; it is a living community. We rely on the collective expertise of our visitors to grow and adapt. We invite you to engage with the material, share your unique perspectives, and submit your own original content. If you have questions, feedback, or a topic you would like to see covered, please reach out via our contact page.</strong></p>
-    <p><strong>Together, let’s drive innovation and improve patient outcomes.</strong></p>
-      </div>
-    <!-- Hgroup Element Ends Here -->
-    <!-- Nav Element Starts Here -->
-    <nav class="navigation"> <a href="index.html">Pharmacy Informatics Home</a> <a href="publications.html">Publications</a> <a href="pharmacy-informatics-leadership-resources.html">Leadership Resources</a> <a href="about.html">About</a>  </nav>
-  </header>
-  <!-- Header Element Ends Here -->
-  <!-- Div wrapper2 starts here -->
-  <div id="Wrapper2">
-    <!-- Sidebar Element Starts Here -->
-    <aside id="sidebar-wrapper">
+                <h3>Excel Tools</h3>
+                <ul>
+                    <li><a href="pharmacy-informatics-excel-essentials.html">Excel Essentials</a></li>
+                    <li><a href="mumps-to-excel-date-time-conversion.html">MUMPS Date/Time Conversion</a></li>
+                    <li><a href="ten-to-eleven-digit-ndc-converter.html">10 to 11 Digit NDC Converter</a></li>
+                </ul>
 
-      <nav class="sidebar">
-          <h2><strong>Pharmacy Informatics Tools</strong></h2>
-	<ul style="list-style-type: circle; line-height: 30px">
-            <h3>Barcoding and Labels</h3>
-    		<li><a href="BarcodeGeneratorBasicNDCNoLotorExp.html">Barcode and Medication Label Generator Basic NDC (Lot/Exp Date Not Required)</a></li>
-    		<li><a href="BarcodeGeneratorBasicNDC.html">Barcode and Medication Label Generator Basic NDC (Lot/Exp Date Required)</a></li>
-    		<li><a href="BarcodeGeneratorGS1.html">Barcode and Medication Label Generator (GS1-128) NDC,Exp Date,Lot (Great for Vaccine Prep)</a></li>
-    		<li><a href="BarcodeTestScan.html">Barcode Scan Test Screen (Better than Notepad)</a></li>
-            <li><a href="virtual-barcode-scanner.html">Virtual Barcode Scanner</a></li>
-    		<h3>API Search</h3>
-            <li><a href="pharmacy-informatics-api-search-adverse-drug-events.html">Adverse Drug Events</a></li>
+                <h3>Scripting & Automation</h3>
+                <ul>
+                    <li><a href="copy-and-paster.html">Automated Copy & Paste</a></li>
+                    <li><a href="checkboxer.html">Automated Checkbox Clicker</a></li>
+                    <li><a href="prevent-screen-locking.html">Prevent Screen Timeout</a></li>
+                </ul>
+            </nav>
+        </aside>
 
-            <h3>Excel</h3>
-            <li><a href="pharmacy-informatics-excel-essentials.html">Excel Essentials</a></li>
-            <li><a href="mumps-to-excel-date-time-conversion.html">MUMPS to Excel Date and Time Conversion</a></li>
-            <li><a href="ten-to-eleven-digit-ndc-converter.html">Ten to Eleven Digit NDC Converter (10 to 11 Digit NDC Converter)</a></li>
-            <h3>Scripting</h3>
-            <li><a href="copy-and-paster.html">Copy and Paste (Automated Copy and Pasting from MS Excel to Any Application)</a></li>
-            <li><a href="checkboxer.html">Checkbox Clicking (Automate Clicking Checkboxes in Any Application)</a></li>
-            <li><a href="prevent-screen-locking.html">Prevent Screen from Timing Out</a></li>
+        <article id="contents">
 
-	</ul>
-      </nav>
-      <!-- Sidebar Element Ends Here -->
-    </aside>
-    <!-- Another Sidebar Element Ends Here -->
-    <!-- Article Element Starts Here -->
-      <article id="contents">
+            <section class="intro-section">
+                <h1>Premium Pharmacy Informatics Resources</h1>
+                <p><strong>Welcome to PharmacyInformatics.net, your premier digital hub dedicated to the rapidly evolving intersection of medication management and information technology.</strong></p>
 
-          <iframe name="Test" src="pharmacy-informatics-updates-section.html" width="auto" height="1200" frameborder="0" scrolling= "auto" title="Update_Section" class="iframe">
-          </iframe>
+                <p>In an era where data drives healthcare decisions, bridging the gap between clinical pharmacy practice and technical innovation is more critical than ever. Our mission is simple yet profound: to champion "Safer and Easier Medication Use" through the intelligent application of informatics.</p>
 
-<!--
+                <p>Whether you are a curious member of the public, a student exploring career pathways, or a seasoned Pharmacy Informatics specialist, this platform is designed to support your journey. We believe that technology should empower clinicians, not burden them.</p>
 
--->
-      </article>
-    <!-- Article Element Ends Here -->
+                <hr>
 
+                <h3>Explore Our Resources:</h3>
+                <ul>
+                    <li><strong>Publications & Insights:</strong> Dive into comprehensive articles on EHR optimization, BCMA, and Augmented Reality (AR).</li>
+                    <li><strong>Practical Tools:</strong> Use our free web-based utilities like custom Medication Label and Barcode Generators.</li>
+                    <li><strong>Leadership & Career:</strong> Access job descriptions, organizational charts, and expert advice on board certification.</li>
+                </ul>
+            </section>
 
-  </div>
-  <!-- Div wrapper2 ends here -->
+            <section>
+                <iframe name="Test" src="pharmacy-informatics-updates-section.html" title="Pharmacy Informatics Updates"></iframe>
+            </section>
 
-  <!-- Footer Element Starts Here -->
-  <footer id="copyrights">
-      <p><small>&copy; 2026 </small> Pharmacy Informatics <a href="about.html">About Us</a>  - <a href="contact.html">Contact Us</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://www.youtube.com/@pharmacyinformatics" target="_blank"><img src="images/youtubeicon.png" alt="youtube channel" style="width:50px;height:50px;"></a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="https://www.linkedin.com/company/pharmacyinformatics-net/" target="_blank"><img src="images/linkedinicon.png" alt="linkedin profile" style="width:50px;height:50px;"></a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://github.com/mcclain113" target="_blank"><img src="images/githubicon.png" alt="Github profile" style="width:50px;height:50px;"> </a>&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" value="https://pharmacyinformatics.blog/feed.xml" id="myInput" hidden><img src="images/rssicon.png" alt="click image to copy RSS feed" onclick="myFunction()" style="width:65px;height:65px;">&nbsp;&nbsp;&nbsp;&nbsp;  </a></p>
+        </article>
+    </div>
 
-  </footer>
-  <!-- Footer Element Ends Here -->
+    <footer id="copyrights">
+        <div class="container">
+            <p><small>&copy; 2026 Pharmacy Informatics</small> | <a href="about.html">About Us</a> | <a href="contact.html">Contact Us</a></p>
+
+            <div class="social-icons">
+                <a href="https://www.youtube.com/@pharmacyinformatics" target="_blank" aria-label="YouTube Channel"><img src="images/youtubeicon.png" alt="YouTube"></a>
+                <a href="https://www.linkedin.com/company/pharmacyinformatics-net/" target="_blank" aria-label="LinkedIn Profile"><img src="images/linkedinicon.png" alt="LinkedIn"></a>
+                <a href="https://github.com/mcclain113" target="_blank" aria-label="GitHub Profile"><img src="images/githubicon.png" alt="GitHub"></a>
+
+            </div>
+        </div>
+    </footer>
 </div>
-<!-- Div Wrapper Element ends Here -->
-<script>
-    function myFunction() {
-        var copyText = document.getElementById("myInput");
-        copyText.hidden = false;
-        copyText.select();
-        navigator.clipboard.writeText('https://pharmacyinformatics.blog/feed.xml');
-        copyText.hidden = true;
-        alert("Copied the text: " + copyText.value);
-    }
-</script>
+
+
 </body>
 </html>

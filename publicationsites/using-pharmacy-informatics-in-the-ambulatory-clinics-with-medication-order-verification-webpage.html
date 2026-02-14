@@ -3,134 +3,239 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Pharmacy Informatics Information, Education, Tools, and Solutions">
-    <meta name="keywords" content="Prescription Capture, Specialty Pharmacy, Medication Verification, Multistep Order Transmittal, MSOT; Medication Safety, pharmacy informatics">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ambulatory Prescription Capture: Informatics & MSOT Strategies | Pharmacy Informatics</title>
+
+    <meta name="description" content="Learn how to leverage pharmacy informatics and Multistep Order Transmittal (MSOT) to increase ambulatory prescription capture, improve safety, and retain health system revenue.">
+
+    <meta name="keywords" content="Prescription Capture, Specialty Pharmacy, MSOT, Multistep Order Transmittal, Medication Verification, Epic EHR, Ambulatory Pharmacy, 340B">
+
     <meta name="author" content="Barry McClain">
-    <title>Leveraging Pharmacy Informatics to Keep Health System Patients in Health System Pharmacy: Ambulatory Clinic Edition Article</title>
+
+    <link rel="canonical" href="https://www.pharmacyinformatics.net/publicationsites/using-pharmacy-informatics-in-the-ambulatory-clinics-with-medication-order-verification-webpage">
+
     <link rel="stylesheet" type="text/css" href="../css.css">
     <link rel="icon" href="../images/favicon.png" type="image/ico">
 
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <style>
+        /* General Layout Optimization */
+        body {
+            font-family: "Calibri", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+        }
 
-    gtag('config', 'G-CRTFNMJ4FV');
-</script>
+        /* Semantic Container */
+        #main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Heading Typography */
+        h1 { font-size: 2.2em; margin-bottom: 0.5em; color: #2c3e50; line-height: 1.3; }
+        h2 { font-size: 1.8em; margin-top: 1.5em; border-bottom: 2px solid #eee; padding-bottom: 10px; color: #2c3e50; }
+        h3 { font-size: 1.4em; margin-top: 1.2em; color: #34495e; }
+
+        /* Text readability */
+        p { margin-bottom: 1em; font-size: 16px; }
+
+        /* List Styling */
+        ul, ol { margin-bottom: 1em; padding-left: 30px; }
+        li { margin-bottom: 0.5em; font-size: 16px; }
+
+        /* Mobile Responsive Image Handling */
+        figure {
+            margin: 30px 0;
+            text-align: center;
+            background: #fafafa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        img {
+            max-width: 100%; /* Ensures image fits on mobile screens */
+            height: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        figcaption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        /* Metadata Box Styling */
+        .article-meta {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-left: 5px solid #0056b3;
+            margin-bottom: 40px;
+            font-size: 0.95em;
+        }
+        .article-meta a {
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Reference List Styling */
+        .references {
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-CRTFNMJ4FV');
+    </script>
+</head>
+
+<body>
+
 <header id="header">
-    <!-- Hgroup Element Starts Here -->
     <hgroup id="title">
-        <div >
-            <a href="../index.html" id="logo" alt="Pharmacy Informatics"></a>
+        <div>
+            <a href="../index.html" id="logo" aria-label="Pharmacy Informatics Home"></a>
         </div>
         <h2>For Safer and Easier Medication Use</h2>
     </hgroup>
-    <!-- Hgroup Element Ends Here -->
-    <!-- Nav Element Starts Here -->
-    <nav class="navigation"> <a href="../index.html">Pharmacy Informatics Home</a> <a href="../publications.html">Publications</a> <a href="../about.html">About</a>  </nav>
 
+    <nav class="navigation">
+        <a href="../index.html">Pharmacy Informatics Home</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../about.html">About</a>
+    </nav>
 </header>
-<body>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h1>Title: Leveraging Pharmacy Informatics to Keep Health System Patients in Health System Pharmacy: Ambulatory Clinic Edition</h1></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Author: Barry McClain, MS PharmD</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Date: 11/12/2022</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>A publication of <a href="https://www.pharmacyinformatics.net">pharmacyinformatics.net</a></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Description: This article has specific details for pharmacy leaders and informatics teams about prescription capture within the ambulatory clinic space. &nbsp;The focus of this article is on the pharmacy verification queue for prescriptions.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Introduction</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Some health systems that are on the Epic electronic health record (EHR) have referred to the pharmacy verification queue for prescriptions as multistep order transmittal (MSOT).<sup>1</sup> That is a technical description (whether it is technically right or not) for sending orders to a medication order verification queue. Or more simply saying, &ldquo;verifying orders.&rdquo;</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Before getting into the design of prescription verification queues, there are a couple of important disclaimers to consider:</p>
-<ol style="list-style-type: undefined;margin-left:0.25in;">
-    <li style="font-size: 15px; font-family: Calibri, sans-serif;">Although this is a powerful too, it is not a magic bullet for prescription capture.</li>
-    <li style="font-size: 15px; font-family: Calibri, sans-serif;">Before tailoring and introducing a new type of technology into your prescribing workflows, it is always a good idea to consult your compliance and legal teams and get necessary approvals.</li>
-    <li style="font-size: 15px; font-family: Calibri, sans-serif;">This article reflects on how this can be designed using the Epic EHR, although the contents and concepts have been heavily generalized for a wider audience.</li>
-    <li style="font-size: 15px; font-family: Calibri, sans-serif;">The build to do this type of workflow can be very high-risk, especially if there can be impact to inpatient medication order verification. So be very careful implementing.</li>
-</ol>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Interventions to increase ambulatory clinic prescription capture</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>An article published in 2020 in the American Journal of Health-System Pharmacy &ldquo;A framework to increase prescription capture from health-system clinics&rdquo; does a good job describing the common interventions that health systems do to help promote pharmacy services and increase script capture within health systems.<sup>2</sup></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>The first intervention is to implement a pharmacy in the clinic. &nbsp;It would seem good enough to start capturing a lot of prescriptions by having a pharmacy within a clinic, but unfortunately, that is usually just the beginning. There are exceptions, such as the pharmacy is the only one available within a large geographical radius.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>The second intervention is staff education about pharmacy services. &nbsp;There is one of these pharmacies in the clinic, but what services do they do? &nbsp; Why is it better? &nbsp;That is a concept that usually needs to be promoted.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Another intervention commonly done is creating or revising scripting (or training) provided to clinic staff related to pharmacy selection. &nbsp;So instead of saying, &ldquo;what pharmacy should we send any prescriptions to during this encounter,&rdquo; create a better hook that is promoting and/or advertising the pharmacy.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Additionally, there is performing EHR optimization like developing a referral order or other communication tools that can be electronically sent to the pharmacy for new patients or other needs.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>And then lastly, there are typically a variety of marketing materials like having flyers posted in clinic exam rooms and waiting areas, advertising on monitors or TV screens located throughout the health system and clinics, handouts, posters, etc. &nbsp;</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Challenges of traditional prescription capture</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>First, education and scripting interventions are very dependent on clinic staff promoting pharmacy services. &nbsp;Providers and staff do not tend to be the greatest salespeople, although there are certainly exceptions. &nbsp;If buy-in can be built with both pharmacy and clinic staff, and also have pharmacy fulfillment truly baked into workflow, then that is the way to do this. &nbsp; However, experience/observation suggests clinic staff just do not do the best job upselling and is difficult to sustain. Pharmacy selection is just not the staff&rsquo;s number one priority when checking in a patient.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Next, referral orders and/or other communication tools built in the EHR are usually asynchronous with prescribing. &nbsp;Clinic staff must remember to do this task in addition to the prescribing of the medication itself. Getting a referral simply is not going to happen 100% of the time it is expected.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Scalability. &nbsp;Scaling of all these interventions is difficult, particularly when you have a lot of sites of care, staff, turnover, etc.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Then lasty, the patient perspective. &nbsp;Loyalty that a patient has to their current pharmacy and pharmacist makes sense as a challenge. But you also have perceived cost-savings, convenience, customer service, etc. This is usually perceived when better options are not presented.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Is this article suggesting that a verification queue is going to cure all these problems? &nbsp; Certainly not. &nbsp;Fully capturing patients and prescriptions in health system pharmacies will not negate the need for this type of sweat equity, but the queue is something that can be leveraged and can certainly help reduce some of these challenges. &nbsp;</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Observations from the hospital side</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>The garden variety inpatient workflow is having a medication order signed by a provider and sent to a pharmacist queue, which is then reviewed prior to sending to a dispensing pharmacy. &nbsp;This activity is literally done millions of times a day across the country every day. &nbsp; The reasons to perform this function is extremely hard to refute and is galvanized into regulatory standards and best practices across the board. &nbsp;Additionally, this process is not very different with hospital discharges. Many sites of care have pharmacy staff that is usually their working their tail off to get patients their meds before they leave as part of medication reconciliation process. &nbsp;Why not emulate this service that has been tried and true?</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Electronic prescribing networks, PBMs, and external pharmacies</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Here is another question. &nbsp; Why is it so difficult to capture prescriptions even with a lot of hard work and interventions surrounding the internal pharmacy?</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>When looking at the big picture view of the outpatient prescription world, there is an extensive external pharmacy network, infrastructure, and entire business model that is fiercely competitive. &nbsp;There is a strong interconnection between electronic prescribing, pharmacy benefit managers (PBM), and pharmacies, and a ton of investment has gone into it. &nbsp;Nothing against the network and pharmacy competition; the design is very commendable. &nbsp;But creating the rules of the system is easy for the competition when the competition has built it and owns it. &nbsp;The novel use of verification queues is a good opportunity to help healthcare where healthcare is happening.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Outpatient prescription verification queue</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Inside the health system bubble, what looks like a millimeter is really a lot of opportunity for integrated service (figure 1). &nbsp;Note, health system pharmacy can be pulled out of the electronic prescribing (e-prescribing) network directly at this first phase because it is not uncommon, retail pharmacy integration within an EHR itself will not go through the network for internal prescriptions. That is just another potential advantage for health systems through the reduction of transaction fees, further script routing and manipulation, etc. Regardless, the queue will prevent it from getting to the e-prescribing network or pharmacy in any scenario.</p>
-<figure>
-<img src="publicationimages/using-pharmacy-informatics-in-the-ambulatory-clinics-with-medication-order-verification-figure-1.png" alt="Figure 1. Interfaces/interactions between the health system, health system pharmacy, and e-prescribing network" height="375" width="666"/>
-<figcaption style="font-family: Calibri, sans-serif; font-size: 15px;">Figure 1. Interfaces/interactions between the health system, health system pharmacy, and e-prescribing network.</figcaption>
-</figure>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><span style="font-size:12px;line-height:107%;">&nbsp;</span></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Design considerations&nbsp;</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Design considerations for setting up the outpatient prescription verification queue starts with the ordering phase of the prescription. &nbsp;The order design has a combination of a few basic variables. &nbsp;First is the qualifying order question/prompt/button that presents physically onto the medication order. &nbsp;Second there is the element of linking that prompt to specific medication records. A health system will likely not want this service at first to be on every single medication record versus targeting a select number of records. &nbsp;The last basic variable for applying this prompt is determining what qualifying departments should be in scope. These variables combined provide a lot of flexibility for what pharmacy services are available, what medications are appropriate for the queue, and at what locations to target.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>In addition to these design variables, there are two additional considerations in the configuration of the order questions/prompts. The first consideration is provider &ldquo;opt-in&rdquo;, which really means allowing the ability for providers to optionally send the outpatient prescription to the verification queue based on different available services (i.e. providers can select the question/prompt). &nbsp;The second consideration is provider &ldquo;opt-out&rdquo;, which is the situation where the system defaults select outpatient prescriptions to always be sent to the verification queue unless the provider unselects the question/prompt. &nbsp; Can the logic be designed to absolutely send or not send prescriptions to a queue? &nbsp;The answer is certainly yes. &nbsp;However, the considerations of opt-in and opt-out give providers control on the use of pharmacy services that they are signing the prescription for.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Next is the verification phase of the prescription order. The first question is to consider who will be working the queues. &nbsp;Some services are not clinical in nature, so there is consideration to opening up non-traditional access to verification queues for non-pharmacists. &nbsp;Ideally, in the situation where clinical services are not being performed, there should be very little that can be modified on these orders besides changing the dispensing pharmacy. &nbsp;In the end, prescription orders will fall into the same-old verification queue used on inpatient side. &nbsp;The only difference is the creation/use of new verification order filters that can be department-based or other rule-based criteria.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Figure 2. shows what the outpatient order questions look like in graphical form to help illustrate how this works. There is a typical outpatient prescription order, with a standard SIG, but the new element is putting these new buttons here for services, using benefits inquiry and pharmacy consult as examples.</p>
-<figure>
-<img src="publicationimages/using-pharmacy-informatics-in-the-ambulatory-clinics-with-medication-order-verification-figure-2.png" alt="Figure 2. Outpatient prescription order with buttons that can send the order to the verification queue" height="548" width="587"/>
-<figcaption style="font-family: Calibri, sans-serif; font-size: 15px;">Figure 2. Outpatient prescription order with buttons that can send the order to the verification queue.</figcaption>
-</figure>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>&nbsp;</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Figure 3. shows the outpatient prescription verification queue part of this workflow. &nbsp;In one scenario, the benefits inquiry button was pushed, and it would go to the verification queue, visible in a benefit inquiry verification queue filter. &nbsp;Again, this is before ever going to the pharmacy. &nbsp;In another scenario, the provider could have selected clinical consult and sent the prescription to the queue, but perhaps viewable through a different filter, for even a fully different group of personal. In the last scenario, nothing gets sent to a queue and goes straight to a dispensing pharmacy like it would typically without queues.</p>
-<figure>
-<img src="publicationimages/using-pharmacy-informatics-in-the-ambulatory-clinics-with-medication-order-verification-figure-3.png" alt="Figure 3. Verification queue with different filters for different services." height="318" width="592"/>
-<figcaption style="font-family: Calibri, sans-serif; font-size: 15px;">Figure 3. Verification queue with different filters for different services.</figcaption>
-</figure>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>&nbsp;</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Possible use cases for the prescription verification queue</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>There are probably an endless number of use cases to send prescriptions to a pharmacy verification queue, but here are some immediate considerations:</p>
-<ol style="list-style-type: undefined;margin-left:0.25in;">
-    <li style="font-size: 15px; font-family: Calibri, sans-serif;">Benefits inquiry</li>
-    <li style="font-size: 15px; font-family: Calibri, sans-serif;">Consult services (clinical, cost savings, patient education, etc.)</li>
-    <li style="font-size: 15px; font-family: Calibri, sans-serif;">High-risk therapy/risk of admission</li>
-    <li style="font-size: 15px; font-family: Calibri, sans-serif;">Risk of readmission</li>
-    <li style="font-size: 15px; font-family: Calibri, sans-serif;">Medication adherence and/or compliance packaging</li>
-    <li style="font-size: 15px; font-family: Calibri, sans-serif;">Need for additional supplies</li>
-    <li style="font-size: 15px; font-family: Calibri, sans-serif;">Only long-term/chronic therapy medications</li>
-    <li style="font-size: 15px; font-family: Calibri, sans-serif;">Only acute therapy medications</li>
-    <li style="font-size: 15px; font-family: Calibri, sans-serif;">All medications</li>
-</ol>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Possible benefits of the outpatient prescription verification queue</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Based on the use cases above, a good implementation of the queue and pharmacy services has a lot of potential for creating benefits. &nbsp;Here is a list of some of the potential benefits:</p>
-<ol style="list-style-type: undefined;margin-left:0.25in;">
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Is independent of initial pharmacy selection by using the queue. The health system pharmacy will always get a first-pass opportunity to review the script based on the rules configured regardless of what pharmacy was picked from the get-go.</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Making provider&rsquo;s job easier. When a medication therapy is loaded with additional benefit review, clinical monitoring, patient education, etc., the queue is a convenient way to delegate some of that work. &nbsp;The documented button/service request is part of the order.</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Reduces barriers for prescription capture. &nbsp;Or at least, provides a second chance to prove service in action. &nbsp;So do not drop the customer service ball!</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Safer than sending a prescription to a pharmacy with the note, like &ldquo;Just checking what the co-pay is, &nbsp;thanks.&rdquo; That is not a best practice by any means.</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Promotes and integrates pharmacy service. &nbsp;Nothing helps integrate pharmacy service more than hardcoding it into the medication use process</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Leverage centralization. The queue should be widely accessible to who we want working it, whether it is outpatient pharmacy staff, inpatient pharmacy staff, or other support caregivers. &nbsp;There are a lot of options to consider for load balancing and using resources effectively.</li>
-</ol>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>So, you are capturing prescriptions in a queue, now what?</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>That is a very reasonable question, and there are two very important variables to consider. &nbsp;First is having dedicated staff to manage the queues, and second is effective communication methods. However, the best answer to that question will ultimately depend on what is being captured and why at the end of the day. &nbsp;Specialty prescriptions make a great use case for a queue like this, as they (unfortunately) are typically complex and require addition time to investigate insurance coverage, and to coordinate between providers and patients. &nbsp;A specialty prescription service like that can use prior authorization teams and/or other support staff, either centrally and/or on-site to navigate patients through the process.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>But no matter what your use case is, what is important is setting-expectations up front with the patient. &nbsp; Perhaps this is a great opportunity for clinical decision support and prompting staff to clarify that information to patients at the point of prescribing, and/or maybe printing details on the after visit summaries, for example.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>As far as communication methods go, they all have pros and cons. &nbsp;Reaching out to patients telephonically is not always easy but is a common method. &nbsp;Patient portals are certainly slick and convenient through messaging and/or firing up e-visits with patients. &nbsp;However, nothing is better than in-person or virtually on-site communication when possible. &nbsp;Again, all very viable methods given the use cases.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Closing thoughts</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Just a consideration, but usually when medical staff ask patients to schedule a follow up, surgery, or other service as they leave the appointment, they usually tell the patient to have that physical conversation before leaving the clinic with the front-end staff or follow up in different ways. &nbsp;They do not usually say, &ldquo;hope you decide to come back to us for future visits, have a nice day.&rdquo; Providers usually help guide patients to the next phase of care within the health care system.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Perhaps, as a patient leaves, they are told to have a prescription consult before walking out? Perhaps patients can obtain full adjudication and price details, fix problems quickly in the immediate proximity of care, and see in action those awesome benefits and services of using the internal pharmacy network. &nbsp;All the stuff and more than what &ldquo;real time prescription benefit&rdquo; queries can provide. &nbsp;That is the power of outpatient prescription verification queues. &nbsp;It supports the ability to provide integrated pharmacy services before patients completely fly out of a health system&rsquo;s four walls. &nbsp; That is the key takeaway and benefit of the queue.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Specialty prescriptions are easy access for utilizing these prescription queues. &nbsp;The goal of this article is to encourage health system pharmacy to optimize and adopt this technology beyond that use case alone, especially to mitigate safety issues through transitions of care and to make providers job easier across the full continuum of care for all medication orders. Like what is done every day and hour on the inpatient side. Since this is all about capture, let&rsquo;s:</p>
-<ul style="list-style-type: undefined;margin-left:0.25in;">
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Capture wasted time away from providers</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Capture patients away from hospital admissions</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Capture near misses</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Capture more business</li>
-</ul>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>One last important point is the transformation PBMs entering the market are doing. They are starting to bring a new player directly into the e-prescribing network: the patient. &nbsp;Prescriptions sent by a provider are routed to something that looks a lot like a medication queue, but in the patient&rsquo;s hand (i.e. an app) as they sit right there in the office. The PBM and app help direct the patient on cost and where to fill the prescription. This is something to think about when talking about prescription capture and what competitive advantages really looks like once a prescription leaves the health system and into the wild. &nbsp;There is a lot of activity in this space and will only continue to get more difficult to compete.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>References</strong></h2></p>
-<ol style="list-style-type: undefined;margin-left:0.25in;">
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Nguyen SH, Grindeland CJ, Leedahl DD. Pharmacist-managed multistep order transmittal for electronic specialty prescriptions reduces represcribing burden in ambulatory clinics: A retrospective cohort pilot study. J Manag Care Spec Pharm. 2022 Jul;28(7):778-785.</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Chmielewski E, Cesarz JL. A framework to increase prescription capture from health-system clinics. Am J Health Syst Pharm. 2020 Apr 1;77(8):658-662.</li>
-</ol>
+
+<main id="main-content">
+
+    <article>
+        <h1>Leveraging Pharmacy Informatics to Keep Health System Patients in Health System Pharmacy: Ambulatory Clinic Edition</h1>
+
+        <div class="article-meta">
+            <p><strong>Author:</strong> Barry McClain, MS PharmD</p>
+            <p><strong>Date:</strong> 11/12/2022</p>
+            <p><strong>Publication:</strong> <a href="https://www.pharmacyinformatics.net">pharmacyinformatics.net</a></p>
+            <p><strong>Description:</strong> This article details strategies for pharmacy leaders and informatics teams regarding prescription capture within the ambulatory clinic space. The focus is on implementing a <strong>pharmacy verification queue</strong> (or Multistep Order Transmittal) for prescriptions.</p>
+        </div>
+
+        <h2>Introduction</h2>
+        <p>Some health systems that are on the Epic electronic health record (EHR) have referred to the pharmacy verification queue for prescriptions as multistep order transmittal (MSOT).<sup>1</sup> That is a technical description (whether it is technically right or not) for sending orders to a medication order verification queue. Or more simply saying, “verifying orders.”</p>
+
+        <p>Before getting into the design of prescription verification queues, there are a couple of important disclaimers to consider:</p>
+        <ol>
+            <li>Although this is a powerful tool, it is not a magic bullet for prescription capture.</li>
+            <li>Before tailoring and introducing a new type of technology into your prescribing workflows, it is always a good idea to consult your compliance and legal teams and get necessary approvals.</li>
+            <li>This article reflects on how this can be designed using the Epic EHR, although the contents and concepts have been heavily generalized for a wider audience.</li>
+            <li>The build to do this type of workflow can be very high-risk, especially if there can be impact to inpatient medication order verification. So be very careful implementing.</li>
+        </ol>
+
+        <h2>Interventions to Increase Ambulatory Clinic Prescription Capture</h2>
+        <p>An article published in 2020 in the American Journal of Health-System Pharmacy “A framework to increase prescription capture from health-system clinics” does a good job describing the common interventions that health systems do to help promote pharmacy services and increase script capture within health systems.<sup>2</sup></p>
+        <p>The first intervention is to implement a pharmacy in the clinic. It would seem good enough to start capturing a lot of prescriptions by having a pharmacy within a clinic, but unfortunately, that is usually just the beginning. There are exceptions, such as the pharmacy is the only one available within a large geographical radius.</p>
+        <p>The second intervention is staff education about pharmacy services. There is one of these pharmacies in the clinic, but what services do they do? Why is it better? That is a concept that usually needs to be promoted.</p>
+        <p>Another intervention commonly done is creating or revising scripting (or training) provided to clinic staff related to pharmacy selection. So instead of saying, “what pharmacy should we send any prescriptions to during this encounter,” create a better hook that is promoting and/or advertising the pharmacy.</p>
+        <p>Additionally, there is performing EHR optimization like developing a referral order or other communication tools that can be electronically sent to the pharmacy for new patients or other needs.</p>
+        <p>And then lastly, there are typically a variety of marketing materials like having flyers posted in clinic exam rooms and waiting areas, advertising on monitors or TV screens located throughout the health system and clinics, handouts, posters, etc.</p>
+
+        <h2>Challenges of Traditional Prescription Capture</h2>
+        <p>First, education and scripting interventions are very dependent on clinic staff promoting pharmacy services. Providers and staff do not tend to be the greatest salespeople, although there are certainly exceptions. If buy-in can be built with both pharmacy and clinic staff, and also have pharmacy fulfillment truly baked into workflow, then that is the way to do this. However, experience/observation suggests clinic staff just do not do the best job upselling and is difficult to sustain. Pharmacy selection is just not the staff’s number one priority when checking in a patient.</p>
+        <p>Next, referral orders and/or other communication tools built in the EHR are usually asynchronous with prescribing. Clinic staff must remember to do this task in addition to the prescribing of the medication itself. Getting a referral simply is not going to happen 100% of the time it is expected.</p>
+        <p>Scalability. Scaling of all these interventions is difficult, particularly when you have a lot of sites of care, staff, turnover, etc.</p>
+        <p>Then lastly, the patient perspective. Loyalty that a patient has to their current pharmacy and pharmacist makes sense as a challenge. But you also have perceived cost-savings, convenience, customer service, etc. This is usually perceived when better options are not presented.</p>
+        <p>Is this article suggesting that a verification queue is going to cure all these problems? Certainly not. Fully capturing patients and prescriptions in health system pharmacies will not negate the need for this type of sweat equity, but the queue is something that can be leveraged and can certainly help reduce some of these challenges.</p>
+
+        <h2>Observations from the Hospital Side</h2>
+        <p>The garden variety inpatient workflow is having a medication order signed by a provider and sent to a pharmacist queue, which is then reviewed prior to sending to a dispensing pharmacy. This activity is literally done millions of times a day across the country every day. The reasons to perform this function is extremely hard to refute and is galvanized into regulatory standards and best practices across the board. Additionally, this process is not very different with hospital discharges. Many sites of care have pharmacy staff that is usually their working their tail off to get patients their meds before they leave as part of medication reconciliation process. Why not emulate this service that has been tried and true?</p>
+
+        <h2>Electronic Prescribing Networks, PBMs, and External Pharmacies</h2>
+        <p>Here is another question. Why is it so difficult to capture prescriptions even with a lot of hard work and interventions surrounding the internal pharmacy?</p>
+        <p>When looking at the big picture view of the outpatient prescription world, there is an extensive external pharmacy network, infrastructure, and entire business model that is fiercely competitive. There is a strong interconnection between electronic prescribing, pharmacy benefit managers (PBM), and pharmacies, and a ton of investment has gone into it. Nothing against the network and pharmacy competition; the design is very commendable. But creating the rules of the system is easy for the competition when the competition has built it and owns it. The novel use of verification queues is a good opportunity to help healthcare where healthcare is happening.</p>
+
+        <h2>Outpatient Prescription Verification Queue</h2>
+        <p>Inside the health system bubble, what looks like a millimeter is really a lot of opportunity for integrated service (Figure 1). Note, health system pharmacy can be pulled out of the electronic prescribing (e-prescribing) network directly at this first phase because it is not uncommon, retail pharmacy integration within an EHR itself will not go through the network for internal prescriptions. That is just another potential advantage for health systems through the reduction of transaction fees, further script routing and manipulation, etc. Regardless, the queue will prevent it from getting to the e-prescribing network or pharmacy in any scenario.</p>
+
+        <figure>
+            <img src="publicationimages/using-pharmacy-informatics-in-the-ambulatory-clinics-with-medication-order-verification-figure-1.png" alt="Diagram showing interfaces and interactions between the health system, health system pharmacy, and e-prescribing network" width="666" height="375" loading="lazy"/>
+            <figcaption>Figure 1. Interfaces/interactions between the health system, health system pharmacy, and e-prescribing network.</figcaption>
+        </figure>
+
+        <h2>Design Considerations</h2>
+        <p>Design considerations for setting up the outpatient prescription verification queue starts with the ordering phase of the prescription. The order design has a combination of a few basic variables. First is the qualifying order question/prompt/button that presents physically onto the medication order. Second there is the element of linking that prompt to specific medication records. A health system will likely not want this service at first to be on every single medication record versus targeting a select number of records. The last basic variable for applying this prompt is determining what qualifying departments should be in scope. These variables combined provide a lot of flexibility for what pharmacy services are available, what medications are appropriate for the queue, and at what locations to target.</p>
+        <p>In addition to these design variables, there are two additional considerations in the configuration of the order questions/prompts. The first consideration is provider “opt-in”, which really means allowing the ability for providers to optionally send the outpatient prescription to the verification queue based on different available services (i.e. providers can select the question/prompt). The second consideration is provider “opt-out”, which is the situation where the system defaults select outpatient prescriptions to always be sent to the verification queue unless the provider unselects the question/prompt. Can the logic be designed to absolutely send or not send prescriptions to a queue? The answer is certainly yes. However, the considerations of opt-in and opt-out give providers control on the use of pharmacy services that they are signing the prescription for.</p>
+        <p>Next is the verification phase of the prescription order. The first question is to consider who will be working the queues. Some services are not clinical in nature, so there is consideration to opening up non-traditional access to verification queues for non-pharmacists. Ideally, in the situation where clinical services are not being performed, there should be very little that can be modified on these orders besides changing the dispensing pharmacy. In the end, prescription orders will fall into the same-old verification queue used on inpatient side. The only difference is the creation/use of new verification order filters that can be department-based or other rule-based criteria.</p>
+
+        <p>Figure 2 shows what the outpatient order questions look like in graphical form to help illustrate how this works. There is a typical outpatient prescription order, with a standard SIG, but the new element is putting these new buttons here for services, using benefits inquiry and pharmacy consult as examples.</p>
+
+        <figure>
+            <img src="publicationimages/using-pharmacy-informatics-in-the-ambulatory-clinics-with-medication-order-verification-figure-2.png" alt="Screenshot of an outpatient prescription order screen with buttons to send the order to the verification queue" width="587" height="548" loading="lazy"/>
+            <figcaption>Figure 2. Outpatient prescription order with buttons that can send the order to the verification queue.</figcaption>
+        </figure>
+
+        <p>Figure 3 shows the outpatient prescription verification queue part of this workflow. In one scenario, the benefits inquiry button was pushed, and it would go to the verification queue, visible in a benefit inquiry verification queue filter. Again, this is before ever going to the pharmacy. In another scenario, the provider could have selected clinical consult and sent the prescription to the queue, but perhaps viewable through a different filter, for even a fully different group of personal. In the last scenario, nothing gets sent to a queue and goes straight to a dispensing pharmacy like it would typically without queues.</p>
+
+        <figure>
+            <img src="publicationimages/using-pharmacy-informatics-in-the-ambulatory-clinics-with-medication-order-verification-figure-3.png" alt="Screenshot of a verification queue showing different filters for different services" width="592" height="318" loading="lazy"/>
+            <figcaption>Figure 3. Verification queue with different filters for different services.</figcaption>
+        </figure>
+
+        <h2>Possible Use Cases for the Prescription Verification Queue</h2>
+        <p>There are probably an endless number of use cases to send prescriptions to a pharmacy verification queue, but here are some immediate considerations:</p>
+        <ol>
+            <li>Benefits inquiry</li>
+            <li>Consult services (clinical, cost savings, patient education, etc.)</li>
+            <li>High-risk therapy/risk of admission</li>
+            <li>Risk of readmission</li>
+            <li>Medication adherence and/or compliance packaging</li>
+            <li>Need for additional supplies</li>
+            <li>Only long-term/chronic therapy medications</li>
+            <li>Only acute therapy medications</li>
+            <li>All medications</li>
+        </ol>
+
+        <h2>Possible Benefits of the Outpatient Prescription Verification Queue</h2>
+        <p>Based on the use cases above, a good implementation of the queue and pharmacy services has a lot of potential for creating benefits. Here is a list of some of the potential benefits:</p>
+        <ol>
+            <li>Is independent of initial pharmacy selection by using the queue. The health system pharmacy will always get a first-pass opportunity to review the script based on the rules configured regardless of what pharmacy was picked from the get-go.</li>
+            <li>Making provider’s job easier. When a medication therapy is loaded with additional benefit review, clinical monitoring, patient education, etc., the queue is a convenient way to delegate some of that work. The documented button/service request is part of the order.</li>
+            <li>Reduces barriers for prescription capture. Or at least, provides a second chance to prove service in action. So do not drop the customer service ball!</li>
+            <li>Safer than sending a prescription to a pharmacy with the note, like “Just checking what the co-pay is, thanks.” That is not a best practice by any means.</li>
+            <li>Promotes and integrates pharmacy service. Nothing helps integrate pharmacy service more than hardcoding it into the medication use process.</li>
+            <li>Leverage centralization. The queue should be widely accessible to who we want working it, whether it is outpatient pharmacy staff, inpatient pharmacy staff, or other support caregivers. There are a lot of options to consider for load balancing and using resources effectively.</li>
+        </ol>
+
+        <h2>So, you are capturing prescriptions in a queue, now what?</h2>
+        <p>That is a very reasonable question, and there are two very important variables to consider. First is having dedicated staff to manage the queues, and second is effective communication methods. However, the best answer to that question will ultimately depend on what is being captured and why at the end of the day. Specialty prescriptions make a great use case for a queue like this, as they (unfortunately) are typically complex and require addition time to investigate insurance coverage, and to coordinate between providers and patients. A specialty prescription service like that can use prior authorization teams and/or other support staff, either centrally and/or on-site to navigate patients through the process.</p>
+        <p>But no matter what your use case is, what is important is setting expectations up front with the patient. Perhaps this is a great opportunity for clinical decision support and prompting staff to clarify that information to patients at the point of prescribing, and/or maybe printing details on the after visit summaries, for example.</p>
+        <p>As far as communication methods go, they all have pros and cons. Reaching out to patients telephonically is not always easy but is a common method. Patient portals are certainly slick and convenient through messaging and/or firing up e-visits with patients. However, nothing is better than in-person or virtually on-site communication when possible. Again, all very viable methods given the use cases.</p>
+
+        <h2>Closing Thoughts</h2>
+        <p>Just a consideration, but usually when medical staff ask patients to schedule a follow up, surgery, or other service as they leave the appointment, they usually tell the patient to have that physical conversation before leaving the clinic with the front-end staff or follow up in different ways. They do not usually say, “hope you decide to come back to us for future visits, have a nice day.” Providers usually help guide patients to the next phase of care within the health care system.</p>
+        <p>Perhaps, as a patient leaves, they are told to have a prescription consult before walking out? Perhaps patients can obtain full adjudication and price details, fix problems quickly in the immediate proximity of care, and see in action those awesome benefits and services of using the internal pharmacy network. All the stuff and more than what “real time prescription benefit” queries can provide. That is the power of outpatient prescription verification queues. It supports the ability to provide integrated pharmacy services before patients completely fly out of a health system’s four walls. That is the key takeaway and benefit of the queue.</p>
+        <p>Specialty prescriptions are easy access for utilizing these prescription queues. The goal of this article is to encourage health system pharmacy to optimize and adopt this technology beyond that use case alone, especially to mitigate safety issues through transitions of care and to make providers job easier across the full continuum of care for all medication orders. Like what is done every day and hour on the inpatient side. Since this is all about capture, let’s:</p>
+        <ul>
+            <li>Capture wasted time away from providers</li>
+            <li>Capture patients away from hospital admissions</li>
+            <li>Capture near misses</li>
+            <li>Capture more business</li>
+        </ul>
+        <p>One last important point is the transformation PBMs entering the market are doing. They are starting to bring a new player directly into the e-prescribing network: the patient. Prescriptions sent by a provider are routed to something that looks a lot like a medication queue, but in the patient’s hand (i.e. an app) as they sit right there in the office. The PBM and app help direct the patient on cost and where to fill the prescription. This is something to think about when talking about prescription capture and what competitive advantages really looks like once a prescription leaves the health system and into the wild. There is a lot of activity in this space and will only continue to get more difficult to compete.</p>
+
+        <div style="margin-top: 40px; border-top: 1px solid #ccc; padding-top: 20px;">
+            <h2>References</h2>
+            <ol class="references">
+                <li>Nguyen SH, Grindeland CJ, Leedahl DD. Pharmacist-managed multistep order transmittal for electronic specialty prescriptions reduces represcribing burden in ambulatory clinics: A retrospective cohort pilot study. J Manag Care Spec Pharm. 2022 Jul;28(7):778-785.</li>
+                <li>Chmielewski E, Cesarz JL. A framework to increase prescription capture from health-system clinics. Am J Health Syst Pharm. 2020 Apr 1;77(8):658-662.</li>
+            </ol>
+        </div>
+    </article>
+</main>
+
 </body>
 </html>

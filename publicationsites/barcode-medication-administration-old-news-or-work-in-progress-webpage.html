@@ -3,214 +3,305 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Pharmacy Informatics Information, Education, Tools, and Solutions">
-    <meta name="keywords" content="pharmacy informatics, BCMA, barcode medication administration, pharmacy automation, pharmacy technology, pharmacy software, informatics">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Barcode Medication Administration (BCMA): Safety, Trends & Gaps | Pharmacy Informatics</title>
+
+    <meta name="description" content="An analysis of Barcode Medication Administration (BCMA) adoption. Explore the 'True North' of medication safety, RFID vs. Barcoding, and Leapfrog Group standards.">
+
+    <meta name="keywords" content="BCMA, barcode medication administration, pharmacy informatics, patient safety, RFID, Leapfrog Group, medication errors, healthcare IT">
+
     <meta name="author" content="Barry McClain">
-    <title>Barcode Medication Administration: Old News or Work in Progress? Article</title>
+
+    <link rel="canonical" href="https://www.pharmacyinformatics.net/publicationsites/barcode-medication-administration-old-news-or-work-in-progress-webpage">
+
     <link rel="stylesheet" type="text/css" href="../css.css">
     <link rel="icon" href="../images/favicon.png" type="image/ico">
 
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <style>
+        /* General Layout Optimization */
+        body {
+            font-family: "Calibri", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+        }
 
-    gtag('config', 'G-CRTFNMJ4FV');
-</script>
+        /* SEO: Semantic Container */
+        #main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Heading Typography */
+        h1 { font-size: 2.2em; margin-bottom: 0.5em; color: #2c3e50; }
+        h2 { font-size: 1.8em; margin-top: 1.5em; border-bottom: 2px solid #eee; padding-bottom: 10px; color: #2c3e50; }
+        h3 { font-size: 1.4em; margin-top: 1.2em; color: #34495e; }
+
+        /* Text readability */
+        p { margin-bottom: 1em; font-size: 16px; }
+
+        /* List Styling */
+        ul, ol { margin-bottom: 1em; padding-left: 30px; }
+        li { margin-bottom: 0.5em; font-size: 16px; }
+
+        /* Mobile Responsive Image Handling */
+        figure {
+            margin: 30px 0;
+            text-align: center;
+            background: #fafafa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        img {
+            max-width: 100%; /* Ensures image fits on mobile screens */
+            height: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        figcaption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        /* Metadata Box Styling */
+        .article-meta {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-left: 5px solid #0056b3;
+            margin-bottom: 40px;
+            font-size: 0.95em;
+        }
+        .article-meta a {
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Reference List Styling */
+        .references {
+            font-size: 0.9em;
+            color: #555;
+            word-break: break-all; /* Prevents long URLs from breaking layout */
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-CRTFNMJ4FV');
+    </script>
+</head>
+
+<body>
+
 <header id="header">
-    <!-- Hgroup Element Starts Here -->
     <hgroup id="title">
-        <div >
-            <a href="../index.html" id="logo" alt="Pharmacy Informatics"></a>
+        <div>
+            <a href="../index.html" id="logo" aria-label="Pharmacy Informatics Home"></a>
         </div>
         <h2>For Safer and Easier Medication Use</h2>
     </hgroup>
-    <!-- Hgroup Element Ends Here -->
-    <!-- Nav Element Starts Here -->
-    <nav class="navigation"> <a href="../index.html">Pharmacy Informatics Home</a> <a href="../publications.html">Publications</a>  <a href="../about.html">About</a>  </nav>
 
+    <nav class="navigation">
+        <a href="../index.html">Pharmacy Informatics Home</a>
+        <a href="../publications.html">Publications</a>
+        <a href="../about.html">About</a>
+    </nav>
 </header>
-<body>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h1>Title: Barcode Medication Administration: Old News or Work in Progress?</h1></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Author: Barry McClain, MS PharmD</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Date: 11/19/2022</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>A publication of <a href="https://www.pharmacyinformatics.net">pharmacyinformatics.net</a></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Description: This article has specific details on the current state of barcode medication administration (BCMA) and the fact that I believe we have a long way to go in our journey.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Introduction and BCMA Proposal</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>It is common to have big goals in healthcare. Noble goals. It is advertised every day. A great example is curing cancer. Eradicate cancer. For the world of pharmacy informatics, here is the true north for BCMA: Every patient, every medication, every time (figure 1). And before jumping into exceptions and more complicated scenarios, just like cancer, there is more than just curing, as there is prevention, detection, treatment, management etc. &nbsp;And there is certainly not just one intervention as well.&nbsp;</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><br></p>
-<figure>
-<img src="publicationimages/barcode-medication-administration-old-news-or-work-in-progress-figure-1.png" alt="Figure 1: BCMA campaign icon" height="153" width="187"/>
-<figcaption style="font-family: Calibri, sans-serif; font-size: 15px;">Figure 1: BCMA campaign</figcaption>
-</figure>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>For BCMA, the job is not done until technology is fully optimized to:</p>
-<ol>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Enhance medication safety. &nbsp;That means the five rights to medication administration. Right patient, right drug, right time, right dose, and right route, as well as other decision support opportunities.<sup>1</sup></li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Improve workflow efficiency. Not make it harder.</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Capture all necessary documentation. That includes lot numbers, expiration dates, and other important patient/medication information.&nbsp;</li>
-</ol>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>For every patient, every medication, every time.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>That is the proposed barcode medication administration campaign and challenge to healthcare. &nbsp;The rest of the article will provide some perspective on how to get to that ideal state.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Scope</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>One might say, &ldquo;how could we ever do BCMA in all situations, especially ones where seconds matter?&rdquo; &nbsp;The better question is how can we optimize technology to transiently, or even ambiently make it a reality? &nbsp;That ultimately means safe medication administration is going to take more tools than just barcode scanning alone, aligning the right tool for the right job, and working smarter and not harder.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>But before getting too far, here are some technology fundamentals to cover, including three very basic elements to BCMA, or more broadly, machine-readable medication administration.</p>
-<ol style="list-style-type: undefined;">
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">The product itself, with a machine-readable identifier on it.</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Hardware that identifies said identifier</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Software that processes that information. &nbsp;</li>
-</ol>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>This article is going to focus on two types of product (patient) identification</p>
-<ol>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Optical product identification, which includes BCMA</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Radio-frequency identification (RFID)&nbsp;</li>
-</ol>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Outside the scope of the article is anything that deals with drug analysis that is seen in drug manufacturing or medication preparation (e.g. gravimetric measurements, Raman spectroscopy, etc.), or any types of biometrics for patient identification. &nbsp;</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Product Identification</strong></h2></p>
-<ul style="margin-left: 0in;">
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Optical Product Identification<sup>2</sup>
-        <ul style="font-family: initial; font-size: initial;">
-            <li style="font-family: Calibri, sans-serif; font-size: 15px;">The simplest option is 1D barcodes, which are found ubiquitously on medication products. &nbsp;These barcodes are limited on the amount of content they can hold, and usually only have the NDC code embedded.</li>
-            <li style="font-family: Calibri, sans-serif; font-size: 15px;">2D barcodes can store a lot more information. There are standards for the inclusion of expiration dates and lot numbers (GS1-128). &nbsp;There are currently no requirements from a FDA labeling perspective to include a 2D barcode. Manufacturers have adopted some areas using 2D barcodes consistently in areas like vaccines, but it is certainly not a majority.</li>
+
+<main id="main-content">
+
+    <article>
+        <h1>Barcode Medication Administration: Old News or Work in Progress?</h1>
+
+        <div class="article-meta">
+            <p><strong>Author:</strong> Barry McClain, MS PharmD</p>
+            <p><strong>Date:</strong> 11/19/2022</p>
+            <p><strong>Publication:</strong> <a href="https://www.pharmacyinformatics.net">pharmacyinformatics.net</a></p>
+            <p><strong>Abstract:</strong> This article details the current state of barcode medication administration (BCMA) and argues that the healthcare industry still has a long way to go in this journey. It explores the "True North" of medication safety: Every patient, every medication, every time.</p>
+        </div>
+
+        <h2>Introduction and BCMA Proposal</h2>
+        <p>It is common to have big goals in healthcare. Noble goals. It is advertised every day. A great example is curing cancer. Eradicate cancer. For the world of pharmacy informatics, here is the true north for BCMA: Every patient, every medication, every time (Figure 1). And before jumping into exceptions and more complicated scenarios, just like cancer, there is more than just curing, as there is prevention, detection, treatment, management etc. And there is certainly not just one intervention as well.</p>
+
+        <figure>
+            <img src="publicationimages/barcode-medication-administration-old-news-or-work-in-progress-figure-1.png" alt="Icon representing the BCMA campaign: Every patient, Every medication, Every time" width="187" height="153" loading="lazy"/>
+            <figcaption>Figure 1: BCMA campaign</figcaption>
+        </figure>
+
+        <p>For BCMA, the job is not done until technology is fully optimized to:</p>
+        <ol>
+            <li>Enhance medication safety. That means the five rights to medication administration. Right patient, right drug, right time, right dose, and right route, as well as other decision support opportunities.<sup>1</sup></li>
+            <li>Improve workflow efficiency. Not make it harder.</li>
+            <li>Capture all necessary documentation. That includes lot numbers, expiration dates, and other important patient/medication information.</li>
+        </ol>
+        <p>For every patient, every medication, every time.</p>
+        <p>That is the proposed barcode medication administration campaign and challenge to healthcare. The rest of the article will provide some perspective on how to get to that ideal state.</p>
+
+        <h2>Scope</h2>
+        <p>One might say, “how could we ever do BCMA in all situations, especially ones where seconds matter?” The better question is how can we optimize technology to transiently, or even ambiently make it a reality? That ultimately means safe medication administration is going to take more tools than just barcode scanning alone, aligning the right tool for the right job, and working smarter and not harder.</p>
+        <p>But before getting too far, here are some technology fundamentals to cover, including three very basic elements to BCMA, or more broadly, machine-readable medication administration.</p>
+        <ol>
+            <li>The product itself, with a machine-readable identifier on it.</li>
+            <li>Hardware that identifies said identifier</li>
+            <li>Software that processes that information.</li>
+        </ol>
+
+        <p>This article is going to focus on two types of product (patient) identification:</p>
+        <ol>
+            <li>Optical product identification, which includes BCMA</li>
+            <li>Radio-frequency identification (RFID)</li>
+        </ol>
+        <p>Outside the scope of the article is anything that deals with drug analysis that is seen in drug manufacturing or medication preparation (e.g. gravimetric measurements, Raman spectroscopy, etc.), or any types of biometrics for patient identification.</p>
+
+        <h2>Product Identification</h2>
+
+        <h3>Optical Product Identification<sup>2</sup></h3>
+        <ul>
+            <li>The simplest option is 1D barcodes, which are found ubiquitously on medication products. These barcodes are limited on the amount of content they can hold, and usually only have the NDC code embedded.</li>
+            <li>2D barcodes can store a lot more information. There are standards for the inclusion of expiration dates and lot numbers (GS1-128). There are currently no requirements from a FDA labeling perspective to include a 2D barcode. Manufacturers have adopted some areas using 2D barcodes consistently in areas like vaccines, but it is certainly not a majority.</li>
         </ul>
-    </li>
-</ul>
-<ul>
-    <li style="margin-top: 0in; margin-right: 0in; margin-bottom: 8pt; line-height: 107%; font-size: 15px; font-family: Calibri, sans-serif;">The rest of the list contains more complicated optical recognition that uses cameras to detect characters, words, patterns, or even studying pictures completely. Using artificial intelligence to recognize images more like how a human eye and brain processes information. &nbsp;This technology is always advancing in other industries and have a lot of practicality in healthcare.<ul>
-        <li style="font-family: Calibri, sans-serif;">Direct part marks (DPM)</li>
-        <li style="font-family: Calibri, sans-serif;">Optical character recognition (OCR)</li>
-        <li style="font-family: Calibri, sans-serif;">Optical character verification (OCV)</li>
-        <li style="font-family: Calibri, sans-serif;">Other unique patterns/image recognition/machine learning</li>
-        <li style="font-family: Calibri, sans-serif;">3D</li>
-        <li style="font-family: Calibri, sans-serif;">Etc.</li>
-    </ul>
-    </li>
-</ul>
-<ul style="margin-left: 0in;">
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">RFID Product Identification<sup>3</sup>
-        <ul style="font-family: initial; font-size: initial;">
-            <li style="font-family: Calibri, sans-serif; font-size: 15px;">Passive RFID, where a RFID tag is interrogated and can relay information back to the hardware about the identification embedded in the tag</li>
-            <li style="font-family: Calibri, sans-serif; font-size: 15px;">Active RFID, which is a tag that is emitting the information directly from the tag and has some type of battery source to produce communication</li>
+
+        <p>The rest of the list contains more complicated optical recognition that uses cameras to detect characters, words, patterns, or even studying pictures completely. Using artificial intelligence to recognize images more like how a human eye and brain processes information. This technology is always advancing in other industries and have a lot of practicality in healthcare.</p>
+        <ul>
+            <li>Direct part marks (DPM)</li>
+            <li>Optical character recognition (OCR)</li>
+            <li>Optical character verification (OCV)</li>
+            <li>Other unique patterns/image recognition/machine learning</li>
+            <li>3D</li>
         </ul>
-    </li>
-</ul>
-<ul>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">And there are other types of RFID like:<ul style="font-family: initial; font-size: initial;">
-        <li style="font-family: Calibri, sans-serif; font-size: 15px;">Near Field Communication (NFC)</li>
-        <li style="font-family: Calibri, sans-serif; font-size: 15px;">Going all the way up to Bluetooth, WiFi, GPS tracking. The more complicated technology and higher frequency, usually the more expensive.</li>
-    </ul>
-    </li>
-</ul>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Advantages of RFID are very noticeable compared to typical optical recognition.<sup>4&nbsp;</sup>Hands down, RFID is a more advance way of recognizing medications and patients. &nbsp;It is important to understand the benefits:</p>
-<ul>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">RFID doesn&rsquo;t need line of sight. You don&rsquo;t have to point a laser at the product. &nbsp;Much easy to identify the medication/person.</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">An RFID tag are capable of read/write. &nbsp;Can update and/or change the information.</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">RFID tags are durable and reusable</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Data can be encrypted on them</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">RFID tags can store much more data compared to barcoding</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Read rate is greatly increased. Hardware can read multiple tags at a time.</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Tracking of items</li>
-</ul>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>The one major con is cost (and privacy depending on use case), which is unfortunate since the advantages are very clear.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Beyond Just Product Identification</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>There are other things machines can do using sophisticated cameras and software. &nbsp;This is an opportunity for healthcare and vendors to look at what other industries are doing and continue to push for these advances. Be clever with engineering!</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Here are some examples of out of the box thinking about how we can look beyond just product identification using this technology. &nbsp;</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>inspecting the integrity of a drug (figure 2), or the amount we are drawing up by gauging (figure 3).</p>
-<div style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>
-    <p><br></p>
-    <figure>
-    <img src="publicationimages/barcode-medication-administration-old-news-or-work-in-progress-figure-2.jpg" alt="Figure 2: Inspection Example" height="112" width="125"/>
-    <figcaption style="font-family: Calibri, sans-serif; font-size: 15px;">Figure 2: Product Inspection</figcaption>
-    </figure>
-</div>
-<div style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>
-    <p><br></p>
-   <figure>
-    <img src="publicationimages/barcode-medication-administration-old-news-or-work-in-progress-figure-3.png" alt="Figure 3: Gauging Example" height="119" width="125"/>
-    <figcaption style="font-family: Calibri, sans-serif; font-size: 15px;">Figure 3: Product Gauging</figcaption>
-    </figure>
-</div>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Hospital Leapfrog BCMA Survey</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Now going into the data, the Leapfrog Hospital Survey: Barcode Code Medication Administration, 2018 Report<sup>5</sup> provides a snapshot of the state of BCMA in the hospital setting. &nbsp; Leapfrog has standards for the surveys that they do, and for BCMA, there are four criteria hospitals need to meet.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>The first item is having BCMA implemented in inpatient units. Leapfrog requires medical units, surgical units, labor and delivery, and intensive care units all use BCMA.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>The next part is ensuring where barcoding is deployed, at least 95% of both patient and medications are scanned.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Leapfrog also has some other best practices. &nbsp;One of these items is ensuring that all seven decision support elements that they have identified are included into the technology. &nbsp;That includes vital signs, allergies, second nurse checking when needed, wrong time, wrong dose, wrong patient, and wrong medication. &nbsp;&nbsp;</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>And then they have five other best practices or processes to help prevent workarounds and govern the use of BCMA:</p>
-<ul>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">A formal committee to oversee BCMA use</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Backup systems for hardware failures</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">A help desk to respond to BCMA issues in real-time</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Conducting real-time observations of staff using the BCMA system</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Engaging with nursing leadership on BCMA usage and reports</li>
-</ul>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>That is the Leapfrog hospital BCMA standard.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>The results are not optimal when looking at the details. &nbsp;One area where hospitals are falling short is the fact that nearly 42% are failing to scan both the patient and medication for at least 95% of bedside medication administrations. &nbsp;That is pretty concerning in all due respect. &nbsp;Another area where there is a deficiency is the adoption of the more advanced clinical decision support elements (figure 4). Clearly there is a lot more work to do for hospitals across the country.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>&nbsp;</p>
-<figure>
-<img src="publicationimages/barcode-medication-administration-old-news-or-work-in-progress-figure-4.png" alt="Figure 4: Missing Decision-Support Elements Reported in the Leapfrog BCMA survey" height="210" width="196"/>
-<figcaption style="font-family: Calibri, sans-serif; font-size: 15px;">Figure 4: Missing Decision-Support Elements Reported in the Leapfrog BCMA survey</figcaption>
-</figure>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Current Leapfrog Thresholds</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>When thinking about Leapfrog, one should think about pushing the boundaries. &nbsp;Based on the current standards, there is certainly room for improvement. &nbsp;The Leapfrog survey does a great job pushing innovation in a &ldquo;vertical&rdquo; direction with the adoption and stretch goals of using decision support and maximizing the software&rsquo;s capability of identifying things other than just the wrong drug. &nbsp; The threshold of a minimum 95% capture of both patient and medication gives the survey standards extra height too. Where the survey needs a lot more work comes down to the &ldquo;horizontal&rdquo; jump. &nbsp; Having a standard that is exclusively looking at inpatient units is extremely bare minimum. That is not much of a stretch goal and there really needs to be a push towards including more (all) areas that administer medications. &nbsp;Thus, increasing the length of the jump.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>The point here questions why these other areas are commonly missing from BCMA metrics, as these are places that are very prominently giving medications.</p>
-<ul>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Emergency room</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Procedures spaces</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Imaging</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Anesthesia</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Infusion areas</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Etc.</li>
-</ul>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>However, there is more to medication administration than hospitals. Leapfrog only focuses on hospitals., although they do have measures on ambulatory surgery centers, but those have no mention of BCMA at all. &nbsp;But even going beyond what Leapfrog is measuring, it is very uncommon to see metrics or work to implement BCMA around ambulatory areas published.</p>
-<ul>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Outpatient clinics</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Urgent care</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Immunizations</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Dialysis</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Etc.</li>
-</ul>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>What number of safety issues are not being prevented and/or caught without any BCMA in these areas?</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>BCMA in the Ambulatory Clinics</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>A great example of the use of BCMA in the ambulatory clinics is the presentation &ldquo;Implementing Bar Code Medication Administration in the Ambulatory Realms&rdquo;, which was presented in 2021 at the Summer Institute in Nursing Informatics.<sup>6</sup> One of the motivations of this implementation was, &ldquo;Following a patient harm event, Vanderbilt University Medical Center (VUMC) vowed to implement BCMA in all ambulatory and procedural areas.&rdquo; &nbsp;That kind of declaration is pretty much what this article is campaigning for &ldquo;every patient, every medication, every time&rdquo;. &nbsp;Very commendable.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>What did VUMC learn? &nbsp;In a nutshell, they learned what most successful implementations look like. That it was worth doing.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Here are the qualitative results they presented:</p>
-<ul>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">BCMA provides protection to patients and nurses. &nbsp; The reassurance that it will help alert to an error. &nbsp;</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Saves time, particularly if a vaccine is scanned with a 2D barcode, it is going to pull in the necessary information. &nbsp;The one place 2D barcodes are commonplace. &nbsp;</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Metrics help provide visibility of what is going on and where improvements can be made. &nbsp;</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Improved finances. &nbsp;Helped with 340b NDC capture, as well as billing and auditing.</li>
-</ul>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>What did they learn from a quantitative perspective (figure 5)?</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>&nbsp;</p>
-<figure>
-<img src="publicationimages/barcode-medication-administration-old-news-or-work-in-progress-figure-5.png" alt="Figure 5: VUMC measurements of their BCMA implementation in the ambulatory clinics" height="232" width="418"/>
-<figcaption style="font-family: Calibri, sans-serif; font-size: 15px;">Figure 5: VUMC measurements of their BCMA implementation in the ambulatory clinics</figcaption>
-</figure>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>The presenters pointed out five definitive errors all related to wrong patient being scanned. &nbsp;Note, in this particular implementation of BCMA in the clinics, they are printing and scanning patient wristbands in addition to medications. A wrong patient warning is certainly a definitive problem to detect. &nbsp; It would appear the expired medication warning is also a definitive error as well. Just knowing that most drugs that have 2D barcodes in a clinic setting are likely vaccines, it would seem very significant to catch that type of error too. &nbsp;There are certainly opportunities likely with configuring the electronic health record (EHR) (e.g. medication administration record (MAR) off schedule warning) and training/experience with BCMA to reduce unnecessary warnings. &nbsp;But overall, these results support if a BCMA program is implemented the right way, it is viewed positive and can be successful.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>At the same time, someone could look at these data and easily point out a lot of energy is going into a low yield of protection. The counterpoint is very simple. &nbsp;Integrated EHRs are extremely expensive, with health systems sometimes reporting spending well over 100 million dollars in costs.<sup>7</sup> That is getting to a cost of a commercial aircraft, which is a good comparator from a safety standpoint. &nbsp;Just imagine an airliner where half the seats don&rsquo;t have seat belts! &nbsp;That would seem crazy from an aviation safety perspective. &nbsp; A low yield of error prevention is not a good excuse for prohibiting BCMA assuming it is implemented correctly (optimized to increase safety, efficiency, and documentation). &nbsp;The benefit is tremendous when any significant issue can be prevented.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>How to Get There</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>So how can &ldquo;every patient, every medication, every time&rdquo; feasibly happen? &nbsp;Being a leader in barcode medication administration requires change. &nbsp;Here are some considerations:</p>
-<ul>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Organizations really need to look at areas that give medications, but not using or performing BCMA adequately, and start investigating gaps and opportunities to start incorporating it into workflow.</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Organizations need to look at vendors and select/push them to provide the highest usability and effectiveness of BCMA (or better technologies). When vendors are told it is currently utterly impossible or does not make sense to barcode scan in a particular scenario, that should not translate into giving up making medication administration safer.</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Advocating for FDA /manufacturer labeling requirements to adopt minimum standards that include 2D formats on all medications (i.e. have machine readable lot numbers and expiration dates in addition to the medication identifier).</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Overall, being relentless in the improvement of workflows and systems to further reduce the possibility of misadventures. That should be part of every health system&rsquo;s safety culture.</li>
-</ul>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>Conclusion</strong></h2></p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Despite all the advances in healthcare now and into the future, if the simplest part of a process cannot be done safely, then we can only expect to be disappointed. &nbsp; The bigger the advances, the more disappointment when something so simple does not happen appropriately. Thus,</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>Every patient, every medication, every time.</p>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'><h2><strong>References</strong></h2></p>
-<ol style="list-style-type: undefined;">
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;">Grissinger M. The Five Rights: A Destination Without a Map. P T. 2010 Oct;35(10):542</li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;"><a href="https://www.cognex.com/what-is/machine-vision/applications/identification">https://www.cognex.com/what-is/machine-vision/applications/identification</a></li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;"><a href="https://www.ruddersoft.com/blog/rfid-tags-for-your-application-criteria-and-step-by-step-guide/13">Choosing Best RFID Tags For Your Application: Criteria And Step By Step Guide. (ruddersoft.com)</a></li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;"><a href="https://www.ruddersoft.com/blog/barcode-vs-rfid-differences-advantages/4">Barcode vs RFID | RFID vs Barcode | Differences (ruddersoft.com)</a></li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;"><a href="https://www.leapfroggroup.org/sites/default/files/Files/Leapfrog-Castlight_BCMA_Final.pdf">https://www.leapfroggroup.org/sites/default/files/Files/Leapfrog-Castlight_BCMA_Final.pdf</a></li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;"><a href="https://archive.hshsl.umaryland.edu/bitstream/handle/10713/16980/SINI2121_HolderG.pdf?sequence=1&isAllowed=y">https://archive.hshsl.umaryland.edu/bitstream/handle/10713/16980/SINI2121_HolderG.pdf?sequence=1&amp;isAllowed=y</a></li>
-    <li style="font-family: Calibri, sans-serif; font-size: 15px;"><a href="https://www.beckershospitalreview.com/ehrs/4-ehr-contracts-installs-costing-over-100-million-in-2020.html">https://www.beckershospitalreview.com/ehrs/4-ehr-contracts-installs-costing-over-100-million-in-2020.html</a></li>
-</ol>
-<p style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;margin-left:0in;line-height:107%;font-size:15px;font-family:"Calibri",sans-serif;'>&nbsp;</p>
+
+        <h3>RFID Product Identification<sup>3</sup></h3>
+        <ul>
+            <li><strong>Passive RFID:</strong> A RFID tag is interrogated and can relay information back to the hardware about the identification embedded in the tag.</li>
+            <li><strong>Active RFID:</strong> A tag that is emitting the information directly from the tag and has some type of battery source to produce communication.</li>
+        </ul>
+
+        <p>And there are other types of RFID like:</p>
+        <ul>
+            <li>Near Field Communication (NFC)</li>
+            <li>Going all the way up to Bluetooth, Wi-Fi, GPS tracking. The more complicated technology and higher frequency, usually the more expensive.</li>
+        </ul>
+
+        <p>Advantages of RFID are very noticeable compared to typical optical recognition.<sup>4</sup> Hands down, RFID is a more advance way of recognizing medications and patients. It is important to understand the benefits:</p>
+        <ul>
+            <li>RFID does not need line of sight. You don’t have to point a laser at the product. Much easy to identify the medication/person.</li>
+            <li>An RFID tag are capable of read/write. Can update and/or change the information.</li>
+            <li>RFID tags are durable and reusable.</li>
+            <li>Data can be encrypted on them.</li>
+            <li>RFID tags can store much more data compared to barcoding.</li>
+            <li>Read rate is greatly increased. Hardware can read multiple tags at a time.</li>
+            <li>Tracking of items.</li>
+        </ul>
+        <p>The one major con is cost (and privacy depending on use case), which is unfortunate since the advantages are very clear.</p>
+
+        <h2>Beyond Just Product Identification</h2>
+        <p>There are other things machines can do using sophisticated cameras and software. This is an opportunity for healthcare and vendors to look at what other industries are doing and continue to push for these advances. Be clever with engineering!</p>
+        <p>Here are some examples of out of the box thinking about how we can look beyond just product identification using this technology: inspecting the integrity of a drug (Figure 2), or the amount we are drawing up by gauging (Figure 3).</p>
+
+        <figure>
+            <img src="publicationimages/barcode-medication-administration-old-news-or-work-in-progress-figure-2.jpg" alt="Example of automated product inspection technology" width="125" height="112" loading="lazy"/>
+            <figcaption>Figure 2: Product Inspection</figcaption>
+        </figure>
+
+        <figure>
+            <img src="publicationimages/barcode-medication-administration-old-news-or-work-in-progress-figure-3.png" alt="Example of automated product gauging technology" width="125" height="119" loading="lazy"/>
+            <figcaption>Figure 3: Product Gauging</figcaption>
+        </figure>
+
+        <h2>Hospital Leapfrog BCMA Survey</h2>
+        <p>Now going into the data, the Leapfrog Hospital Survey: Barcode Code Medication Administration, 2018 Report<sup>5</sup> provides a snapshot of the state of BCMA in the hospital setting. Leapfrog has standards for the surveys that they do, and for BCMA, there are four criteria hospitals need to meet.</p>
+        <p>The first item is having BCMA implemented in inpatient units. Leapfrog requires medical units, surgical units, labor and delivery, and intensive care units all use BCMA.</p>
+        <p>The next part is ensuring where barcoding is deployed, at least 95% of both patient and medications are scanned.</p>
+        <p>Leapfrog also has some other best practices. One of these items is ensuring that all seven decision support elements that they have identified are included into the technology. That includes vital signs, allergies, second nurse checking when needed, wrong time, wrong dose, wrong patient, and wrong medication.</p>
+        <p>And then they have five other best practices or processes to help prevent workarounds and govern the use of BCMA:</p>
+        <ul>
+            <li>A formal committee to oversee BCMA use</li>
+            <li>Backup systems for hardware failures</li>
+            <li>A help desk to respond to BCMA issues in real-time</li>
+            <li>Conducting real-time observations of staff using the BCMA system</li>
+            <li>Engaging with nursing leadership on BCMA usage and reports</li>
+        </ul>
+        <p>That is the Leapfrog hospital BCMA standard.</p>
+        <p>The results are not optimal when looking at the details. One area where hospitals are falling short is the fact that nearly 42% are failing to scan both the patient and medication for at least 95% of bedside medication administrations. That is pretty concerning in all due respect. Another area where there is a deficiency is the adoption of the more advanced clinical decision support elements (Figure 4). Clearly there is a lot more work to do for hospitals across the country.</p>
+
+        <figure>
+            <img src="publicationimages/barcode-medication-administration-old-news-or-work-in-progress-figure-4.png" alt="Chart showing missing decision-support elements in Leapfrog BCMA survey" width="196" height="210" loading="lazy"/>
+            <figcaption>Figure 4: Missing Decision-Support Elements Reported in the Leapfrog BCMA survey</figcaption>
+        </figure>
+
+        <h2>Current Leapfrog Thresholds</h2>
+        <p>When thinking about Leapfrog, one should think about pushing the boundaries. Based on the current standards, there is certainly room for improvement. The Leapfrog survey does a great job pushing innovation in a “vertical” direction with the adoption and stretch goals of using decision support and maximizing the software’s capability of identifying things other than just the wrong drug. The threshold of a minimum 95% capture of both patient and medication gives the survey standards extra height too.</p>
+        <p>Where the survey needs a lot more work comes down to the “horizontal” jump. Having a standard that is exclusively looking at inpatient units is extremely bare minimum. That is not much of a stretch goal and there really needs to be a push towards including more (all) areas that administer medications. Thus, increasing the length of the jump.</p>
+        <p>The point here questions why these other areas are commonly missing from BCMA metrics, as these are places that are very prominently giving medications:</p>
+        <ul>
+            <li>Emergency room</li>
+            <li>Procedures spaces</li>
+            <li>Imaging</li>
+            <li>Anesthesia</li>
+            <li>Infusion areas</li>
+        </ul>
+        <p>However, there is more to medication administration than hospitals. Leapfrog only focuses on hospitals, although they do have measures on ambulatory surgery centers, but those have no mention of BCMA at all. But even going beyond what Leapfrog is measuring, it is very uncommon to see metrics or work to implement BCMA around ambulatory areas published.</p>
+        <ul>
+            <li>Outpatient clinics</li>
+            <li>Urgent care</li>
+            <li>Immunizations</li>
+            <li>Dialysis</li>
+        </ul>
+        <p>What number of safety issues are not being prevented and/or caught without any BCMA in these areas?</p>
+
+        <h2>BCMA in the Ambulatory Clinics</h2>
+        <p>A great example of the use of BCMA in the ambulatory clinics is the presentation “Implementing Bar Code Medication Administration in the Ambulatory Realms”, which was presented in 2021 at the Summer Institute in Nursing Informatics.<sup>6</sup> One of the motivations of this implementation was, “Following a patient harm event, Vanderbilt University Medical Center (VUMC) vowed to implement BCMA in all ambulatory and procedural areas.” That kind of declaration is pretty much what this article is campaigning for “every patient, every medication, every time”. Very commendable.</p>
+        <p>What did VUMC learn? In a nutshell, they learned what most successful implementations look like. That it was worth doing.</p>
+        <p>Here are the qualitative results they presented:</p>
+        <ul>
+            <li>BCMA provides protection to patients and nurses. The reassurance that it will help alert to an error.</li>
+            <li>Saves time, particularly if a vaccine is scanned with a 2D barcode, it is going to pull in the necessary information. The one place 2D barcodes are commonplace.</li>
+            <li>Metrics help provide visibility of what is going on and where improvements can be made.</li>
+            <li>Improved finances. Helped with 340b NDC capture, as well as billing and auditing.</li>
+        </ul>
+        <p>What did they learn from a quantitative perspective (Figure 5)?</p>
+
+        <figure>
+            <img src="publicationimages/barcode-medication-administration-old-news-or-work-in-progress-figure-5.png" alt="Graph showing VUMC measurements of their BCMA implementation" width="418" height="232" loading="lazy"/>
+            <figcaption>Figure 5: VUMC measurements of their BCMA implementation in the ambulatory clinics</figcaption>
+        </figure>
+
+        <p>The presenters pointed out five definitive errors all related to wrong patient being scanned. Note, in this particular implementation of BCMA in the clinics, they are printing and scanning patient wristbands in addition to medications. A wrong patient warning is certainly a definitive problem to detect. It would appear the expired medication warning is also a definitive error as well. Just knowing that most drugs that have 2D barcodes in a clinic setting are likely vaccines, it would seem very significant to catch that type of error too. There are certainly opportunities likely with configuring the electronic health record (EHR) (e.g. medication administration record (MAR) off schedule warning) and training/experience with BCMA to reduce unnecessary warnings. But overall, these results support if a BCMA program is implemented the right way, it is viewed positive and can be successful.</p>
+        <p>At the same time, someone could look at these data and easily point out a lot of energy is going into a low yield of protection. The counterpoint is very simple. Integrated EHRs are extremely expensive, with health systems sometimes reporting spending well over 100 million dollars in costs.<sup>7</sup> That is getting to a cost of a commercial aircraft, which is a good comparator from a safety standpoint. Just imagine an airliner where half the seats don’t have seat belts! That would seem crazy from an aviation safety perspective. A low yield of error prevention is not a good excuse for prohibiting BCMA assuming it is implemented correctly (optimized to increase safety, efficiency, and documentation). The benefit is tremendous when any significant issue can be prevented.</p>
+
+        <h2>How to Get There</h2>
+        <p>So how can “every patient, every medication, every time” feasibly happen? Being a leader in barcode medication administration requires change. Here are some considerations:</p>
+        <ul>
+            <li>Organizations really need to look at areas that give medications, but not using or performing BCMA adequately, and start investigating gaps and opportunities to start incorporating it into workflow.</li>
+            <li>Organizations need to look at vendors and select/push them to provide the highest usability and effectiveness of BCMA (or better technologies). When vendors are told it is currently utterly impossible or does not make sense to barcode scan in a particular scenario, that should not translate into giving up making medication administration safer.</li>
+            <li>Advocating for FDA /manufacturer labeling requirements to adopt minimum standards that include 2D formats on all medications (i.e. have machine-readable lot numbers and expiration dates in addition to the medication identifier).</li>
+            <li>Overall, being relentless in the improvement of workflows and systems to further reduce the possibility of misadventures. That should be part of every health system’s safety culture.</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>Despite all the advances in healthcare now and into the future, if the simplest part of a process cannot be done safely, then we can only expect to be disappointed. The bigger the advances, the more disappointment when something so simple does not happen appropriately. Thus,</p>
+        <p><strong>Every patient, every medication, every time.</strong></p>
+
+        <div style="margin-top: 40px; border-top: 1px solid #ccc; padding-top: 20px;">
+            <h2>References</h2>
+            <ol class="references">
+                <li>Grissinger M. The Five Rights: A Destination Without a Map. P T. 2010 Oct;35(10):542</li>
+                <li><a href="https://www.cognex.com/what-is/machine-vision/applications/identification" target="_blank" rel="noopener noreferrer">https://www.cognex.com/what-is/machine-vision/applications/identification</a></li>
+                <li><a href="https://www.ruddersoft.com/blog/rfid-tags-for-your-application-criteria-and-step-by-step-guide/13" target="_blank" rel="noopener noreferrer">Choosing Best RFID Tags For Your Application: Criteria And Step-By-Step Guide. (ruddersoft.com)</a></li>
+                <li><a href="https://www.ruddersoft.com/blog/barcode-vs-rfid-differences-advantages/4" target="_blank" rel="noopener noreferrer">Barcode vs RFID | RFID vs Barcode | Differences (ruddersoft.com)</a></li>
+                <li><a href="https://www.leapfroggroup.org/sites/default/files/Files/Leapfrog-Castlight_BCMA_Final.pdf" target="_blank" rel="noopener noreferrer">Leapfrog Hospital Survey: Barcode Code Medication Administration, 2018 Report</a></li>
+                <li><a href="https://archive.hshsl.umaryland.edu/bitstream/handle/10713/16980/SINI2121_HolderG.pdf?sequence=1&isAllowed=y" target="_blank" rel="noopener noreferrer">Implementing Bar Code Medication Administration in the Ambulatory Realms (PDF)</a></li>
+                <li><a href="https://www.beckershospitalreview.com/ehrs/4-ehr-contracts-installs-costing-over-100-million-in-2020.html" target="_blank" rel="noopener noreferrer">4 EHR contracts, installs costing over $100 million in 2020</a></li>
+            </ol>
+        </div>
+    </article>
+</main>
+
 </body>
 </html>

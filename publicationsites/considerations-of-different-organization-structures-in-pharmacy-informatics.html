@@ -1,96 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Pharmacy Informatics Roles and Organization Chart Considerations Within Health System Settings | Published 01/12/2025 by Barry McClain</title>
-    <meta name="description" content="This resource provides expert opinion in the pros and cons of different organization structures on the pharmacy informatics team in a health system.">
-    <meta name="keywords" content="Organization Structure, Org Chart, Pharmacy Informatics">
-    <meta name="author" content="Barry McClain">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Pharmacy Informatics Organizational Structure & Roles | Leadership Guide</title>
+
+    <meta name="description" content="A guide to structuring pharmacy informatics teams. Explore the pros and cons of Divided vs. Hybrid models, key roles, and reporting hierarchies in health systems.">
+
+    <meta name="keywords" content="Pharmacy Informatics, Organizational Structure, Org Chart, Health System Pharmacy, Informatics Roles, Shadow IT, Pharmacy Leadership, Matrix Reporting">
+
+    <meta name="author" content="Barry McClain">
+
+    <link rel="canonical" href="https://www.pharmacyinformatics.net/publicationsites/considerations-of-different-organization-structures-in-pharmacy-informatics">
+
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="icon" href="../images/favicon.png" type="image/ico">
+
     <style>
-        .iframe-container{
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            height: 0;
+        /* Clean, consolidated CSS for better performance */
+        body {
+            font-family: "Calibri", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
         }
-        .iframe-container iframe{
-            position: absolute;
-            top:0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+
+        /* SEO: Semantic Container */
+        #main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Heading Typography */
+        h1 { font-size: 2.2em; margin-bottom: 0.5em; color: #2c3e50; line-height: 1.3; }
+        h2 { font-size: 1.5em; margin-top: 1.5em; border-bottom: 2px solid #eee; padding-bottom: 10px; color: #2c3e50; }
+        h3 { font-size: 1.2em; margin-top: 1.2em; color: #34495e; font-weight: bold; }
+
+        /* Text readability */
+        p { margin-bottom: 1em; font-size: 16px; }
+        ul, ol { margin-bottom: 1em; padding-left: 30px; }
+        li { margin-bottom: 0.5em; font-size: 16px; }
+
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        /* Resource Links Box */
+        .resource-links {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #0056b3;
+            border-radius: 4px;
+            margin-top: 30px;
+        }
+        .resource-links a {
+            display: inline-block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #0056b3;
+            text-decoration: none;
+        }
+        .resource-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Metadata Info */
+        .meta-info {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 20px;
+            font-style: italic;
         }
     </style>
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
 
-    gtag('config', 'G-CRTFNMJ4FV');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-CRTFNMJ4FV');
+    </script>
+</head>
+
 <body>
 
-<!-- Div Wrapper Element Starts Here -->
 <div id="Wrapper">
-    <!-- Header Element Starts Here -->
     <header id="header">
-        <!-- Hgroup Element Starts Here -->
         <hgroup id="title">
-            <div >
-                <a href="../index.html" id="logo" alt="Pharmacy Informatics"></a>
+            <div>
+                <a href="../index.html" id="logo"><img src="../images/logo.png" alt="Pharmacy Informatics Logo" style="display:none;"></a>
             </div>
             <h2>For Safer and Easier Medication Use</h2>
         </hgroup>
-        <!-- Hgroup Element Ends Here -->
-        <!-- Nav Element Starts Here -->
-        <nav class="navigation"> <a href="../index.html">Pharmacy Informatics Home</a> <a href="../publications.html">Publications</a>  <a href="../about.html">About</a>  </nav>
 
+        <nav class="navigation">
+            <a href="../index.html">Pharmacy Informatics Home</a>
+            <a href="../publications.html">Publications</a>
+            <a href="../about.html">About</a>
+        </nav>
     </header>
-    <!-- Header Element Ends Here -->
-    <!-- Div wrapper2 starts here -->
+
     <div id="Wrapper2">
+        <main id="main-content">
+            <article>
 
-        <!-- Article Element Starts Here -->
-        <article id="contents">
+                <h1>Pharmacy Informatics Roles & Organization Chart Considerations</h1>
 
+                <div class="meta-info">
+                    Published 01/12/2025 by Barry McClain, PharmD MS
+                </div>
 
-            <h1>Slides and Article</h1>
+                <section class="content-section">
+                    <h2>Abstract</h2>
+                    <p>
+                        Structuring a pharmacy informatics team involves navigating the complex "grey lines" between operational pharmacy and enterprise IT. This resource explores the pros and cons of various organizational models, recognizing that there is no "one-size-fits-all" solution for health systems.
+                    </p>
+                    <p>
+                        <strong>Key Organizational Concepts:</strong>
+                    </p>
+                    <ul>
+                        <li><strong>Role Definitions:</strong> Defining the distinct responsibilities of Solution Architects, Informatics Pharmacists, and Domain Analysts (Pharmacy vs. IT focus).</li>
+                        <li><strong>Structural Models:</strong>
+                            <ul>
+                                <li><em>Divided Model:</em> Separate teams with clear lines but potential misalignment.</li>
+                                <li><em>Hybrid/Matrix Model:</em> Intermingled resources that cover more ground but risk "tug-of-war" or conflicting agendas.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Reporting Hierarchies:</strong> Weighing the control of Pharmacy-dominant structures (risk of "shadow IT") against the process alignment of IT-dominant structures (risk of bureaucratic bottlenecks).</li>
+                        <li><strong>Success Factors:</strong> Ultimately, the guide concludes that successful teams depend less on the chart itself and more on culture, communication, and co-investment.</li>
+                    </ul>
+                </section>
 
+                <section class="resource-links">
+                    <h2>Downloads & Resources</h2>
 
-            <ul style="list-style-type: circle; line-height: 30px">
+                    <div>
+                        <strong>Full-Text Article:</strong><br>
+                        <a href="pharmacy-informatics-roles-and-organization-chart-considerations-within-health-system-settings-webpage.html">Read Full Article (Webpage)</a>
+                    </div>
 
-                <li><h2>Pharmacy Informatics Roles and Organization Chart Considerations Within Health System Settings | Published 01/12/2025 by Barry McClain</h2>
-                    <p>Description: This resource provides expert opinion in the pros and cons of different organization structures on the pharmacy informatics team in a health system.</p>
-                </li>
-                <br>
-                <li> <h2>Article Link</h2>
-                    <a href="../pharmacy-informatics-roles-and-organization-chart-considerations-within-health-system-settings-webpage.html">>Pharmacy Informatics Roles and Organization Chart Considerations Within Health System Settings Full-Text Article (Webpage)</a>
-                </li>
-                <br>
-                <li> <h2>Slide Deck Link</h2>
-                    <a href="../files/Pharmacy-Informatics-Roles-and-Organization-Chart-Considerations-Within-Health-System-Settings.pdf">Pharmacy Informatics Roles and Organization Chart Considerations Within Health System Settings Slide Deck (PDF)</a>
-                </li>
-            </ul>
+                    <div>
+                        <strong>Slide Deck:</strong><br>
+                        <a href="../files/Pharmacy-Informatics-Roles-and-Organization-Chart-Considerations-Within-Health-System-Settings.pdf" download>Download Slide Deck (PDF)</a>
+                    </div>
+                </section>
 
-
-        </article>
-        <!-- Article Element Ends Here -->
+            </article>
+        </main>
     </div>
-    <!-- Div wrapper2 ends here -->
-    <!-- Footer Element Starts Here -->
-    <footer id="copyrights">
-        <p><small>&copy; 2026 </small></p>
-        <p><a href="../about.html">About Us</a>  - <a href="../contact.html">Contact Us</a></p>
 
+    <footer id="copyrights">
+        <p><small>&copy; 2026 Pharmacy Informatics</small></p>
+        <p><a href="../about.html">About Us</a> - <a href="../contact.html">Contact Us</a></p>
     </footer>
-    <!-- Footer Element Ends Here -->
 </div>
-<!-- Div Wrapper Element ends Here -->
+
 </body>
 </html>

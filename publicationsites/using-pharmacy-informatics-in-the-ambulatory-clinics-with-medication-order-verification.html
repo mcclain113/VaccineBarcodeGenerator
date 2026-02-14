@@ -1,105 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Leveraging Pharmacy Informatics to Keep Health System Patients in Health System Pharmacy Ambulatory Clinic Edition | Published 11/06/2022 by Barry McClain</title>
-<meta charset="utf-8">
-  <meta name="description" content="Pharmacy Informatics Information, Education, Tools, and Solutions">
-  <meta name="keywords" content="Prescription Capture, Specialty Pharmacy, Medication Verification, Multistep Order Transmittal, MSOT; Medication Safety, pharmacy informatics">
-  <meta name="author" content="Barry McClain">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Optimizing Ambulatory Prescription Capture via Informatics | Pharmacy Informatics</title>
+
+  <meta name="description" content="Learn how to leverage pharmacy informatics and Multistep Order Transmittal (MSOT) to increase prescription capture, improve 340B revenue, and enhance patient safety in ambulatory clinics.">
+
+  <meta name="keywords" content="pharmacy informatics, prescription capture, MSOT, multistep order transmittal, ambulatory pharmacy, 340B revenue, medication verification, Epic EHR, Barry McClain">
+
+  <meta name="author" content="Barry McClain">
+
+  <link rel="canonical" href="https://www.pharmacyinformatics.net/publicationsites/using-pharmacy-informatics-in-the-ambulatory-clinics-with-medication-order-verification-webpage">
+
   <link rel="stylesheet" type="text/css" href="../css/style.css">
   <link rel="icon" href="../images/favicon.png" type="image/ico">
+
   <style>
-    .iframe-container{
+    /* Clean, consolidated CSS for better performance */
+    body {
+      font-family: "Calibri", sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+    }
+
+    /* SEO: Semantic Container */
+    #main-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Heading Typography */
+    h1 { font-size: 2.2em; margin-bottom: 0.5em; color: #2c3e50; }
+    h2 { font-size: 1.8em; margin-top: 1.5em; border-bottom: 2px solid #eee; padding-bottom: 10px; color: #2c3e50; }
+    h3 { font-size: 1.4em; margin-top: 1.2em; color: #34495e; }
+
+    /* Text readability */
+    p { margin-bottom: 1em; font-size: 16px; }
+    ul { margin-bottom: 1em; padding-left: 20px; }
+    li { margin-bottom: 0.5em; font-size: 16px; }
+
+    /* Video Container */
+    .iframe-container {
       position: relative;
       width: 100%;
       padding-bottom: 56.25%;
       height: 0;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    .iframe-container iframe{
+    .iframe-container iframe {
       position: absolute;
-      top:0;
+      top: 0;
       left: 0;
       width: 100%;
       height: 100%;
     }
-  </style>
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-CRTFNMJ4FV');
-</script>
+    /* Content Sections */
+    .content-section {
+      margin-bottom: 30px;
+    }
+
+    /* Resource Links Box */
+    .resource-links {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-left: 4px solid #0056b3;
+      border-radius: 4px;
+    }
+    .resource-links a {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-weight: 600;
+      color: #0056b3;
+      text-decoration: none;
+    }
+    .resource-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Metadata Info */
+    .meta-info {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CRTFNMJ4FV');
+  </script>
+</head>
+
 <body>
 
-<!-- Div Wrapper Element Starts Here -->
 <div id="Wrapper">
-  <!-- Header Element Starts Here -->
   <header id="header">
-    <!-- Hgroup Element Starts Here -->
     <hgroup id="title">
-      <div >
-        <a href="../index.html" id="logo" alt="Pharmacy Informatics"></a>
+      <div>
+        <a href="../index.html" id="logo"><img src="../images/logo.png" alt="Pharmacy Informatics Logo" style="display:none;"></a>
       </div>
       <h2>For Safer and Easier Medication Use</h2>
     </hgroup>
-    <!-- Hgroup Element Ends Here -->
-    <!-- Nav Element Starts Here -->
-    <nav class="navigation"> <a href="../index.html">Pharmacy Informatics Home</a> <a href="../publications.html">Publications</a>  <a href="../about.html">About</a>  </nav>
 
+    <nav class="navigation">
+      <a href="../index.html">Pharmacy Informatics Home</a>
+      <a href="../publications.html">Publications</a>
+      <a href="../about.html">About</a>
+    </nav>
   </header>
-  <!-- Header Element Ends Here -->
-  <!-- Div wrapper2 starts here -->
+
   <div id="Wrapper2">
+    <main id="main-content">
+      <article>
 
-    <!-- Article Element Starts Here -->
-    <article id="contents">
+        <h1>Optimizing Ambulatory Prescription Capture via Informatics</h1>
 
+        <div class="meta-info">
+          Published 11/06/2022 by Barry McClain, PharmD MS | Updated 11/12/2022
+        </div>
 
-      <h1>Video, Slides, and Article</h1>
+        <div class="iframe-container">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/_QNF2wRX3vo" title="Video: Leveraging Pharmacy Informatics for Prescription Capture" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
 
+        <section class="content-section">
+          <h2>Abstract</h2>
+          <p><strong>Topic:</strong> Leveraging Pharmacy Informatics to Keep Health System Patients in Health System Pharmacy: Ambulatory Clinic Edition</p>
+          <p>
+            This presentation and article explore a strategic informatics approach to solving the challenge of "prescription leakage" in ambulatory clinics. While health systems invest heavily in internal pharmacies, traditional methods like staff education and marketing flyers often struggle to compete with external pharmacy networks and PBMs.
+          </p>
+          <p>
+            The proposed solution is the implementation of a <strong>Medication Order Verification Queue</strong>, often referred to technically as Multistep Order Transmittal (MSOT). This workflow mimics inpatient safety checks by routing specific ambulatory prescriptions—such as high-cost specialty meds or complex therapies—to an internal pharmacy team <em>before</em> they leave the EHR.
+          </p>
+          <p><strong>Key Benefits Discussed:</strong></p>
+          <ul>
+            <li><strong>Prescription Capture:</strong> Secures revenue and 340B opportunities by keeping prescriptions within the health system.</li>
+            <li><strong>Enhanced Safety:</strong> Allows pharmacists to perform clinical checks (interactions, dosing) before the patient even leaves the clinic.</li>
+            <li><strong>Workflow Efficiency:</strong> Reduces administrative burden on clinic staff by centralizing benefits investigation and prior authorizations.</li>
+            <li><strong>Patient Experience:</strong> Ensures patients leave with their medications in hand or a clear plan, rather than navigating complex insurance issues alone at an external pharmacy.</li>
+          </ul>
+        </section>
 
-      <ul style="list-style-type: circle; line-height: 30px">
-      <div class="iframe-container">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/_QNF2wRX3vo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
+        <section class="content-section resource-links">
+          <h2>Downloads & Resources</h2>
 
-        <li><h2>Leveraging Pharmacy Informatics to Keep Health System Patients in Health System Pharmacy: Ambulatory Clinic Edition | Published 11/06/2022 by Barry McClain</h2>
-        <p>Description: This presentation has specific details for pharmacy leaders and informatics teams about prescription capture within the ambulatory clinic space using the medication order verification queue.  This set up is sometimes referred to in publication as "multistep order transmittal" (MSOT).
-        </p>
-          <p>Modification 11/12/2022: Supplemental article (PDF/Webpage) was added to the publication site.</p>
-        </li>
-        <li> <h2>Video Link</h2>
-          <a href="https://youtu.be/_QNF2wRX3vo">YouTube Link to Leveraging Pharmacy Informatics to Keep Health System Patients in Health System Pharmacy: Ambulatory Clinic Edition Video</a>
-        </li>
-        <li> <h2>Slide Deck Link</h2>
-          <a href="../files/using-pharmacy-informatics-in-the-ambulatory-clinics-with-medication-order-verification-slides.pdf" download>Leveraging Pharmacy Informatics to Keep Health System Patients in Health System Pharmacy: Ambulatory Clinic Edition Slide Deck (PDF)</a>
-        </li>
-        <li> <h2>Article Links</h2>
-          <a href="../files/using-pharmacy-informatics-in-the-ambulatory-clinics-with-medication-order-verification-article.pdf" download>Leveraging Pharmacy Informatics to Keep Health System Patients in Health System Pharmacy: Ambulatory Clinic Edition Full-Text Article (PDF)</a>
-          <br>
-          <br>
-          <a href="using-pharmacy-informatics-in-the-ambulatory-clinics-with-medication-order-verification-webpage.html">Leveraging Pharmacy Informatics to Keep Health System Patients in Health System Pharmacy: Ambulatory Clinic Edition Full-Text Article (Webpage)</a>
-        </li>
-    </ul>
+          <div>
+            <strong>Video:</strong><br>
+            <a href="https://youtu.be/_QNF2wRX3vo" target="_blank" rel="noopener noreferrer">Watch on YouTube: Ambulatory Clinic Prescription Capture</a>
+          </div>
 
+          <div>
+            <strong>Slide Deck:</strong><br>
+            <a href="../files/using-pharmacy-informatics-in-the-ambulatory-clinics-with-medication-order-verification-slides.pdf" download>Download Presentation Slides (PDF)</a>
+          </div>
 
-    </article>
-    <!-- Article Element Ends Here -->
+          <div>
+            <strong>Full-Text Article:</strong><br>
+            <a href="../files/using-pharmacy-informatics-in-the-ambulatory-clinics-with-medication-order-verification-article.pdf" download>Download Full-Text Article (PDF)</a>
+            <br>
+            <a href="using-pharmacy-informatics-in-the-ambulatory-clinics-with-medication-order-verification-webpage.html">Read Full-Text Article (Webpage)</a>
+          </div>
+        </section>
+
+      </article>
+    </main>
   </div>
-  <!-- Div wrapper2 ends here -->
-  <!-- Footer Element Starts Here -->
-  <footer id="copyrights">
-    <p><small>&copy; 2022 </small>
-    <p><a href="../about.html">About Us</a>  - <a href="../contact.html">Contact Us</a></p>
 
+  <footer id="copyrights">
+    <p><small>&copy; 2026 Pharmacy Informatics</small></p>
+    <p><a href="../about.html">About Us</a> - <a href="../contact.html">Contact Us</a></p>
   </footer>
-  <!-- Footer Element Ends Here -->
 </div>
-<!-- Div Wrapper Element ends Here -->
+
 </body>
 </html>
