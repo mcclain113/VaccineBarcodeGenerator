@@ -1,44 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="description" content="Microsoft Excel Essentials">
     <meta charset="utf-8">
-    <meta name="description" content="Pharmacy Informatics Information, Excel, Education, Tools, and Solutions. This resource provides a sample of various excel functions and use cases used for medication related analyses and beyond.">
-    <meta name="keywords" content="excel, pharmacy informatics">
-    <meta name="author" content="Barry McClain">
-    <title>Microsoft Excel Essentials</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Excel Essentials for Pharmacy Informatics & Data Analysis</title>
+
+    <meta name="description" content="Master Microsoft Excel for pharmacy informatics. Learn VLOOKUP, XLOOKUP, Text to Columns, and data cleaning techniques specifically for medication analysis.">
+
+    <meta name="keywords" content="excel, pharmacy informatics, vlookup, xlookup, data analysis, pharmacy automation, excel for healthcare">
+    <meta name="author" content="Barry McClain">
+
+    <link rel="canonical" href="https://www.pharmacyinformatics.net/pharmacy-informatics-excel-essentials" />
+
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="icon" href="images/favicon.png" type="image/ico">
-    <style> .contentz {
-        -moz-box-shadow: 2px 2px 10px #ccc;
-        -webkit-box-shadow: 2px 2px 5px #ccc;
-        box-shadow: 2px 2px 10px #ccc;
-        border: #ffffff solid 8px;
-        margin-top: 15px;
-        border-radius: 6px;
 
-        height: 15% !important;
-        width: 15% !important;
-    }
+    <style>
+        .contentz {
+            -moz-box-shadow: 2px 2px 10px #ccc;
+            -webkit-box-shadow: 2px 2px 5px #ccc;
+            box-shadow: 2px 2px 10px #ccc;
+            border: #ffffff solid 8px;
+            margin-top: 15px;
+            border-radius: 6px;
+            height: auto !important; /* Fixed aspect ratio issue */
+            max-width: 15% !important;
+        }
 
-     .iframe-container{
-         position: relative;
-         width: 100%;
-         padding-bottom: 56.25%;
-         height: 0;
-     }
-    .iframe-container iframe{
-        position: absolute;
-        top:0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
 
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* NEW CSS FOR MOBILE RESPONSIVE IMAGES */
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Better spacing for sections */
+        section {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
     </style>
 </head>
-<!-- Google tag (gtag.js) -->
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
@@ -47,113 +68,131 @@
 
     gtag('config', 'G-CRTFNMJ4FV');
 </script>
+
 <body>
 
-<!-- Div Wrapper Element Starts Here -->
 <div id="Wrapper">
-    <!-- Header Element Starts Here -->
     <header id="header">
-        <!-- Hgroup Element Starts Here -->
         <hgroup id="title">
-            <div >
-                <a href="index.html" id="logo" alt="Pharmacy Informatics"></a>
+            <div>
+                <a href="index.html" id="logo" aria-label="Pharmacy Informatics Home"></a>
             </div>
             <h2>For Safer and Easier Medication Use</h2>
         </hgroup>
-        <!-- Hgroup Element Ends Here -->
-        <!-- Nav Element Starts Here -->
-        <nav class="navigation"> <a href="index.html">Pharmacy Informatics Home</a>  <a href="publications.html">Publications</a>   <a href="about.html">About</a>  </nav>
-
+        <nav class="navigation">
+            <a href="index.html">Home</a>
+            <a href="publications.html">Publications</a>
+            <a href="about.html">About</a>
+        </nav>
     </header>
-    <!-- Header Element Ends Here -->
-    <!-- Div wrapper2 starts here -->
-    <div id="Wrapper2">
 
-        <!-- Article Element Starts Here -->
+    <div id="Wrapper2">
         <article id="contents">
 
+            <h1>Microsoft Excel Essentials for Pharmacy Informatics</h1>
 
-            <h1>Microsoft Excel Essentials</h1>
             <h2>Introduction</h2>
-<p>This resource provides a list of useful MS Excel concepts and examples that have come up over the years for various data challenges. These are real use cases that have came up in my personal pharmacy informatics practice.</p>
-<ol style="font-weight: bold;">
-    <li><h3>VLOOKUP</h3>
-        <p>Description:  The VLOOKUP is an essential tool for data handling, particularly in the finicky world of reporting, where it is not uncommon to get data extracts that do not have all the columns necessary.  Getting 100% of what you are looking for from a report writer is not practical or always possible. This is not an uncommon issue in the health care IT arena.  Thus, combining data from a separate Excel that has the necessary column(s) can be a lifesaver.  That is if there is a matching column that can tie together data from the other Excel sheet/workbook/list exactly.  I effectively call this functionality a “poor person’s” query.  And although it does the trick, a VLOOKUP is much more resource intensive than joining tables in a real relational database.</p>
-        <p>Example: This simple example works for any matching of one list/sheet/workbook to another and pulling any available values from the specified column.</p>
-       <i>VLOOKUP Figure</i> <br>
-        <img src="image/VLOOKUPExample.png"/>
-        <p>VLOOKUP <a href="https://www.pharmacyinformatics.net/excel/how to vlookup.xlsx" target="_blank">sample</a></p>
-    </li>
-    <li><h3>XLOOKUP</h3>
-        <p>Description: a XLOOKUP is very similar to VLOOKUP in the way that a cell from one list/sheet/workbook is matching to a second list/sheet/workbook’s cell, and then pulls in the value from a column in the second list which is aligned to the row from the matching cell.  The XLOOKUP is in principle an even simpler VLOOKUP, although I find it more effective in doing more advanced comparisons, as provided in the example below.</p>
-        <p>Example: An example use case where I have found the XLOOKUP useful is when I am determining if a particular item (like a prescription fill) was filled within a date window (like an authorization date range). The figure and sample show two separate tables and the use of XLOOKUP to determine if the date of the prescription (table 1) was between the date range in the rows listed in table 2.</p>
-        <i>XLOOKUP Figure</i> <br>
-        <img src="image/XLOOKUPExample.png"/>
-        <p>XLOOKUP <a href="https://www.pharmacyinformatics.net/excel/How to XLOOKUP.xlsx" target="_blank">sample</a></p>
-    </li>
-    <li><h3>Convert text to columns using a carriage return delimiter</h3>
-        <p>Description: In situations where a record has multiple responses of data in columns that are not broken into multiple rows, rather are stacked in one cell via a carriage return (i.e. delimited by Alt+enter).</p>
-        <p>Example: The figure below displays medication mixture records and the available multiple drug ingredients.  In this example, the multiple ingredients are combined in one row, delimited by a carriage return (or defined by Excel as Alt+enter). </p>
-        <i>Example sheet</i> <br>
-        <img src="image/TextToColumnsExample.png"/>
-        <p>To split these combine values on the same row  using “Text to Columns”, first highlight the column, select “Text to Columns” under Data in the Toolbar.</p>
-        <img class = "contentz"  src="image/TexttoColumnsButton.png" height="197" width="161"/>
-        <p>Select the “Delimited” option in the Text to Columns wizard.</p>
-        <img src="image/TextToColumnsStep1.png"/>
-        <p>In the next step of the wizard, select and press Ctrl+j in the Other option.  Although it does not appear to display much in the field, the process does work.</p>
-        <img src="image/TexttoColumnsStep2.png"/>
-        <p>In the final step, select finish to complete the parsing.  Do note that separating these values will require empty real estate next to this column, otherwise there will be a warning stating that you will overwrite populated data.</p>
-        <img src="/files/Carriage%20Return%20Delimiter.gif"/>
-        <p>Multi-response <a href="https://www.pharmacyinformatics.net/excel/Multiple Response Records.xlsx" target="_blank">sample</a></p>
-    </li>
-    <li><h3>Fill in blank cells between values down a column</h3>
-        <p>Description: In situations where a record has multiple responses of data in columns that break into multiple rows, there are gaps of blank cells in the other columns when exporting data.  This makes filtering and handling the data challenging.</p>
-        <p>Example:  This example is essentially the reverse problem of the previous example of combining multiple responses in one row.  In this example, the multiple responses are split out in separate rows, but the other single response values do not fill the additional rows. </p>
-        <i>Example sheet</i> <br>
-        <img src="image/FillInBlanksExample.png"/>
-        <p>To fill in the blanks, there are three simple steps.</p>
+            <p>This resource provides a list of useful MS Excel concepts and examples that have come up over the years for various data challenges. These are real use cases that have occurred in my personal pharmacy informatics practice.</p>
 
-        <ol>
-            <li>Select the impacted column</li>
-            <li>Go to Toolbar->Home->Find & Select->Go to Special->blanks</li>
-            <li>All of the blank cells become highlighted. Touch nothing but the = key and the up arrow. Follow that with Ctrl+enter and all blanks will populate the cell above.</li>
-        </ol>
-        <img src="/files/fill-in-blank-cells.gif" WIDTH="1000" HEIGHT="500"/>
-        <p>Multi-response <a href="https://www.pharmacyinformatics.net/excel/Multiple Response Records.xlsx" target="_blank">sample</a></p>
-    </li>
-    <li><h3>INDEX Function</h3>
-        <p>Description: Transpose columns listed vertically to horizontally using the INDEX function.</p>
-       <p>Example: Here is an extract of a list of medications that lists the columns in vertically down a single column. This is not a very useful way to work the data!  The figure and sample provide a detailed use of the INDEX function to transpose the columns horizontally.</p>
-        <i>Example sheet</i> <br>
-        <img src="image/IndexExample.png"/>
-        <p>Illustration of the equation</p>
-        <img src="image/IndexInstructions.png"/>
-        <p>GIF of steps</p>
-        <img src="/files/index-function-gif-optimized.gif"/>
-        <p>Index <a href="https://www.pharmacyinformatics.net/excel/How to Index.xlsx" target="_blank">sample</a></p>
-    </li>
+            <section>
+                <h3>1. VLOOKUP</h3>
+                <p><strong>Description:</strong> The VLOOKUP is an essential tool for data handling, particularly in the finicky world of reporting, where it is not uncommon to get data extracts that do not have all the columns necessary. Getting 100% of what you are looking for from a report writer is not practical or always possible. This is not an uncommon issue in the health care IT arena. Thus, combining data from a separate Excel that has the necessary column(s) can be a lifesaver. That is if there is a matching column that can tie together data from the other Excel sheet/workbook/list exactly. I effectively call this functionality a “poor person’s” query. And although it does the trick, a VLOOKUP is much more resource intensive than joining tables in a real relational database.</p>
 
-</ol>
+                <p><strong>Example:</strong> This simple example works for any matching of one list/sheet/workbook to another and pulling any available values from the specified column.</p>
 
+                <i>VLOOKUP Figure</i> <br>
+                <img src="image/VLOOKUPExample.png" alt="Excel VLOOKUP formula example showing how to match two pharmacy data lists" />
+
+                <p>Download: <a href="https://www.pharmacyinformatics.net/excel/how%20to%20vlookup.xlsx" target="_blank">VLOOKUP sample file (.xlsx)</a></p>
+            </section>
+
+            <section>
+                <h3>2. XLOOKUP</h3>
+                <p><strong>Description:</strong> An XLOOKUP is very similar to VLOOKUP in the way that a cell from one list/sheet/workbook is matching to a second list/sheet/workbook’s cell, and then pulls in the value from a column in the second list which is aligned to the row from the matching cell. The XLOOKUP is in principle an even simpler VLOOKUP, although I find it more effective in doing more advanced comparisons, as provided in the example below.</p>
+
+                <p><strong>Example:</strong> An example use case where I have found the XLOOKUP useful is when I am determining if a particular item (like a prescription fill) was filled within a date window (like an authorization date range). The figure and sample show two separate tables and the use of XLOOKUP to determine if the date of the prescription (table 1) was between the date range in the rows listed in table 2.</p>
+
+                <i>XLOOKUP Figure</i> <br>
+                <img src="image/XLOOKUPExample.png" alt="Excel XLOOKUP example checking if a prescription fill date falls within an authorization window" />
+
+                <p>Download: <a href="https://www.pharmacyinformatics.net/excel/How%20to%20XLOOKUP.xlsx" target="_blank">XLOOKUP sample file (.xlsx)</a></p>
+            </section>
+
+            <section>
+                <h3>3. Convert Text to Columns (Carriage Return Delimiter)</h3>
+                <p><strong>Description:</strong> In situations where a record has multiple responses of data in columns that are not broken into multiple rows, rather are stacked in one cell via a carriage return (i.e. delimited by Alt+enter).</p>
+
+                <p><strong>Example:</strong> The figure below displays medication mixture records and the available multiple drug ingredients. In this example, the multiple ingredients are combined in one row, delimited by a carriage return (or defined by Excel as Alt+enter).</p>
+
+                <i>Example sheet</i> <br>
+                <img src="image/TextToColumnsExample.png" alt="Dataset showing multiple drug ingredients combined in one cell using carriage returns" />
+
+                <p>To split these combined values on the same row using “Text to Columns”, first highlight the column, select “Text to Columns” under Data in the Toolbar.</p>
+
+                <img class="contentz" src="image/TexttoColumnsButton.png" alt="Text to Columns button in Excel Data ribbon" />
+
+                <p>Select the “Delimited” option in the Text to Columns wizard.</p>
+                <img src="image/TextToColumnsStep1.png" alt="Text to Columns Wizard Step 1 selecting Delimited" />
+
+                <p>In the next step of the wizard, select and press <strong>Ctrl+j</strong> in the "Other" option box. Although it does not appear to display much in the field, the process does work.</p>
+                <img src="image/TexttoColumnsStep2.png" alt="Text to Columns Wizard Step 2 using Ctrl+J for carriage return delimiter" />
+
+                <p>In the final step, select finish to complete the parsing. Do note that separating these values will require empty real estate next to this column, otherwise there will be a warning stating that you will overwrite populated data.</p>
+
+                <img src="/files/Carriage%20Return%20Delimiter.gif" alt="Animation showing the process of splitting text to columns using carriage returns" />
+
+                <p>Download: <a href="https://www.pharmacyinformatics.net/excel/Multiple%20Response%20Records.xlsx" target="_blank">Multi-response sample file (.xlsx)</a></p>
+            </section>
+
+            <section>
+                <h3>4. Fill in Blank Cells</h3>
+                <p><strong>Description:</strong> In situations where a record has multiple responses of data in columns that break into multiple rows, there are gaps of blank cells in the other columns when exporting data. This makes filtering and handling the data challenging.</p>
+
+                <p><strong>Example:</strong> This example is essentially the reverse problem of the previous example of combining multiple responses in one row. In this example, the multiple responses are split out in separate rows, but the other single response values do not fill the additional rows.</p>
+
+                <i>Example sheet</i> <br>
+                <img src="image/FillInBlanksExample.png" alt="Excel dataset showing blank cells in rows that need to be filled" />
+
+                <p>To fill in the blanks, there are three simple steps:</p>
+                <ol>
+                    <li>Select the impacted column.</li>
+                    <li>Go to <strong>Toolbar -> Home -> Find & Select -> Go to Special -> Blanks</strong>.</li>
+                    <li>All of the blank cells become highlighted. Touch nothing but the <strong>=</strong> key and the <strong>up arrow</strong>. Follow that with <strong>Ctrl+Enter</strong> and all blanks will populate with the value of the cell above.</li>
+                </ol>
+
+                <img src="/files/fill-in-blank-cells.gif" alt="Animation demonstrating how to batch fill blank cells in Excel" />
+
+                <p>Download: <a href="https://www.pharmacyinformatics.net/excel/Multiple%20Response%20Records.xlsx" target="_blank">Multi-response sample file (.xlsx)</a></p>
+            </section>
+
+            <section>
+                <h3>5. INDEX Function</h3>
+                <p><strong>Description:</strong> Transpose columns listed vertically to horizontally using the INDEX function.</p>
+
+                <p><strong>Example:</strong> Here is an extract of a list of medications that lists the columns vertically down a single column. This is not a very useful way to work the data! The figure and sample provide a detailed use of the INDEX function to transpose the columns horizontally.</p>
+
+                <i>Example sheet</i> <br>
+                <img src="image/IndexExample.png" alt="Vertical list of medication data before transposition" />
+
+                <p>Illustration of the equation:</p>
+                <img src="image/IndexInstructions.png" alt="Explanation of the INDEX formula logic" />
+
+                <p>GIF of steps:</p>
+                <img src="/files/index-function-gif-optimized.gif" alt="Animation showing the INDEX function transposing data from vertical to horizontal" />
+
+                <p>Download: <a href="https://www.pharmacyinformatics.net/excel/How%20to%20Index.xlsx" target="_blank">Index function sample file (.xlsx)</a></p>
+            </section>
 
         </article>
-        <!-- Article Element Ends Here -->
     </div>
-    <!-- Div wrapper2 ends here -->
-    <!-- Footer Element Starts Here -->
+
     <footer id="copyrights">
         <p><small>&copy; 2026 </small></p>
-        <p><a href="about.html">About Us</a>  - <a href="contact.html">Contact Us</a></p>
-
+        <p><a href="about.html">About Us</a> - <a href="contact.html">Contact Us</a></p>
     </footer>
-    <!-- Footer Element Ends Here -->
 </div>
-<!-- Div Wrapper Element ends Here -->
-<script src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-        crossorigin="anonymous">
 
-</script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="code.js"></script>
 </body>
 </html>
