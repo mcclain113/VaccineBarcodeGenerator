@@ -68,9 +68,9 @@
             <h2>API Search and URL Constructor (Adverse Drug Events)</h2>
                 <ul>
                     <li>The data on this page is pulled using the adverse drug event API as referenced on the open FDA site <a target="_blank" href="https://open.fda.gov/apis/">https://open.fda.gov/apis/</a>. All disclaimers and limitations from the open FDA site apply to this data retrieval. </li>
-            <li>By default, the API limits results at 100. Limits can be increased to 1000 max. That is limited by the FDA for performance and can impact your data. Limits don't appear to impact received date searches.</li>
+            <li>By default, the API limits results at 100. Limits can be increased to 999 max. That is limited by the FDA for performance and can impact your data. Limits don't appear to impact received date searches.</li>
                     <li>Each of the searchbar lookups are pulling directly from the API to show exactly how the data is stored.  Just start typing and the search starts automatically.  When the lookup begins searching, it may take a few seconds longer the first time and faster subsequent times since the browser will cache the results.</li>
-                    <ul><li>Also, because of the API result limits, searchbar lookups will only match to the top 1000 items. This can be most notable for generic drug names if there are not a lot of events. Unmatching terms can still be added to the search, and likely makes sense to remove "exact" match in that case.</li> </ul>
+                    <ul><li>Also, because of the API result limits, searchbar lookups will only match to the top 999 items. This can be most notable for generic drug names if there are not a lot of events. Unmatching terms can still be added to the search, and likely makes sense to remove "exact" match in that case.</li> </ul>
        <li>Not to take anything away from the current interactive graphs provided by the FDA. They have a <a target="_blank" href="https://open.fda.gov/apis/drug/event/explore-the-api-with-an-interactive-chart/">graphical tool</a> too.  Both tools have different options and functionality to consider.</li>
                     <ul>
                         <li>***New as of August 2025*** The FDA released a real-time adverse event reporting <a target="_blank" href="https://fis.fda.gov/sense/app/95239e26-e0be-42d9-a960-9a5f7f1c25ee/sheet/7a47a261-d58b-4203-a8aa-6d3021737452/state/analysis">dashboard</a>. Certainly cool too, but I still like this one's usability to drill down.</li>
@@ -106,7 +106,7 @@
                 <input type="button" id="addDateRange" name="addDateRange" value="Include in Search">
 
                 <label for="addCountDate"></label>
-                <input type="button" id="addCountDate" class="byCount" name="receivedDate" value="Count by" title="Displays as Bar Graph. This specific count does not appear to be subject to the 1000 max for results.">
+                <input type="button" id="addCountDate" class="byCount" name="receivedDate" value="Count by" title="Displays as Bar Graph. This specific count does not appear to be subject to the 999 max for results.">
 
 
                 </form>
@@ -123,7 +123,7 @@
 
             <div class="search-container">
 
-                <form class="search-form">  <a title="Generic name(s) of the drug product." target="_blank" class="label" href="https://api.fda.gov/drug/event.json?count=patient.drug.openfda.generic_name.exact&limit=1000">Generic Drug Name List: </a>
+                <form class="search-form">  <a title="Generic name(s) of the drug product." target="_blank" class="label" href="https://api.fda.gov/drug/event.json?count=patient.drug.openfda.generic_name.exact&limit=999">Generic Drug Name List: </a>
                     <input
                             type="text"
                             class="search-bar input"
@@ -132,7 +132,7 @@
                             aria-label="Search"
                             size="40"
                             maxlength="500"
-                            data-api-url=https://api.fda.gov/drug/event.json?count=patient.drug.openfda.generic_name.exact&limit=1000
+                            data-api-url=https://api.fda.gov/drug/event.json?count=patient.drug.openfda.generic_name.exact&limit=999
 
                     />
                     <label for="includeGenericName"></label>
@@ -152,7 +152,7 @@
             <br><br>
             <div class="search-container">
                 <form class="search-form">
-                    <a title="Established pharmacologic class associated with an approved indication of an active moiety (generic drug) that the FDA has determined to be scientifically valid and clinically meaningful. Takes the form of the pharmacologic class, followed by [EPC]." target="_blank" class="label" href="https://api.fda.gov/drug/event.json?count=patient.drug.openfda.pharm_class_epc.exact&limit=1000">Established Pharmacologic Class List: </a>
+                    <a title="Established pharmacologic class associated with an approved indication of an active moiety (generic drug) that the FDA has determined to be scientifically valid and clinically meaningful. Takes the form of the pharmacologic class, followed by [EPC]." target="_blank" class="label" href="https://api.fda.gov/drug/event.json?count=patient.drug.openfda.pharm_class_epc.exact&limit=999">Established Pharmacologic Class List: </a>
                     <input
                             type="text"
                             class="search-bar input"
@@ -161,7 +161,7 @@
                             aria-label="Search"
                             size="40"
                             maxlength="500"
-                            data-api-url=https://api.fda.gov/drug/event.json?count=patient.drug.openfda.pharm_class_epc.exact&limit=1000
+                            data-api-url=https://api.fda.gov/drug/event.json?count=patient.drug.openfda.pharm_class_epc.exact&limit=999
 
                     />
                     <label for="includeEPC"></label>
@@ -179,7 +179,7 @@
 
             <div class="search-container">
                 <form class="search-form">
-                    <a title="Chemical structure classification of the drug product’s pharmacologic class." class="label" target="_blank" href="https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=1000">Chemical Structure Classification List: </a>
+                    <a title="Chemical structure classification of the drug product’s pharmacologic class." class="label" target="_blank" href="https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=999">Chemical Structure Classification List: </a>
                     <input
                             type="text"
                             class="search-bar input"
@@ -188,7 +188,7 @@
                             aria-label="Search"
                             size="40"
                             maxlength="500"
-                            data-api-url=https://api.fda.gov/drug/event.json?count=patient.drug.openfda.pharm_class_cs.exact&limit=1000
+                            data-api-url=https://api.fda.gov/drug/event.json?count=patient.drug.openfda.pharm_class_cs.exact&limit=999
 
                     />
                     <label for="includeCS"></label>
@@ -207,7 +207,7 @@
 
             <div class="search-container">
                 <form class="search-form">
-                    <a title="Patient reaction, as a MedDRA term. Note that these terms are encoded in British English." class="label" target="_blank" href="https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=1000">Patient Reaction List: </a>
+                    <a title="Patient reaction, as a MedDRA term. Note that these terms are encoded in British English." class="label" target="_blank" href="https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=999">Patient Reaction List: </a>
                     <input
                             type="text"
                             class="search-bar input"
@@ -216,7 +216,7 @@
                             aria-label="Search"
                             size="40"
                             maxlength="500"
-                            data-api-url=https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=1000
+                            data-api-url=https://api.fda.gov/drug/event.json?count=patient.reaction.reactionmeddrapt.exact&limit=999
 
                     />
                     <label for="includeReaction"></label>
@@ -234,7 +234,7 @@
 
             <div class="search-container">
                 <form class="search-form">
-                    <a title="Indication for the drug’s use." class="label" target="_blank" href="https://api.fda.gov/drug/event.json?&count=patient.drug.drugindication.exact&limit=1000">Indication List: </a>
+                    <a title="Indication for the drug’s use." class="label" target="_blank" href="https://api.fda.gov/drug/event.json?&count=patient.drug.drugindication.exact&limit=999">Indication List: </a>
                     <input
                             type="text"
                             class="search-bar input"
@@ -243,7 +243,7 @@
                             aria-label="Search"
                             size="40"
                             maxlength="500"
-                            data-api-url=https://api.fda.gov/drug/event.json?&count=patient.drug.drugindication.exact&limit=1000
+                            data-api-url=https://api.fda.gov/drug/event.json?&count=patient.drug.drugindication.exact&limit=999
 
                     />
                     <label for="includeIndication"></label>
@@ -261,7 +261,7 @@
 
             <div class="search-container">
                 <form class="search-form" >
-                    <a title="The name of the country where the event occurred." class="label" target="_blank" href="https://api.fda.gov/drug/event.json?count=occurcountry.exact&limit=1000">Country List: </a>
+                    <a title="The name of the country where the event occurred." class="label" target="_blank" href="https://api.fda.gov/drug/event.json?count=occurcountry.exact&limit=999">Country List: </a>
                     <input
                             type="text"
                             class="search-bar input"
@@ -270,7 +270,7 @@
                             aria-label="Search"
                             size="40"
                             maxlength="500"
-                            data-api-url="https://api.fda.gov/drug/event.json?count=occurcountry.exact&limit=1000"
+                            data-api-url="https://api.fda.gov/drug/event.json?count=occurcountry.exact&limit=999"
 
                     />
                     <label for="includeCountry"></label>
@@ -499,11 +499,11 @@
                         <input type="number" id="count" name="count" placeholder="Count">-->
                     <section>
                         <details>
-                            <summary title="Must have value >0 and <=1000 to add.">Limit Number of Results: </summary>
+                            <summary title="Must have value >0 and <=999 to add.">Limit Number of Results: </summary>
                                 <label for="limit"></label>
-            <input type="number" id="limit" name="limit" placeholder="Result Limit (1000 max)">
+            <input type="number" id="limit" name="limit" placeholder="Result Limit (999 max)">
             <label for="includeLimit"></label>
-            <input type="button" id="includeLimit" name="include" value="Include Limit" max="1000" title="Adds customized limit to URL constructor">
+            <input type="button" id="includeLimit" name="include" value="Include Limit" max="999" title="Adds customized limit to URL constructor">
                         </details>
                     </section>
                 </form>
