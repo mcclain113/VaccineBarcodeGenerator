@@ -1,1 +1,9 @@
+[[redirects]]
+  from = "/iv-labels"
+  to = "/iv-labels.html"
+  status = 200
 
+[[redirects]]
+  from = "/iv-labels/*"
+  to = "/iv-labels.html"
+  status = 200
