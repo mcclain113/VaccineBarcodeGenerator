@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="IV Line Label Generator - create IV line labels from structured fields or a shareable URL">
+    <meta name="keywords" content="IV line label, barcode, label, nursing label, infusion label, pharmacy informatics">
+    <meta name="author" content="Barry McClain">
+    <title>IV Label Generator</title>
+    <link rel="stylesheet" href="/css.css">
+    <link rel="icon" href="/images/favicon.png" type="image/ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<style>
+    label {
+        float: left;
+        width: 300px; /* Adjust the label width as needed */
+    }
+
+    input {
+        width: 250px; /* Adjust the input field width as needed */
+    }
+
+    /* Clear floats to prevent layout issues */
+    .clearfix::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .iv-label {
+        box-sizing: border-box;
+        border: 1px solid #000;
+        padding: 6px;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        display: flex;
+    }
+
+    .iv-label-half {
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: 0;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .iv-label-half.left {
+        justify-content: flex-start;
+    }
+
+    .iv-label-half.right {
+        justify-content: flex-end;
+    }
+
+    .iv-label-fold-line {
+        align-self: stretch;
+        border-left: 1px dashed #000;
+        margin: 0 6px;
+    }
+
+    .iv-label .drug-name {
+        font-weight: bold;
+        font-size: 16px;
+        width: 100%;
+        margin: 0;
+        line-height: 1.15;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .iv-label-half.left .drug-name {
+        text-align: left;
+    }
+
+    .iv-label-half.right .drug-name {
+        text-align: left;
+    }
+
+    .iv-label .label-line {
+        font-size: 0.75em;
+    }
+
+    input[type="checkbox"] {
+        width: auto;
+    }
+
+    .iv-label .change-line-block {
+        width: 100%;
+    }
+
+    .iv-label .change-line-block p {
+        margin: 0;
+        font-weight: bold;
+        line-height: 1.15;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        text-align: left;
+    }
+</style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CRTFNMJ4FV"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CRTFNMJ4FV');
+</script>
+<header id="header">
+    <!-- Hgroup Element Starts Here -->
+    <hgroup id="title">
+        <div >
+            <a href="index.html" id="logo" aria-label="Pharmacy Informatics Home"></a>
+        </div>
+        <h2>For Safer and Easier Medication Use</h2>
+    </hgroup>
+    <!-- Hgroup Element Ends Here -->
+    <!-- Nav Element Starts Here -->
+    <nav class="navigation"> <a href="index.html">Home</a>  <a href="publications.html">Publications</a>  <a href="about.html">About</a>  </nav>
+
+</header>
+<body>
+<details id="iv-label-details" open>
+<summary><h1>IV Line Label Generator</h1></summary>
+<h2>Create a IV line label from the fields below or load this page with a pre-filled URL</h2>
+<h4>**Not for Protected Health Information**</h4>
+
+<p style="font-size: small">
+    This page can be driven entirely from its URL:<br>
+    <code>/iv-line-labels/&lt;site&gt;/&lt;drug name&gt;/&lt;RXNORM code&gt;/&lt;#hex color&gt;/&lt;WxL in inches&gt;/</code><br>
+    Drug name is case-sensitive and takes precedence over the RXNORM code; if drug name is left blank, the RXNORM code is looked up against the RxNorm API to fill it in.
+</p>
+
+<form id="iv-label-form">
+    <p>Required (one of the two):</p>
+    <label for="drug">Drug Name</label>
+    <input type="text" id="drug" name="drug">
+    <br>
+    <br>
+    <label for="rxnorm">RXNORM Code</label>
+    <input type="text" id="rxnorm" name="rxnorm">
+    <br>
+    <br>
+    <details>
+    <summary>Optional Fields:</summary>
+    <label for="color">Label Color (Hex)</label>
+    <input type="text" id="color" name="color" placeholder="#FFFFFF">
+    <br>
+    <br>
+    <label for="width">Width (in)</label>
+    <input type="number" id="width" name="width" step="0.01" min="0" placeholder="3">
+    <br>
+    <br>
+    <label for="length">Length (in)</label>
+    <input type="number" id="length" name="length" step="0.01" min="0" placeholder="1">
+    <br>
+    <br>
+    <label hidden for="site">Site Identifier</label>
+    <input hidden type="text" id="site" name="site">
+    </details>
+    <br>
+    <br>
+    <p style="font-size: small">Press Generate Label Multiple Times For Every Label Needed</p>
+    <input type="submit" value="Generate Label">
+
+</form>
+</details>
+<br>
+<br>
+<div id="printSpace">
+<p id="labelDiv"></p>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div>
+<button type="button" id="print-label">Print Label</button>
+<br>
+<br>
+<br>
+<button type="button" id="reset-label">Reset</button>
+</div>
+
+<br>
+<br>
+<label for="include-change-line-label">Include Change Line Label?</label>
+<input type="checkbox" id="include-change-line-label">
+
+<div id="change-line-section" hidden>
+<form id="change-line-form">
+    <p>Day of Week:</p>
+    <label for="change-day-monday">Monday</label>
+    <input type="checkbox" id="change-day-monday" value="Monday">
+    <br>
+    <label for="change-day-tuesday">Tuesday</label>
+    <input type="checkbox" id="change-day-tuesday" value="Tuesday">
+    <br>
+    <label for="change-day-wednesday">Wednesday</label>
+    <input type="checkbox" id="change-day-wednesday" value="Wednesday">
+    <br>
+    <label for="change-day-thursday">Thursday</label>
+    <input type="checkbox" id="change-day-thursday" value="Thursday">
+    <br>
+    <label for="change-day-friday">Friday</label>
+    <input type="checkbox" id="change-day-friday" value="Friday">
+    <br>
+    <label for="change-day-saturday">Saturday</label>
+    <input type="checkbox" id="change-day-saturday" value="Saturday">
+    <br>
+    <label for="change-day-sunday">Sunday</label>
+    <input type="checkbox" id="change-day-sunday" value="Sunday">
+    <br>
+    <br>
+
+    <label for="change-date">Date</label>
+    <input type="date" id="change-date" name="change-date">
+    <br>
+    <br>
+
+    <label for="change-time">Time</label>
+    <input type="time" id="change-time" name="change-time">
+    <br>
+    <br>
+
+    <label for="change-initials">Initials</label>
+    <input type="text" id="change-initials" name="change-initials" maxlength="3">
+    <br>
+    <br>
+
+    <details>
+    <summary>Optional Fields:</summary>
+    <label for="change-width">Width (in)</label>
+    <input type="number" id="change-width" name="change-width" step="0.01" min="0" placeholder="3">
+    <br>
+    <br>
+    <label for="change-length">Length (in)</label>
+    <input type="number" id="change-length" name="change-length" step="0.01" min="0" placeholder="1">
+    </details>
+    <br>
+    <br>
+
+    <p style="font-size: small">Check multiple days to produce one label per day in a single click</p>
+    <input type="submit" value="Generate Change Line Label">
+</form>
+
+<br>
+<br>
+<div id="changeLinePrintSpace">
+<p id="changeLineLabelDiv"></p>
+</div>
+<br>
+<br>
+    <br>
+    <br>
+    <br>
+    <br>
+<div>
+<button type="button" id="print-change-line-label">Print Change Line Label</button>
+<br>
+<br>
+<br>
+<button type="button" id="reset-change-line-label">Reset</button>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+
+</script>
+<script src="/iv-labels.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+</html>

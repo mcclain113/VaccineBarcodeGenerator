@@ -1,9 +1,9 @@
 [[redirects]]
-  from = "/iv-labels"
-  to = "/iv-labels.html"
+  from = "/iv-line-labels"
+  to = "/iv-line-labels.html"
   status = 200
 
 [[redirects]]
-  from = "/iv-labels/*"
-  to = "/iv-labels.html"
+  from = "/iv-line-labels/*"
+  to = "/iv-line-labels.html"
   status = 200
