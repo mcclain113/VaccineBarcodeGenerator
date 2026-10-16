@@ -2,17 +2,26 @@ const CHANGE_DAY_COLORS = {
     monday: "orange",
     tuesday: "green",
     wednesday: "yellow",
-    thursday: "blue",
+    thursday: "cyan",
     friday: "violet",
     saturday: "red",
     sunday: "pink",
+};
+
+const CHANGE_DAY_ABBREVIATIONS = {
+    monday: "M",
+    tuesday: "T",
+    wednesday: "W",
+    thursday: "Th",
+    friday: "F",
+    saturday: "Sa",
+    sunday: "Su",
 };
 
 let changeLineDefaultsApplied = false;
 
 $(document).ready(function () {
     $("#iv-label-form").submit(handleSubmit);
-    $("#print-label").on("click", printDiv);
     $("#reset-label").on("click", clearSite);
 
     $("#include-change-line-label").on("change", function () {
@@ -23,8 +32,16 @@ $(document).ready(function () {
         event.preventDefault();
         generateChangeLineLabels();
     });
-    $("#print-change-line-label").on("click", printChangeLineDiv);
     $("#reset-change-line-label").on("click", resetChangeLineSection);
+
+    // Delegated since labels (and their print buttons) are added dynamically.
+    // Each label prints on its own, as its own page/job - there is no combined
+    // "print everything" button anymore.
+    $(document).on("click", ".print-single-label", function () {
+        const labelEl = $(this).siblings(".iv-label")[0];
+        printSingleLabel(labelEl);
+    });
+    $("#print-all-labels").on("click", printAllLabels);
 
     loadFromUrl();
 });
@@ -116,15 +133,21 @@ function normalizeHex(color) {
 }
 
 function renderLabel({drug, rxnorm, color, width, length, site}) {
-    $("p#labelDiv").after(`<div style="float: left; padding: 5px;">
+    // Built detached and inserted as a captured reference (not re-queried via
+    // $(".iv-label").last()) - .after() always inserts the newest label right
+    // next to the anchor, so ".last()" in DOM order actually means "oldest",
+    // which was causing every label after the first to skip the font-fit step.
+    const $wrapper = $(`<div class="label-wrapper" style="float: left; padding: 5px;">
         <div class="iv-label" style="width:${width}in; height:${length}in; background-color:${color};">
             <div class="iv-label-half left"><p class="drug-name">${drug || ""}</p></div>
             <div class="iv-label-fold-line"></div>
             <div class="iv-label-half right"><p class="drug-name">${drug || ""}</p></div>
         </div>
+        <button type="button" class="print-single-label">Print This Label Only</button>
     </div>`);
 
-    fitDrugNameText($(".iv-label").last().find(".drug-name"));
+    $("p#labelDiv").after($wrapper);
+    fitDrugNameText($wrapper.find(".drug-name"));
 }
 
 // Shrinks an element's font size until it fits inside its parent's rendered
@@ -163,33 +186,38 @@ function applyChangeLineDefaults() {
     changeLineDefaultsApplied = true;
 
     const todayName = new Date().toLocaleDateString("en-US", {weekday: "long"});
-    $(`#change-line-form input[type="checkbox"][value="${todayName}"]`).prop("checked", true);
+    $(`#change-line-form input[name="change-day"][value="${todayName}"]`).prop("checked", true);
 
     if (!$("input#change-date").val()) $("input#change-date").val(todayDateString());
     if (!$("input#change-time").val()) $("input#change-time").val(nowTimeString());
 }
 
 function generateChangeLineLabels() {
+    const selectedDay = $('#change-line-form input[name="change-day"]:checked').val();
+    if (!selectedDay) return;
+
     const date = $("input#change-date").val();
     const time = $("input#change-time").val();
     const initials = $("input#change-initials").val().trim().slice(0, 3);
     const width = parseFloat($("input#change-width").val()) || 3;
     const length = parseFloat($("input#change-length").val()) || 1;
 
-    const checkedDays = $("#change-line-form input[type=checkbox]:checked").map(function () {
-        return this.value;
-    }).get();
+    const colorByDay = $("input#change-color-by-day").is(":checked");
+    const color = colorByDay ? (CHANGE_DAY_COLORS[selectedDay.toLowerCase()] || "#FFFFFF") : "#FFFFFF";
 
-    checkedDays.forEach(day => {
-        const color = CHANGE_DAY_COLORS[day.toLowerCase()] || "#FFFFFF";
-        renderChangeLineLabel({day, date, time, initials, color, width, length});
-    });
+    renderChangeLineLabel({day: selectedDay, date, time, initials, color, width, length});
 }
 
 function changeLineBlockHtml(day, date, time, initials) {
+    const abbreviation = CHANGE_DAY_ABBREVIATIONS[day.toLowerCase()] || "";
     return `<div class="change-line-block">
-        <p>CHANGE</p>
-        <p>${day.toUpperCase()}</p>
+        <div class="change-line-top">
+            <div class="change-line-heading">
+                <p>CHANGE</p>
+                <p>${day.toUpperCase()}</p>
+            </div>
+            <div class="change-line-day-letter">${abbreviation}</div>
+        </div>
         <p>Date: ${date || ""}</p>
         <p>Time: ${time || ""}</p>
         <p>Initials: ${initials || ""}</p>
@@ -197,15 +225,18 @@ function changeLineBlockHtml(day, date, time, initials) {
 }
 
 function renderChangeLineLabel({day, date, time, initials, color, width, length}) {
-    $("p#changeLineLabelDiv").after(`<div style="float: left; padding: 5px;">
+    const $wrapper = $(`<div class="label-wrapper" style="float: left; padding: 5px;">
         <div class="iv-label" style="width:${width}in; height:${length}in; background-color:${color};">
             <div class="iv-label-half left">${changeLineBlockHtml(day, date, time, initials)}</div>
             <div class="iv-label-fold-line"></div>
             <div class="iv-label-half right">${changeLineBlockHtml(day, date, time, initials)}</div>
         </div>
+        <button type="button" class="print-single-label">Print This Label</button>
     </div>`);
 
-    $(".iv-label").last().find(".change-line-block").each(function () {
+    $("p#changeLineLabelDiv").after($wrapper);
+
+    $wrapper.find(".change-line-block").each(function () {
         shrinkFontToFit(this, {maxFontPx: 12, minFontPx: 5, stepPx: 0.25});
     });
 }
@@ -222,24 +253,38 @@ function resetChangeLineSection() {
 // fold line, text alignment) has to be copied in explicitly - otherwise
 // only the inline styles (width/height/color/font-size) survive and the
 // printout falls back to default block layout instead of matching the preview.
-function printElementContents(elementId) {
-    const divContents = document.getElementById(elementId).innerHTML;
+function openPrintWindow(bodyHtml, extraHeadHtml = "") {
     const labelStyles = Array.from(document.querySelectorAll("head style"))
         .map(styleEl => styleEl.outerHTML)
         .join("\n");
 
     const printWindow = window.open('', '', 'height=400, width=400');
-    printWindow.document.write(`<html><head>${labelStyles}</head><body>${divContents}</body></html>`);
+    printWindow.document.write(`<html><head>${labelStyles}${extraHeadHtml}</head><body>${bodyHtml}</body></html>`);
     printWindow.document.close();
     printWindow.print();
 }
 
-function printDiv() {
-    printElementContents("printSpace");
+// Only the single label element is written in (not its wrapper/print button),
+// so each label prints as its own standalone job/page rather than being
+// combined with every other label generated in the same session.
+function printSingleLabel(labelEl) {
+    openPrintWindow(labelEl.outerHTML);
 }
 
-function printChangeLineDiv() {
-    printElementContents("changeLinePrintSpace");
+// Pulls every generated label from both sections (drug labels and change
+// line labels) into one print job, with a forced page break after each one
+// so they each land on their own printed page/sheet.
+function printAllLabels() {
+    const labelEls = document.querySelectorAll("#printSpace .iv-label, #changeLinePrintSpace .iv-label");
+    if (labelEls.length === 0) return;
+
+    const pageBreakCss = `<style>
+        .iv-label { page-break-after: always; break-after: page; page-break-inside: avoid; break-inside: avoid; }
+        .iv-label:last-child { page-break-after: auto; break-after: auto; }
+    </style>`;
+    const bodyHtml = Array.from(labelEls).map(el => el.outerHTML).join("\n");
+
+    openPrintWindow(bodyHtml, pageBreakCss);
 }
 
 function clearSite() {

@@ -81,7 +81,8 @@
         font-size: 0.75em;
     }
 
-    input[type="checkbox"] {
+    input[type="checkbox"],
+    input[type="radio"] {
         width: auto;
     }
 
@@ -96,6 +97,32 @@
         overflow-wrap: break-word;
         word-break: break-word;
         text-align: left;
+    }
+
+    .iv-label .change-line-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 6px;
+    }
+
+    .iv-label .change-line-heading {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .iv-label .change-line-day-letter {
+        flex: 0 0 auto;
+        font-weight: bold;
+        font-size: 2.2em;
+        line-height: 1;
+        text-align: right;
+    }
+
+    .label-wrapper .print-single-label {
+        display: block;
+        margin-top: 4px;
+        width: auto;
     }
 </style>
 </head>
@@ -135,11 +162,11 @@
 
 <form id="iv-label-form">
     <p>Required (one of the two):</p>
-    <label for="drug">Drug Name</label>
+    <label for="drug">Drug Name or Product</label>
     <input type="text" id="drug" name="drug">
     <br>
     <br>
-    <label for="rxnorm">RXNORM Code</label>
+    <label for="rxnorm">Search by RXNORM Code</label>
     <input type="text" id="rxnorm" name="rxnorm">
     <br>
     <br>
@@ -168,6 +195,13 @@
 </form>
 </details>
 <br>
+<button type="button" id="print-all-labels">Print All Generated Labels</button>
+<br>
+<br>
+<div>
+    <button type="button" id="reset-label">Reset Page</button>
+</div>
+<br>
 <br>
 <div id="printSpace">
 <p id="labelDiv"></p>
@@ -178,15 +212,6 @@
 <br>
 <br>
 <br>
-
-<div>
-<button type="button" id="print-label">Print Label</button>
-<br>
-<br>
-<br>
-<button type="button" id="reset-label">Reset</button>
-</div>
-
 <br>
 <br>
 <label for="include-change-line-label">Include Change Line Label?</label>
@@ -196,25 +221,30 @@
 <form id="change-line-form">
     <p>Day of Week:</p>
     <label for="change-day-monday">Monday</label>
-    <input type="checkbox" id="change-day-monday" value="Monday">
+    <input type="radio" name="change-day" id="change-day-monday" value="Monday">
     <br>
     <label for="change-day-tuesday">Tuesday</label>
-    <input type="checkbox" id="change-day-tuesday" value="Tuesday">
+    <input type="radio" name="change-day" id="change-day-tuesday" value="Tuesday">
     <br>
     <label for="change-day-wednesday">Wednesday</label>
-    <input type="checkbox" id="change-day-wednesday" value="Wednesday">
+    <input type="radio" name="change-day" id="change-day-wednesday" value="Wednesday">
     <br>
     <label for="change-day-thursday">Thursday</label>
-    <input type="checkbox" id="change-day-thursday" value="Thursday">
+    <input type="radio" name="change-day" id="change-day-thursday" value="Thursday">
     <br>
     <label for="change-day-friday">Friday</label>
-    <input type="checkbox" id="change-day-friday" value="Friday">
+    <input type="radio" name="change-day" id="change-day-friday" value="Friday">
     <br>
     <label for="change-day-saturday">Saturday</label>
-    <input type="checkbox" id="change-day-saturday" value="Saturday">
+    <input type="radio" name="change-day" id="change-day-saturday" value="Saturday">
     <br>
     <label for="change-day-sunday">Sunday</label>
-    <input type="checkbox" id="change-day-sunday" value="Sunday">
+    <input type="radio" name="change-day" id="change-day-sunday" value="Sunday">
+    <br>
+    <br>
+
+    <label for="change-color-by-day">Color Label by Day of Week?</label>
+    <input type="checkbox" id="change-color-by-day">
     <br>
     <br>
 
@@ -245,7 +275,7 @@
     <br>
     <br>
 
-    <p style="font-size: small">Check multiple days to produce one label per day in a single click</p>
+    <p style="font-size: small">Press Generate Multiple Times For Every Label Needed</p>
     <input type="submit" value="Generate Change Line Label">
 </form>
 
@@ -261,13 +291,12 @@
     <br>
     <br>
 <div>
-<button type="button" id="print-change-line-label">Print Change Line Label</button>
-<br>
-<br>
-<br>
-<button type="button" id="reset-change-line-label">Reset</button>
+<button type="button" id="reset-change-line-label">Reset Change Line</button>
 </div>
 </div>
+
+<br>
+<br>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
